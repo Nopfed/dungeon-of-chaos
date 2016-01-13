@@ -2,14 +2,20 @@
 <html>
 <head>
 	<title>Dungeon of Chaos</title>
+	<link rel="stylesheet" href="style/style.css">
 </head>
 <body>
 	<h1>Dungeon of Chaos</h1>
 	<div>
-		<h1><span id="player-name"></span>: <span id="player-hp"></span></h1>
-		<h1><span id="mob-name"></span>: <span id="mob-hp"></span></h1>
+		<div class="entity-container">
+			<h1><span id="player-name"></span>: <span id="player-hp"></span></h1>
+			<h3><ul id="player-stat-list"></ul></h3>
+		</div>
+		<div class="entity-container">
+			<h1><span id="mob-name"></span>: <span id="mob-hp"></span></h1>
+			<h3><ul id="mob-stat-list"></ul></h3>
+		</div>
 		<h2>Round: <span id="round-count"></span></h2>
-
 		<hr />
 		<div>
 			<label for="player-select">Player: <select name="player-select" id="player-select" onchange="dungeon.reset()" /></select>

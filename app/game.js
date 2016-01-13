@@ -12,10 +12,12 @@ function DungeonGame(options) {
 	this.playerNameSelector = options.playerNameSelector || 'player-name';
 	this.playerHpSelector = options.playerHpSelector || 'player-hp';
 	this.playerSelectSelector = options.playerSelectSelector || 'player-select';
+	this.playerStatListSelector = options.playerStatListSelector || 'player-stat-list';
 
 	this.mobNameSelector = options.mobNameSelector || 'mob-name';
 	this.mobHpSelector = options.mobHpSelector || 'mob-hp';
 	this.mobSelectSelector = options.mobSelectSelector || 'mob-select';
+	this.mobStatListSelector = options.mobStatListSelector || 'mob-stat-list';
 
 	// Cached UI Element wrappers
 	this.fightLog = document.getElementById(this.fightLogSelector);
@@ -23,24 +25,80 @@ function DungeonGame(options) {
 	this.playerNameElem = document.getElementById(this.playerNameSelector);
 	this.playerHpElem = document.getElementById(this.playerHpSelector);
 	this.playerSelectElem = document.getElementById(this.playerSelectSelector);
+	this.playerStatListElem = document.getElementById(this.playerStatListSelector);
+	this.playerStatListItems = [];
 
 	this.mobNameElem = document.getElementById(this.mobNameSelector);
 	this.mobHpElem = document.getElementById(this.mobHpSelector);
 	this.mobSelectElem = document.getElementById(this.mobSelectSelector);
+	this.mobStatListElem = document.getElementById(this.mobStatListSelector);
+	this.mobStatListItems = [];
 
+	// Reset the fight
 	this.reset = function () {
+		var i, stat, playerSelection, mobSelection;
+
 		// clear the log
 		this.clearLog();
 
 		this.output('-------------------');
 
-		// Reset player, mob, round count
-		var playerSelection = this.playerSelectElem.options[this.playerSelectElem.selectedIndex];
+		// Reset player
+		playerSelection = this.playerSelectElem.options[this.playerSelectElem.selectedIndex];
 		this.player = new Hero(heroes[playerSelection.parentNode.label][playerSelection.value]);
+		// Reset and generate player stat list elements
+		while (this.playerStatListElem.firstChild) {
+			this.playerStatListElem.removeChild(this.playerStatListElem.firstChild);
+		}
+		this.playerStatListItems = [];
+		for (var stat in this.player) {
+			// Only direct properties, strings, numbers, & booleans
+			if (this.player.hasOwnProperty(stat)
+				&& (typeof this.player[stat] === 'string'
+					|| typeof this.player[stat] === 'number'
+					|| typeof this.player[stat] === 'boolean')) {
+				// skip name and hp, already displayed
+				if (stat === 'name' || stat === 'hp') {
+					continue;
+				}
 
-		var mobSelection = this.mobSelectElem.options[this.mobSelectElem.selectedIndex];
+				statElem = document.createElement('li');
+				statElem.textContent = stat + ': ' + this.player[stat];
+				statElem.setAttribute('id', 'player-'+stat);
+
+				this.playerStatListElem.appendChild(statElem);
+			}
+		}
+
+		// Reset mob
+		mobSelection = this.mobSelectElem.options[this.mobSelectElem.selectedIndex];
 		this.mob = new Hero(mobs[mobSelection.parentNode.label][mobSelection.value]);
+		// Reset and generate player stat list elements
+		while (this.mobStatListElem.firstChild) {
+			this.mobStatListElem.removeChild(this.mobStatListElem.firstChild);
+		}
+		this.mobStatListItems = [];
+		for (stat in this.mob) {
+			// Only direct properties, strings, numbers, & booleans
+			if (this.mob.hasOwnProperty(stat)
+				&& (typeof this.mob[stat] === 'string'
+					|| typeof this.mob[stat] === 'number'
+					|| typeof this.player[stat] === 'boolean')) {
+				// skip name and hp, already displayed
+				if (stat === 'name' || stat === 'hp') {
+					continue;
+				}
+
+				statElem = document.createElement('li');
+				statElem.textContent = stat + ': ' + this.mob[stat];
+				statElem.setAttribute('id', 'mob-'+stat);
+
+				this.mobStatListElem.appendChild(statElem);
+			}
+		}
+
 		
+		// Reset round
 		this.round = 0;
 
 		// announce the fight & update UI
@@ -48,6 +106,7 @@ function DungeonGame(options) {
 		this.updateInterface();
 	};
 
+	// Simulate a round of fighting
 	this.fight = function () {
 		if (this.player.hp > 0 && this.mob.hp > 0) {
 			// Iterate the round
@@ -112,19 +171,23 @@ function DungeonGame(options) {
 		}
 	};
 
+	// Update the interface with game information
 	this.updateInterface = function () {
-		// update player hp & name
+		var statElem;
+
+		// update player information
 		document.getElementById('player-hp').textContent = this.player.hp;
 		document.getElementById('player-name').textContent = this.player.name;
 
-		// update mob hp & name
+		// update mob information
 		document.getElementById('mob-hp').textContent = this.mob.hp;
 		document.getElementById('mob-name').textContent = this.mob.name;
 
-		// update round counter
+		// update round information
 		document.getElementById('round-count').textContent = this.round;
 	};
 
+	// Output a message to both the fight log container and window.console
 	this.output = function (message) {
 		var messageDiv, lineBreak;
 
@@ -144,15 +207,20 @@ function DungeonGame(options) {
 		}
 	};
 
+	// Roll a die
+	// Returns random number from 1 to sides (inclusive)
 	this.dieRoll = function (sides) {
 		var min = 1;
 		return Math.floor(Math.random() * (sides - min + 1)) + min;
 	};
 
+	// Clear the fight log container and the console
 	this.clearLog = function () {
 		this.fightLog.textContent = '';
+		console.clear();
 	};
 
+	// Initialize
 	this.init = function () {
 		function populateSelect(selectElem, groupLabel, group) {
 			var i, optgroupElem, optionElem;
@@ -190,13 +258,10 @@ function DungeonGame(options) {
 		this.reset();
 	};
 
-	this.mobSelected = function () {
-		var i, selectedMob;
-	};
+	// Self-initialize
+	this.init();
 };
 
 window.onload = function () {
 	window.dungeon = new DungeonGame();
-
-	window.dungeon.init();
 };
