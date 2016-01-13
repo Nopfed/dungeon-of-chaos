@@ -26,13 +26,11 @@ function DungeonGame(options) {
 	this.playerHpElem = document.getElementById(this.playerHpSelector);
 	this.playerSelectElem = document.getElementById(this.playerSelectSelector);
 	this.playerStatListElem = document.getElementById(this.playerStatListSelector);
-	this.playerStatListItems = [];
 
 	this.mobNameElem = document.getElementById(this.mobNameSelector);
 	this.mobHpElem = document.getElementById(this.mobHpSelector);
 	this.mobSelectElem = document.getElementById(this.mobSelectSelector);
 	this.mobStatListElem = document.getElementById(this.mobStatListSelector);
-	this.mobStatListItems = [];
 
 	// Reset the fight
 	this.reset = function () {
@@ -50,7 +48,6 @@ function DungeonGame(options) {
 		while (this.playerStatListElem.firstChild) {
 			this.playerStatListElem.removeChild(this.playerStatListElem.firstChild);
 		}
-		this.playerStatListItems = [];
 		for (var stat in this.player) {
 			// Only direct properties, strings, numbers, & booleans
 			if (this.player.hasOwnProperty(stat)
@@ -77,7 +74,6 @@ function DungeonGame(options) {
 		while (this.mobStatListElem.firstChild) {
 			this.mobStatListElem.removeChild(this.mobStatListElem.firstChild);
 		}
-		this.mobStatListItems = [];
 		for (stat in this.mob) {
 			// Only direct properties, strings, numbers, & booleans
 			if (this.mob.hasOwnProperty(stat)
@@ -107,58 +103,72 @@ function DungeonGame(options) {
 	};
 
 	// Simulate a round of fighting
-	this.fight = function () {
+	// if action is not supplied, assume 'Melee' action
+	this.fight = function (action) {
+		var playerActionStat, playerStat, playerRoll, playerRolls, playerTargetStat,
+			mobAction, mobActionStat, mobStat, mobRoll, mobRolls, mobTargetStat;
+
+		// default to 'Melee' action
+		action = action || 'Melee';
+
+		// Fight cannot continue if a participant is dead
 		if (this.player.hp > 0 && this.mob.hp > 0) {
-			// Iterate the round
+			// Iterate & announce the round
 			this.round++;
+			this.output('--Round ' + this.round + '--');
 
-			// Announce the round
-			this.output('Round ' + this.round);
-
-			// Player and mob make attack rolls
-			var playerAtkRoll = this.dieRoll(this.player.atk) - this.player.miss;
-			var mobAtkRoll = this.dieRoll(this.mob.atk) - this.mob.miss;
-
-			//Can't hit for less than 0
-			if (playerAtkRoll < 0) {
-				playerAtkRoll = 0;
+			// Player makes action roll
+			playerActionStat = actions[action]['stat'];
+			playerStat = this.player[playerActionStat] || 0;
+			playerTargetStat = actions[action]['target-stat'];
+			playerRoll = (this.dieRoll(playerStat)*actions[action].rolls) - this.player.miss;
+			if (playerRoll < 0) {
+				playerRoll = 0;
 			}
 
-			if (mobAtkRoll < 0){
-				mobAtkRoll = 0;
-			}
-
-			// Announce player attack roll
-			if (playerAtkRoll === 0){
-				this.output(this.player.name + ' missed!');
+			// Announce player action
+			if (playerRoll === 0) {
+				this.output(this.player.name+'\'s ' + action + ' missed!');
 			} else {
-				this.output(this.player.name + ' attacks with a ' + playerAtkRoll);
+				this.output(this.player.name+'\'s ' + action + ' ' + actions[action].verb + ' ' + playerRoll + ' ' + playerTargetStat + '!');
 			}
 
-			// Subtract attack roll from mob hp
-			this.mob.hp = this.mob.hp - playerAtkRoll;
+			// Subtract player roll from mob target stat
+			this.mob[playerTargetStat] = this.mob[playerTargetStat] - playerRoll;
 
-			// Announce result of player attacking mob & update UI
-			this.output(this.mob.name + ' is at ' + this.mob.hp);
-			this.updateInterface();
+			// Announce result of player action
+			this.output(this.mob.name+'\'s ' + playerTargetStat + ' is at ' + this.mob[playerTargetStat]);
+			this.updateInterface();			
 
 			// Check if mob is dead
 			if (this.mob.hp <= 0) {
 				this.output(this.mob.name + ' has died!');
 				this.output(this.player.name + ' wins!');
 			} else {
-				// Announce mob attack roll
-				if (mobAtkRoll === 0) {
-					this.output(this.mob.name + ' missed!');
-				} else {
-					this.output(this.mob.name + ' attacks with a ' + mobAtkRoll);
-				}
-				// Subtract attack roll from player hp
-				this.player.hp = this.player.hp - mobAtkRoll;
+				// Mob chooses action
+				mobAction = 'Melee';
 
-				// Announce result of mob attacking player & update UI
-				this.output(this.player.name + ' is at ' + this.player.hp);
-				this.updateInterface();
+				// Mob makes action roll
+				mobActionStat = actions[mobAction]['stat'];
+				mobStat = this.player[mobActionStat] || 0;
+				mobTargetStat = actions[mobAction]['target-stat'];
+				mobRoll = (this.dieRoll(playerStat)*actions[mobAction].rolls) - this.mob.miss;
+				if (mobRoll < 0) {
+					mobRoll = 0;
+				}
+
+				// Announce mob action
+				if (mobRoll === 0) {
+					this.output(this.mob.name+'\'s ' + mobAction + ' missed!');
+				} else {
+					this.output(this.mob.name+'\'s ' + mobAction + ' ' + actions[mobAction].verb + ' ' + mobRoll + ' ' + mobTargetStat + '!');
+				}
+
+				// Subtract mob roll from player target stat
+				this.player[mobTargetStat] = this.player[mobTargetStat] - mobRoll;
+
+				// Announce result of mob action
+				this.output(this.player.name+'\'s ' + mobTargetStat + ' is at ' + this.player[mobTargetStat]);
 
 				// Check if player is dead
 				if (this.player.hp <= 0) {
@@ -166,6 +176,10 @@ function DungeonGame(options) {
 					this.output(this.mob.name + ' wins!');
 				}
 			}
+
+			// Update interface
+			this.updateInterface();
+
 		} else {
 			this.output('The fight is already over!');
 		}
@@ -173,15 +187,45 @@ function DungeonGame(options) {
 
 	// Update the interface with game information
 	this.updateInterface = function () {
-		var statElem;
+		var i, stat;
 
-		// update player information
-		document.getElementById('player-hp').textContent = this.player.hp;
-		document.getElementById('player-name').textContent = this.player.name;
+		// update player stats
+		this.playerHpElem.textContent = this.player.hp;
+		this.playerNameElem.textContent = this.player.name;
+		// other stats
+		for (var stat in this.player) {
+			// Only direct properties, strings, numbers, & booleans
+			if (this.player.hasOwnProperty(stat)
+				&& (typeof this.player[stat] === 'string'
+					|| typeof this.player[stat] === 'number'
+					|| typeof this.player[stat] === 'boolean')) {
+				// skip name and hp, already displayed
+				if (stat === 'name' || stat === 'hp') {
+					continue;
+				}
 
-		// update mob information
-		document.getElementById('mob-hp').textContent = this.mob.hp;
-		document.getElementById('mob-name').textContent = this.mob.name;
+				document.getElementById('player-'+stat).textContent = stat+': ' + this.player[stat];
+			}
+		}
+
+		// update mob stats
+		this.mobHpElem.textContent = this.mob.hp;
+		this.mobNameElem.textContent = this.mob.name;
+		// other stats
+		for (var stat in this.mob) {
+			// Only direct properties, strings, numbers, & booleans
+			if (this.mob.hasOwnProperty(stat)
+				&& (typeof this.mob[stat] === 'string'
+					|| typeof this.mob[stat] === 'number'
+					|| typeof this.mob[stat] === 'boolean')) {
+				// skip name and hp, already displayed
+				if (stat === 'name' || stat === 'hp') {
+					continue;
+				}
+
+				document.getElementById('mob-'+stat).textContent = stat+': ' + this.mob[stat];
+			}
+		}
 
 		// update round information
 		document.getElementById('round-count').textContent = this.round;

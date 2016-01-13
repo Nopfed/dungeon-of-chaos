@@ -7,6 +7,7 @@ function Hero(options) {
 	this.atk = options.atk || 1;
 	this.miss = options.miss || 1;
 	this.armor = options.armor || 0;
+	this.gold = options.gold || 10;
 	this.abilities = options.abilities || [];
 
 	this.formatName = function () {

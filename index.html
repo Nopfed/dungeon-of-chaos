@@ -22,8 +22,9 @@
 			<label for="mob-select">Mob: <select name="mob-select" id="mob-select" onchange="dungeon.reset()" /></select>
 		</div>
 		<div>
-			<button id="btn-fight" onclick="dungeon.fight();">Attack</button>
-			<button id="btn-reset" onclick="dungeon.reset();">Reset</button>
+			<button id="btn-fight" onclick="dungeon.fight();">Melee</button>
+			<button id="btn-steal" onclick="dungeon.fight('Steal');">Steal</button>
+			<button id="btn-reset" onclick="dungeon.reset();">Reset Combat</button>
 		</div>
 		<hr />
 
@@ -33,6 +34,7 @@
 	<!-- Game Data Files -->
 	<script src="data/heroes.js"></script>
 	<script src="data/mobs.js"></script>
+	<script src="data/actions.js"></script>
 
 	<!-- Game App Files -->
 	<script src="app/hero.js"></script>
