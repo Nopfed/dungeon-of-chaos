@@ -1,0 +1,15 @@
+Combat
+
+players load in the order 1, 2, 3, 4
+determine how mand and what monsters will spawn
+	pulls from monster pools based on total party character level or some way similar
+load in the monsters
+combat starts, initiatives are rolled and turn orders are set
+
+how a player takes their turn
+	options are fight, item, magic/ability or run?
+
+combat ends when either all monsters or all players are dead
+	can there ever be a draw situation where the player dies as they kill the last monster?
+	victory if all monsters died, loot and xp is distributed
+	game over or loss of time/money/items from the players
