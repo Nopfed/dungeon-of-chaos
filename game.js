@@ -67,6 +67,7 @@ function DungeonGame() {
 
 			// Check if mob is dead
 			if (this.mob.hp <= 0) {
+				this.output(this.mob.name + ' has died!');
 				this.output(this.player.name + ' wins!');
 			} else {
 				// Announce mob attack roll
@@ -84,6 +85,7 @@ function DungeonGame() {
 
 				// Check if player is dead
 				if (this.player.hp <= 0) {
+					this.output(this.player.name + ' has died!');
 					this.output(this.mob.name + ' wins!');
 				}
 			}
