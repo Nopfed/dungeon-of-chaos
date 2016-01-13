@@ -10,8 +10,16 @@
 		<h1><span id="mob-name"></span>: <span id="mob-hp"></span></h1>
 		<h2>Round: <span id="round-count"></span></h2>
 
-		<button id="btn-fight" onclick="dungeon.fight()">Attack</button>
-		<button id="btn-reset" onclick="dungeon.reset()">Reset</button>
+		<hr />
+		<div>
+			<label for="player-select">Player: <select name="player-select" id="player-select" onchange="dungeon.reset()" /></select>
+			<label for="mob-select">Mob: <select name="mob-select" id="mob-select" onchange="dungeon.reset()" /></select>
+		</div>
+		<div>
+			<button id="btn-fight" onclick="dungeon.fight();">Attack</button>
+			<button id="btn-reset" onclick="dungeon.reset();">Reset</button>
+		</div>
+		<hr />
 
 		<div id="fight-log"></div>
 	</div>
