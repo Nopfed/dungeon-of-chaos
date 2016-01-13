@@ -30,45 +30,49 @@ function DungeonGame() {
 	};
 
 	this.fight = function () {
-		// Iterate the round
-		this.rounds++;
+		if (this.player.hp > 0 && this.mob.hp > 0) {
+			// Iterate the round
+			this.rounds++;
 
-		// Announce the round
-		this.output('Round ' + this.rounds);
+			// Announce the round
+			this.output('Round ' + this.rounds);
 
-		// Player and mob make attack rolls
-		var playerAtkRoll = this.dieRoll(this.player.atk);
-		var mobAtkRoll = this.dieRoll(this.mob.atk);
+			// Player and mob make attack rolls
+			var playerAtkRoll = this.dieRoll(this.player.atk);
+			var mobAtkRoll = this.dieRoll(this.mob.atk);
 
-		// Announce player attack roll
-		this.output(this.player.name + ' attacks with a ' + playerAtkRoll);
+			// Announce player attack roll
+			this.output(this.player.name + ' attacks with a ' + playerAtkRoll);
 
-		// Subtract attack roll from mob hp
-		this.mob.hp = this.mob.hp - playerAtkRoll;
+			// Subtract attack roll from mob hp
+			this.mob.hp = this.mob.hp - playerAtkRoll;
 
-		// Announce result of player attacking mob & update UI
-		this.output(this.mob.name + ' is at ' + this.mob.hp);
-		this.updateInterface();
-
-		// Check if mob is dead
-		if (this.mob.hp <= 0) {
-			this.output(this.player.name + ' wins!');
-		} else {
-			// Announce mob attack roll
-			this.output(this.mob.name + ' attacks with a ' + mobAtkRoll);
-
-			// Subtract attack roll from player hp
-			this.player.hp = this.player.hp - mobAtkRoll;
-
-			// Announce result of mob attacking player & update UI
-			this.output(this.player.name + ' is at ' + this.player.hp);
+			// Announce result of player attacking mob & update UI
+			this.output(this.mob.name + ' is at ' + this.mob.hp);
 			this.updateInterface();
 
-			// Check if player is dead
-			if (this.player.hp <= 0) {
-				this.output(this.mob.name + ' wins!');
+			// Check if mob is dead
+			if (this.mob.hp <= 0) {
+				this.output(this.player.name + ' wins!');
+			} else {
+				// Announce mob attack roll
+				this.output(this.mob.name + ' attacks with a ' + mobAtkRoll);
+
+				// Subtract attack roll from player hp
+				this.player.hp = this.player.hp - mobAtkRoll;
+
+				// Announce result of mob attacking player & update UI
+				this.output(this.player.name + ' is at ' + this.player.hp);
+				this.updateInterface();
+
+				// Check if player is dead
+				if (this.player.hp <= 0) {
+					this.output(this.mob.name + ' wins!');
+				}
 			}
-		}		
+		} else {
+			this.output('The fight is already over!');
+		}
 	};
 
 	this.updateInterface = function () {
