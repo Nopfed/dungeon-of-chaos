@@ -1,0 +1,24 @@
+	{
+	class: 'Rogue',
+	hp: 12,
+	atk: 6,
+	miss: 1
+}
+	{
+	class: 'Sorceress',
+	hp: 10,
+	atk: 8,
+	miss: 2
+}
+	{
+	class: 'Warrior',
+	hp: 14,
+	atk: 8,
+	miss: 2,
+}
+	{
+	class: 'Priest',
+	hp: 10,
+	atk: 6,
+	miss: 2
+}
