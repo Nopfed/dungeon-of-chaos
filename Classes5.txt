@@ -1,0 +1,16 @@
+Rogue
+62
+20
+1
+Elementalist
+53
+20
+2
+Warrior
+72
+20
+2
+Priest
+52
+20
+3
