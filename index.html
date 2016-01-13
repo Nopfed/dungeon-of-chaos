@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>dungin of doogan</title>
+	<title>Dungeon of Chaos</title>
 </head>
 <body>
-	<h1>dungin of doogan</h1>
+	<h1>Dungeon of Chaos</h1>
 	<div>
 		<h1><span id="player-name"></span>: <span id="player-hp"></span></h1>
 		<h1><span id="mob-name"></span>: <span id="mob-hp"></span></h1>
 		<h2>Round: <span id="round-count"></span></h2>
+
 		<button id="btn-fight" onclick="dungeon.fight()">Attack</button>
 		<button id="btn-reset" onclick="dungeon.reset()">Reset</button>
-		<button id="btn-clear" onclick="dungeon.clearLog()">Clear Log</button>
+
 		<div id="fight-log"></div>
 	</div>
 
-	<!-- scripto-biptos -->
+	<!-- Game Data Files -->
 	<script src="data/heroes.js"></script>
 	<script src="data/cavemobs.js"></script>
 
+	<!-- Game App Files -->
+	<script src="app/hero.js"></script>
 	<script src="app/game.js"></script>
 </body>
 </html>
