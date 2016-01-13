@@ -104,6 +104,10 @@ function DungeonGame() {
 			return ((Math.random() * sides) + 1).toFixed(0);
 		}
 	};
+
+	this.clearLog = function () {
+		document.getElementById('fight-log').textContent = "";
+	};
 };
 
 window.onload = function () {
