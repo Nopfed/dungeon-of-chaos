@@ -2,6 +2,7 @@ function Hero(options) {
 	this.name = options.name;
 	this.hp = options.hp;
 	this.atk = options.atk;
+	this.miss = options.miss;
 
 	this.formatName = function () {
 		return this.name + '(' + this.hp + ')';
@@ -38,11 +39,24 @@ function DungeonGame() {
 			this.output('Round ' + this.rounds);
 
 			// Player and mob make attack rolls
-			var playerAtkRoll = this.dieRoll(this.player.atk);
-			var mobAtkRoll = this.dieRoll(this.mob.atk);
+			var playerAtkRoll = this.dieRoll(this.player.atk) - this.player.miss;
+			var mobAtkRoll = this.dieRoll(this.mob.atk) - this.mob.miss;
+
+			//Can't hit for less than 0
+			if (playerAtkRoll < 0){
+				playerAtkRoll = 0;
+			}
+
+			if (mobAtkRoll < 0){
+				mobAtkRoll = 0;
+			}
 
 			// Announce player attack roll
-			this.output(this.player.name + ' attacks with a ' + playerAtkRoll);
+			if (playerAtkRoll === 0){
+				this.output(this.player.name + ' missed!');
+			}else{
+				this.output(this.player.name + ' attacks with a ' + playerAtkRoll);
+			}
 
 			// Subtract attack roll from mob hp
 			this.mob.hp = this.mob.hp - playerAtkRoll;
@@ -56,8 +70,11 @@ function DungeonGame() {
 				this.output(this.player.name + ' wins!');
 			} else {
 				// Announce mob attack roll
-				this.output(this.mob.name + ' attacks with a ' + mobAtkRoll);
-
+				if (mobAtkRoll === 0){
+					this.output(this.mob.name + ' missed!');
+				} else {
+					this.output(this.mob.name + ' attacks with a ' + mobAtkRoll);
+				}
 				// Subtract attack roll from player hp
 				this.player.hp = this.player.hp - mobAtkRoll;
 
