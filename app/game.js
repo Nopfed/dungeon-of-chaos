@@ -36,17 +36,11 @@ function DungeonGame(options) {
 
 		// Reset player, mob, round count
 		var playerSelection = this.playerSelectElem.options[this.playerSelectElem.selectedIndex];
-		this.player = new Hero(heroes.classes[playerSelection.value]);
+		this.player = new Hero(heroes[playerSelection.parentNode.label][playerSelection.value]);
 
 		var mobSelection = this.mobSelectElem.options[this.mobSelectElem.selectedIndex];
-		if (mobSelection.parentNode.label === 'Cave Mobs') {
-			this.mob = new Hero(cavemobs.mobs[mobSelection.value]);
-		} else if (mobSelection.parentNode.label === 'Desert Mobs') {
-			this.mob = new Hero(desertmobs.mobs[mobSelection.value]);
-		} else {
-			this.mob = new Hero();
-		}
-
+		this.mob = new Hero(mobs[mobSelection.parentNode.label][mobSelection.value]);
+		
 		this.round = 0;
 
 		// announce the fight & update UI
@@ -160,61 +154,40 @@ function DungeonGame(options) {
 	};
 
 	this.init = function () {
-		var i, optgroupElem, optionElem;
+		function populateSelect(selectElem, groupLabel, group) {
+			var i, optgroupElem, optionElem;
 
-		// Populate player <select> with all lvl 1 classes
-		// Create an <optgroup> to hold level 1 hero classes
-		optgroupElem = document.createElement('optgroup');
-		optgroupElem.setAttribute("label", "Level 1");
+			// Populate player <select> with all lvl 1 classes
+			// Create an <optgroup> to hold level 1 hero classes
+			optgroupElem = document.createElement('optgroup');
+			optgroupElem.setAttribute("label", groupLabel);
 
-		// Add each class as an <option>
-		for (i = 0; i < heroes.classes.length; i++) {
-			optionElem = document.createElement('option');
-			optionElem.textContent = heroes.classes[i].name;
-			optionElem.value = i;
+			// Add each class as an <option>
+			for (i = 0; i < group.length; i++) {
+				optionElem = document.createElement('option');
+				optionElem.textContent = group[i].name;
+				optionElem.value = i;
 
-			// Add player class <option> to lvl 1 <optgroup>
-			optgroupElem.appendChild(optionElem);
-		}
+				// Add player class <option> to lvl 1 <optgroup>
+				optgroupElem.appendChild(optionElem);
+			}
 
-		// Add lvl 1 <optgroup> to player <select>
-		this.playerSelectElem.appendChild(optgroupElem);
+			// Add lvl 1 <optgroup> to player <select>
+			selectElem.appendChild(optgroupElem);
+		};
 
-		// Populate mob select box with all cave mobs
-		// Create an <optgroup> to hold all cave mobs
-		optgroupElem = document.createElement('optgroup');
-		optgroupElem.setAttribute("label", "Cave Mobs");
+		populateSelect(this.playerSelectElem, "Rogue", heroes["Rogue"]);
+		populateSelect(this.playerSelectElem, "Sorceress", heroes["Sorceress"]);
+		populateSelect(this.playerSelectElem, "Warrior", heroes["Warrior"]);
+		populateSelect(this.playerSelectElem, "Priest", heroes["Priest"]);
 
-		// Add each cave mob as an <option>
-		for (i = 0; i < cavemobs.mobs.length; i++) {
-			optionElem = document.createElement('option');
-			optionElem.textContent = cavemobs.mobs[i].name;
-			optionElem.value = i;
+		populateSelect(this.mobSelectElem, "Snow Mobs", mobs["Snow Mobs"]);
+		populateSelect(this.mobSelectElem, "Swamp Mobs", mobs["Swamp Mobs"]);
+		populateSelect(this.mobSelectElem, "Desert Mobs", mobs["Desert Mobs"]);
+		populateSelect(this.mobSelectElem, "Cave Mobs", mobs["Cave Mobs"]);
 
-			// Add mob <option> to cave mob <optgroup>
-			optgroupElem.appendChild(optionElem);
-		}
-
-		// Add cave mob <optgroup> to mob <select>
-		this.mobSelectElem.appendChild(optgroupElem);
-
-		// Populate mob select box with all desert mobs
-		// Create an <optgroup> to hold all desert mobs
-		optgroupElem = document.createElement('optgroup');
-		optgroupElem.setAttribute("label", "Desert Mobs");
-
-		// Add each desert mob as an <option>
-		for (i = 0; i < desertmobs.mobs.length; i++) {
-			optionElem = document.createElement('option');
-			optionElem.textContent = desertmobs.mobs[i].name;
-			optionElem.value = i;
-
-			// Add mob <option> to desert mob <optgroup>
-			optgroupElem.appendChild(optionElem);
-		}
-
-		// Add desert mob <optgroup> to mob <select>
-		this.mobSelectElem.appendChild(optgroupElem);
+		//Reset
+		this.reset();
 	};
 
 	this.mobSelected = function () {
@@ -226,5 +199,4 @@ window.onload = function () {
 	window.dungeon = new DungeonGame();
 
 	window.dungeon.init();
-	window.dungeon.reset();
 };
