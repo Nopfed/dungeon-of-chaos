@@ -1,7 +1,7 @@
-function Hero(name, hp, atk) {
-	this.name = name;
-	this.hp = hp;
-	this.atk = atk;
+function Hero(options) {
+	this.name = options.name;
+	this.hp = options.hp;
+	this.atk = options.atk;
 
 	this.formatName = function () {
 		return this.name + '(' + this.hp + ')';
@@ -10,8 +10,8 @@ function Hero(name, hp, atk) {
 
 function DungeonGame() {
 	// Initialize player, mob, and round count
-	this.player = new Hero("Player", 12, 5);
-	this.mob = new Hero("Skele-Bro", 6, 2);
+	this.player;
+	this.mob;
 	this.rounds = 0;
 
 	this.reset = function () {
@@ -20,8 +20,8 @@ function DungeonGame() {
 
 		this.output('-------------------');
 		// Reset player, mob, round count
-		this.player = new Hero("Player", 12, 5);
-		this.mob = new Hero("Skele-Bro", 6, 2);
+		this.player = new Hero(heroes.classes[0]);
+		this.mob = new Hero(cavemobs.mobs[3]);
 		this.rounds = 0;
 
 		// announce the fight & update UI
@@ -37,8 +37,8 @@ function DungeonGame() {
 		this.output('Round ' + this.rounds);
 
 		// Player and mob make attack rolls
-		var playerAtkRoll = this.dieRoll(1, this.player.atk);
-		var mobAtkRoll = this.dieRoll(1, this.mob.atk);
+		var playerAtkRoll = this.dieRoll(this.player.atk);
+		var mobAtkRoll = this.dieRoll(this.mob.atk);
 
 		// Announce player attack roll
 		this.output(this.player.name + ' attacks with a ' + playerAtkRoll);
@@ -72,11 +72,13 @@ function DungeonGame() {
 	};
 
 	this.updateInterface = function () {
-		// update player hp
+		// update player hp & name
 		document.getElementById('player-hp').textContent = this.player.hp;
+		document.getElementById('player-name').textContent = this.player.name;
 
-		// update mob hp
+		// update mob hp & name
 		document.getElementById('mob-hp').textContent = this.mob.hp;
+		document.getElementById('mob-name').textContent = this.mob.name;
 
 		// update round counter
 		document.getElementById('round-count').textContent = this.rounds;
@@ -102,10 +104,10 @@ function DungeonGame() {
 		fightLog.appendChild(lineBreak);
 	};
 
-	this.dieRoll = function (rolls, sides) {
-		for (i = 0; i < rolls; i++) {
-			return ((Math.random() * sides) + 1).toFixed(0);
-		}
+	this.dieRoll = function (sides) {
+		var min = 1;
+		//return ((Math.random() * sides) + 1).toFixed(0);
+		return Math.floor(Math.random() * (sides - min + 1)) + min;
 	};
 
 	this.clearLog = function () {
@@ -117,4 +119,4 @@ window.onload = function () {
 	window.dungeon = new DungeonGame();
 
 	window.dungeon.reset();
-}
+};
