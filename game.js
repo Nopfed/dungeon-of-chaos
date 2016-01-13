@@ -8,80 +8,106 @@ function Hero(name, hp, atk) {
 	};
 };
 
-function dieRoll(rolls, sides){
-	for (i = 0; i < rolls; i++) {
-		return ((Math.random() * sides) + 1).toFixed(0);
-	}
-};
+function DungeonGame() {
+	// Initialize player, mob, and round count
+	this.player = new Hero("Player", 12, 5);
+	this.mob = new Hero("Skele-Bro", 6, 2);
+	this.rounds = 0;
 
-function fight() {
-	output('-------------------');
+	this.reset = function () {
+		this.output('-------------------');
+		// Reset player, mob, round count
+		this.player = new Hero("Player", 12, 5);
+		this.mob = new Hero("Skele-Bro", 6, 2);
+		this.rounds = 0;
 
-	// set up both fighters
-	var fighterA = new Hero("Buttz", 12, 5);
-	var fighterB = new Hero("Skele-Bro", 6, 2);
+		// announce the fight & update UI
+		this.output(this.player.formatName() + ' vs. ' + this.mob.formatName());
+		this.updateInterface();
+	};
 
-	var count = 0;
+	this.fight = function () {
+		// Iterate the round
+		this.rounds++;
 
-	// announce the fight
-	output(fighterA.formatName() + ' vs. ' + fighterB.formatName());
+		// Announce the round
+		this.output('Round ' + this.rounds);
 
-	// fight to the death!
-	while (fighterA.hp > 0 && fighterB.hp > 0) {
-		var attackRollA, attackRollB;
+		// Player and mob make attack rolls
+		var playerAtkRoll = this.dieRoll(1, this.player.atk);
+		var mobAtkRoll = this.dieRoll(1, this.mob.atk);
 
-		// iterate the roundo
-		count++;
+		// Announce player attack roll
+		this.output(this.player.name + ' attacks with a ' + playerAtkRoll);
 
-		// both fighters roll for their attacks
-		attackRollA = dieRoll(1, fighterA.atk);
-		attackRollB = dieRoll(1, fighterB.atk);
+		// Subtract attack roll from mob hp
+		this.mob.hp = this.mob.hp - playerAtkRoll;
 
-		// output fighterA attack roll 
-		output(fighterA.name + ' attacks with a ' + attackRollA);
+		// Announce result of player attacking mob & update UI
+		this.output(this.mob.name + ' is at ' + this.mob.hp);
+		this.updateInterface();
 
-		// subtract attack roll from fighterB hp
-		fighterB.hp = fighterB.hp - attackRollA;
-		output(fighterB.name + ' is at ' + fighterB.hp);
+		// Check if mob is dead
+		if (this.mob.hp <= 0) {
+			this.output(this.player.name + ' wins!');
+		} else {
+			// Announce mob attack roll
+			this.output(this.mob.name + ' attacks with a ' + mobAtkRoll);
 
-		// check if fighterB is dead
-		if (fighterB.hp <= 0) {
-			output(fighterA.formatName() + " wins!");
-			continue;
+			// Subtract attack roll from player hp
+			this.player.hp = this.player.hp - mobAtkRoll;
+
+			// Announce result of mob attacking player & update UI
+			this.output(this.player.name + ' is at ' + this.player.hp);
+			this.updateInterface();
+
+			// Check if player is dead
+			if (this.player.hp <= 0) {
+				this.output(this.mob.name + ' wins!');
+			}
+		}		
+	};
+
+	this.updateInterface = function () {
+		// update player hp
+		document.getElementById('player-hp').textContent = this.player.hp;
+
+		// update mob hp
+		document.getElementById('mob-hp').textContent = this.mob.hp;
+
+		// update round counter
+		document.getElementById('round-count').textContent = this.rounds;
+	};
+
+	this.output = function (message) {
+		var messageDiv, fightLog, lineBreak;
+
+		// log to console
+		console.log(message);
+
+		// grab fight-log div
+		fightLog = document.getElementById('fight-log');
+
+		// create a new text node with the message
+		messageText = document.createTextNode(message);
+
+		// create a new <br> element to act as a line break
+		lineBreak = document.createElement('br');
+
+		// append message text and line break
+		fightLog.appendChild(messageText);
+		fightLog.appendChild(lineBreak);
+	};
+
+	this.dieRoll = function (rolls, sides) {
+		for (i = 0; i < rolls; i++) {
+			return ((Math.random() * sides) + 1).toFixed(0);
 		}
-		
-		// output fighterB attack roll 
-		output(fighterB.name + ' attacks with a ' + attackRollB);
-		
-		// subtract attack roll from fighterA hp
-		fighterA.hp = fighterA.hp - attackRollB;
-		output(fighterA.name + ' is at ' + fighterA.hp);
-
-		// check if fighter A is dead
-		if (fighterA.hp <= 0) {
-			output(fighterB.formatName() + " wins!");
-		}
-	}
-
-	output('-------------------');
+	};
 };
 
-function output(message) {
-	var messageDiv, fightLog, lineBreak;
+window.onload = function () {
+	window.dungeon = new DungeonGame();
 
-	// log to console
-	console.log(message);
-
-	// grab fight-log div
-	fightLog = document.getElementById('fight-log');
-
-	// create a new text node with the message
-	messageText = document.createTextNode(message);
-
-	// create a new <br> element to act as a line break
-	lineBreak = document.createElement('br');
-
-	// append message text and line break
-	fightLog.appendChild(messageText);
-	fightLog.appendChild(lineBreak);
-};
+	window.dungeon.reset();
+}

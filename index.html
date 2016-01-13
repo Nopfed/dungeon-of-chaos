@@ -6,11 +6,16 @@
 <body>
 	<h1>dungin of doogan</h1>
 	<div>
-		<button id="btn-fight" onclick="fight();">Fight!</button>
+		<h1>Player: <span id="player-hp"></span></h1>
+		<h1>Mob: <span id="mob-hp"></span></h1>
+		<h2>Round: <span id="round-count"></span></h2>
+		<button id="btn-fight" onclick="dungeon.fight()">Attack</button>
+		<button id="btn-reset" onclick="dungeon.reset()">Reset</button>
 		<div id="fight-log"></div>
 	</div>
 
 	<!-- scripto-biptos -->
+	<script src="heroes.js"></script>
 	<script src="cavemobs.js"></script>
 	<script src="game.js"></script>
 </body>
