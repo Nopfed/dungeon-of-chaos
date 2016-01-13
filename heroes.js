@@ -1,5 +1,5 @@
 var heroes = {
-	class: [
+	classes: [
 		{
 			name: 'Rogue',
 			hp: 12,

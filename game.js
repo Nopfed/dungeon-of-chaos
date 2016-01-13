@@ -15,6 +15,8 @@ function dieRoll(rolls, sides){
 };
 
 function fight() {
+	output('-------------------');
+
 	// set up both fighters
 	var fighterA = new Hero("Buttz", 12, 5);
 	var fighterB = new Hero("Skele-Bro", 6, 2);
@@ -60,6 +62,8 @@ function fight() {
 			output(fighterB.formatName() + " wins!");
 		}
 	}
+
+	output('-------------------');
 };
 
 function output(message) {
