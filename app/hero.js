@@ -7,12 +7,14 @@ function Hero(options) {
 	this.atk = options.atk || 1;
 	this.miss = options.miss || 1;
 	this.armor = options.armor || 0;
+	this.abilities = options.abilities || [];
 
 	this.formatName = function () {
 		return this.name + '(' + this.lvl + ')';
 	};
 
-	this.attack = function (otherHero) {
-		return this.atk - otherHero.armor;
-	}
+	//this.attack = function (otherHero) {
+	//	return this.atk - otherHero.armor;
+	//}
+
 };

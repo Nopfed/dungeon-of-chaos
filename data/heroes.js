@@ -6,6 +6,9 @@ var heroes = {
 			hp: 12,
 			atk: 6,
 			miss: 1,
+			abilities: [
+				'Steal'
+			],
 		},
 		{
 			name: "Lvl 2 Rogue",
@@ -13,6 +16,10 @@ var heroes = {
 			hp: 18,
 			atk: 8,
 			miss: 1,
+			abilities: [
+				'Steal',
+				'Poison Bomb',
+			],
 		},
 		{
 			name: "Lvl 3 Rogue",
@@ -20,6 +27,11 @@ var heroes = {
 			hp: 27,
 			atk: 10,
 			miss: 1,
+			abilities: [
+				'Steal',
+				'Poison Bomb',
+				'Dual Strike',
+			],
 		},
 		{
 			name: "Lvl 4 Rogue",
@@ -27,6 +39,12 @@ var heroes = {
 			hp: 41,
 			atk: 12,
 			miss: 1,
+			abilities: [
+				'Steal',
+				'Poison Bomb',
+				'Dual Strike',
+				'Flash Bang',
+			],
 		},
 		{
 			name: "Lvl 5 Rogue",
@@ -34,6 +52,13 @@ var heroes = {
 			hp: 62,
 			atk: 20,
 			miss: 1,
+			abilities: [
+				'Steal',
+				'Poison Bomb',
+				'Dual Strike',
+				'Flash Bang',
+				'Blade Storm',
+			],
 		},
 	],
 	"Sorceress": [
@@ -43,6 +68,9 @@ var heroes = {
 			hp: 10,
 			atk: 8,
 			miss: 2,
+			abilities: [
+				'Wind Strike',
+			],
 		},
 		{
 			name: "Lvl 2 Sorc",
@@ -50,6 +78,10 @@ var heroes = {
 			hp: 15,
 			atk: 10,
 			miss: 2,
+			abilities: [
+				'Wind Strike',
+				'Flame',
+			],
 		},
 		{
 			name: "Lvl 3 Sorc",
@@ -57,6 +89,12 @@ var heroes = {
 			hp: 23,
 			atk: 12,
 			miss: 2,
+			abilities: [
+				'Wind Strike',
+				'Flame',
+				'Aqua Blast',
+				'Cast All',
+			],
 		},
 		{
 			name: "Lvl 4 Sorc",
@@ -64,6 +102,14 @@ var heroes = {
 			hp: 35,
 			atk: 12,
 			miss: 2,
+			abilities: [
+				'Wind Strike',
+				'Flame',
+				'Aqua Blast',
+				'Cast All',
+				'Lightning',
+				'Double Cast',
+			],
 		},
 		{
 			name: "Lvl 5 Sorc",
@@ -71,6 +117,15 @@ var heroes = {
 			hp: 53,
 			atk: 20,
 			miss: 2,
+			abilities: [
+				'Wind Strike',
+				'Flame',
+				'Aqua Blast',
+				'Cast All',
+				'Lightning',
+				'Double Cast',
+				'Chaos Storm',
+			],
 		},
 	],
 	"Warrior": [
@@ -80,6 +135,9 @@ var heroes = {
 			hp: 14,
 			atk: 8,
 			miss: 2,
+			abilities: [
+				'Defend',
+			],
 		},
 		{
 			name: "Lvl 2 Warr",
@@ -87,6 +145,10 @@ var heroes = {
 			hp: 21,
 			atk: 10,
 			miss: 2,
+			abilities: [
+				'Defend',
+				'Fortify',
+			],
 		},
 		{
 			name: "Lvl 3 Warr",
@@ -94,6 +156,11 @@ var heroes = {
 			hp: 32,
 			atk: 12,
 			miss: 2,
+			abilities: [
+				'Defend',
+				'Fortify',
+				'Inspire',
+			],
 		},
 		{
 			name: "Lvl 4 Warr",
@@ -101,6 +168,12 @@ var heroes = {
 			hp: 48,
 			atk: 20,
 			miss: 3,
+			abilities: [
+				'Defend',
+				'Fortify',
+				'Inspire',
+				'Ignore Pain',
+			],
 		},
 		{
 			name: "Lvl 5 Warr",
@@ -108,6 +181,13 @@ var heroes = {
 			hp: 72,
 			atk: 20,
 			miss: 2,
+			abilities: [
+				'Defend',
+				'Fortify',
+				'Inspire',
+				'Ignore Pain',
+				'Ignore Death',
+			],
 		},
 	],
 	"Priest": [
@@ -117,6 +197,9 @@ var heroes = {
 			hp: 10,
 			atk: 6,
 			miss: 2,
+			abilities: [
+				'Heal',
+			],
 		},
 		{
 			name: "Lvl 2 Priest",
@@ -124,6 +207,10 @@ var heroes = {
 			hp: 14,
 			atk: 8,
 			miss: 2,
+			abilities: [
+				'Heal',
+				'Regeneration',
+			],
 		},
 		{
 			name: "Lvl 3 Priest",
@@ -131,6 +218,11 @@ var heroes = {
 			hp: 22,
 			atk: 10,
 			miss: 2,
+			abilities: [
+				'Heal',
+				'Regeneration',
+				'Greater Heal',
+			],
 		},
 		{
 			name: "Lvl 4 Priest",
@@ -138,6 +230,12 @@ var heroes = {
 			hp: 34,
 			atk: 12,
 			miss: 2,
+			abilities: [
+				'Heal',
+				'Regeneration',
+				'Greater Heal',
+				'Revive',
+			],
 		},
 		{
 			name: "Lvl 5 Priest",
@@ -145,6 +243,14 @@ var heroes = {
 			hp: 52,
 			atk: 20,
 			miss: 3,
+			abilities: [
+				'Heal',
+				'Regeneration',
+				'Greater Heal',
+				'Revive',
+				'Full Heal',
+				'Angel\'s Grace',
+			],
 		},
 	],
 };

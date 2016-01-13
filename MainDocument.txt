@@ -1,0 +1,337 @@
+﻿Role Playing Card Game
+
+
+There’s this dungeon/temple that some heros got trapped in and don’t remember how they got there. They don’t know each other and have to work together to escape/beat the boss.
+
+
+Themes
+Fantasy/Medieval/Magic
+Elder Scrolls/WoW/DnD/MTG
+Spooky Kids Halloween
+Space/Sci-Fi
+
+
+Game Guide/Rules/How to Play
+
+
+1. What is this game?
+   1. Concise Role Playing Game that uses Cards for the dungeon, events, monsters, etc.
+      1. Each Dungeon Card acts as its own room or area and everything that happens in that room happens for that turn or round
+         1. Monsters spawn for the players or heroes to fight
+         2. Combat is initiated
+         3. After combat skill points are assigned and players might level up
+         4. Players may then choose to do certain actions before progressing to the next room
+         5. Once all rooms are cleared, the Boss for the dungeon will spawn in the last room explored
+   1. The dungeon itself is always different each time you play
+      1. Shouldn’t be thought of a dungeon that is strictly indoors or has all the same monsters in it
+         1. One room in the dungeon could be a typical cave where you fight bats and skeletons
+         2. The next “room” could be a desert temple with mummies and rock elementals
+      1. Dungeon is the word used just for namesake purposes
+1. Randomized Dungeon/Map
+   1. Dungeon/Map Deck of cards/tiles
+      1. Starting tile
+         1. Where the players start the dungeon
+         2. has more than one exit leading from it so that the dungeon has more variety in layout and isn’t linear
+   1. “Waterworks”
+      1. Color coordinated edges for placing down Dungeon Cards in a pattern that sets the dungeon layout for the duration of the game
+   1. Information on Dungeon Card
+      1. Terrains
+         1. Cave
+            1. Demonology themed
+         1. Snow
+            1. Barren with animals theme
+         1. Desert
+            1. Temple/Pyramid theme
+         1. Swamp
+            1. bog-like area, dark n spoopy
+1. How To Play
+   1. Starting the game
+      1. Recommended Party Size
+         1. 4 players
+      1. Party level is equal to the highest level player in the party
+      2. Players choose what class they want to be for the duration of the game
+         1. Multiple players can be the same class (tentative)
+      1. Each player draws seven Dungeon Cards faced down so that no player, not even themselves can see what is on the underface side
+      2. Players then take turns placing Dungeon Cards faced down to build the dungeon, placing them at any exit of the start tile and continuing from there
+      3. These cards may be placed in any fashion so long as they are all properly connected to each other and the Dungeon is fully connected at the end. There should be no part of the dungeon that cannot be reached.
+      4. Once all cards are placed down, the game can begin. The players place their party piece at the start and choose what room they want to move into first.
+      5. Players start the game with a number of “Phoenix Ups” based on the number of people playing
+   1. What happens during each room/turn
+      1. The party flips the dungeon card face up and connects it to the rest of the dungeon similarly to how it was placed when faced down
+      2. The players then draw 1 Modifier Card for the room
+         1. A Modifier card equal in level to the highest party member is drawn for the room
+         2. What a Modifier Card could have on it:
+            1. What type and how many monsters spawn in the room
+               1. The monsters that are spawned will come from a certain Terrain list which is found in the Bestiary.
+                  1. The Terrain type for the room can be found on the Dungeon Card that the players are on for the turn
+         1. Bonus loot could be found in the room via treasure chests
+         2. Event die rolls
+         3. Anything else the modifier card reads.
+      1. Combat
+         1. How Combat works each turn
+            1. Players roll initiative using a 20-sided die
+               1. Turn order is then set from highest to lowest initiative rolls
+            1. On each player’s turn in combat, that player gets to choose one action out of the following
+               1. Attack
+                  1. Choose to attack a monster for their turn
+                  2. Rolls dice for damage
+                     1. The type and number of dice rolled are pre-determined based on class and level
+               1. Magic/Ability
+                  1. Choose to cast a spell or activate an ability
+                     1. The player then follows the directions for casting that spell or activating that ability
+               1. Item
+                  1. Players may choose to consume/discard an item to be used for that turn on whichever hero or monster they desire to use it on
+               1. Run
+                  1. Players have the option to run from a fight against monsters
+                  2. This is recommended to be used when the party thinks they will not be able to win and gives them another chance at completing the dungeon and winning the game
+                  3. Running is not always guaranteed
+                     1. Insert dice roll formula for running here
+                  1. If one player decides to run and is successful then they are removed from combat and share no skill points received if the fight was completed in the player’s favor
+                  2. The way in which a player runs is by rolling 1d20 and comparing it against the initiative value of the monsters left in the battle. If it is higher than all of them, then that player runs from the battle.
+                  3. There is no running from a Boss battle
+            1. When they decide what to do, the next player or monster takes their turn
+            2. Combat finishes when all monsters or players are defeated
+            3. Skill Points are distributed to the party
+               1. Players distribute skill points to whom they think would best use them
+               2. Monsters give a certain number of skill points to the team when defeated and combat finishes
+               3. Once skill points are distributed and finalized, they may not be reduced or redistributed by the party unless otherwise stated in the game.
+            1. Loot is rolled and put into the loot bag
+               1. The loot bag is a collective pool of loot for use by the party. The party carries the loot bag with them and may equip interchangeably at anytime outside of combat.
+               2. The loot die is rolled a number of times based on the monsters defeated in combat. Each monster will have a corresponding loot roll number indicating how many times the loot die will be rolled at the end of combat.
+               3. Once the players are done rolling for loot, all loot is put into the party’s loot bag.
+      1. After Combat
+         1. After combat and before the next room/round players may choose to do certain actions to prepare for what unknowingly lies ahead in the next room of the dungeon
+         2. Gear may be distributed based on how the players feel their team would be best equipped
+         3. Players choose what room they want to go to next
+1. Classes
+   1. Players may choose only one class to play as.
+   2. A player can learn everything about their class by reading that class’s section in this guide
+   3. Each class has a class card that can be used as a shorthand guide for playing that class so that they don’t have to consult the game guide for information about their class.
+   4. Starting HP - Each player will roll 1d10 and add 10 to that number to determine their starting HP
+   5. Class Passives
+      1. Each class has at least one passive that is always in effect unless otherwise stated
+   1. Abilities
+      1. At each level players unlock new abilities for their class
+      2. Once an ability has been unlocked it may be used at anytime that ability could be used
+   1. Levels
+      1. There are 5 levels that the players can reach
+      2. Each level brings new abilities and stats for the player so that they are stronger and more equipped for what lies ahead in the rest of the dungeon
+   1. Rogue
+      1. Passive - Armor Specialist
+         1. Ignores armor on enemies.
+      1. Average HP
+      2. Dual Wielding small weapons is optimal
+      3. Abilities
+         1. Level 1
+            1. Steal
+               1. 50% chance to steal the first time. chances decrease by half each time                you successfully steal up to 3 times.
+         1. Level 2
+            1. Poison Bomb
+               1. Deal 1d4 damage to each enemy. One use per combat.
+         1. Level 3
+            1. Double Strike
+               1. Roll damage twice for one enemy. One use per combat.
+         1. Level 4
+            1. Flash Bang
+               1. Incapacitate one enemy for 1 round. They lose their next attack. Two uses per combat.
+         1. Level 5
+            1. Blade Storm - Consumes an equipped weapon to deal 3d20 to all enemies.
+   1. Sorceress
+      1. Passive - Attuned to the Elements
+         1. Deals double damage to monsters weak to specific elements.
+      1. Below Average HP
+      2. Staves/spellbooks and wands recommended
+      3. Abilities
+         1. Level 1
+            1. Wind Strike - Attacks are attuned to the element of air
+         1. Level 2
+            1. Flame - Attacks can now be attuned to the element of fire
+         1. Level 3
+            1. Aqua Blast - Attacks can now be attuned to the element of water
+            2. Cast All -  Deal 1d4 + 1 of an element type to each enemy
+         1. Level 4
+            1. Lightning - Attacks can now be attuned to the element of lightning
+            2. Double Cast - Can now attack twice each turn.
+         1. Level 5
+            1. Chaos Storm - Attack all enemies four times, rolling 1d12 for each element. Cannot be used in combination with Double Cast. Sorceress must recharge after using, skipping her next turn.
+   1. Warrior
+      1. Passive - Restorative Vigor
+         1. Restores HP at the end of combat.
+            1. 1d4 from levels 1-2
+            2. 1d6 from level 3 onward
+      1. Above Average HP
+      2. 1h Weapon + Shield recommended
+      3. Abilities
+         1. Level 1
+            1. Defend - The next time an ally would be hit, you are hit instead.
+         1. Level 2
+            1. Fortify - Give an ally 2 armor for the rest of combat as long as the Warrior is alive. One use per combat.
+         1. Level 3
+            1. Inspire - Add 1d6 to all rolls on another ally’s next turn.
+         1. Level 4
+            1. Ignore Pain - Gain 4 armor for the rest of combat.
+         1. Level 5
+            1. Ignore Death - The next time you would die, you are instead not killed and your HP is set to 1. This can only happen once per combat.
+   1. Priest MOON PRIEST
+      1. Passive - Blessed by THE MOON
+         1. Receives 50% more healing from all sources rounded up.
+      1. Below Average HP
+      2. 2h Staff recommended
+      3. Abilities
+         1. Level 1
+            1. Heal
+               1. Heal an ally for 1d4+LVL
+         1. Level 2
+            1. Regeneration - Buff an ally giving them health over time for the rest of combat for as long as the Priest is alive. The amount healed each turn is equal to the level of the Priest.
+         1. Level 3
+            1. Greater Heal
+               1. Heal an ally for 2d6+LVL
+         1. Level 4
+            1. Revive
+               1. Bring a KO’d ally back to life at half HP
+         1. Level 5
+            1. Full Heal
+               1. Heal an ally to full health. Can only be used twice per combat.
+               2. Angel’s Grace
+                  1. The next time an ally would be killed in combat, they reduced to 1 HP instead
+1. Bestiary
+   1. Monster Index
+   2. Used for deciding how many and what type of monsters spawn each combat
+      1. Each monster has a number and falls into a corresponding level category based on arbitrary strength
+      2. Each time that number is rolled, that monster will spawn some number of times
+      3. Only monsters with levels that correspond to the party’s level will be spawned, noted by mod cards
+1. Dice
+   1. Loot - 12 sides
+      1. 1 Rare loot side
+      2. 5-6 Basic loot sides
+      3. 1-2 “Phoenix Up” side(s)
+      4. 4-5 blank sides
+   1. Event
+      1. Big Monster Tick
+            1. If everyone rolls this then a big monster that drops loot spawns
+      1. Loot
+      2. Monster
+   1. Standard number dice
+1. Modifier Cards
+   1. When a dungeon card is flipped over, a modifier card is drawn off the top of its deck and based on the information it gives is how many events happen in addition to whatever else is on the card.
+      1. Monsters spawning
+         1. what tier
+         2. how many of each
+      1. Loot found in the room
+         1. how many loot rolls
+   1. Different levels of mod cards that scale with the highest level player in the party/group of players
+1. Loot and its types
+   1. Rare, Phoenix Up or Basic
+   2. Gear Cards
+      1. Players have 12 gear slots
+         1. Head
+         2. Chest
+         3. Legs
+         4. Belt
+         5. Feet
+         6. Hands
+         7. Rings
+            1. One per hand
+         1. Neck
+         2. Cape/Cloak
+         3. Weapons
+            1. 2h
+            2. 1h
+            3. Dual wielding
+         1. Off hands
+            1. Shield
+            2. Spellbook
+            3. etc.
+      1. Players will have their gear for their character on cards called gear cards which are a type of loot card
+      2. Players can only equip one of each type of gear besides rings, and dual wielding 1 handed weapons with an offhand piece of equipment
+   1. Gems?
+   2. Enchants?
+1. Win Condition/Endgame
+   1. Beat the boss
+      1. Boss spawns in the last room of the dungeon
+
+
+________________
+
+
+Card Types
+
+
+Dungeon Card
+        Start Card
+        End Card
+        Terrain Types
+Modifier Card
+        Loot rolls
+        Monster rolls
+        Event rolls
+        Levels 1-5
+Class Card
+Monster Card
+        Levels 1-5
+                Level 5 monsters are bosses
+        Stats
+                HP
+                Exp
+                Initiative
+                How many loot rolls
+                bonus information
+                damage
+Loot/Gear Card
+        Weapons
+        Armor
+        Gems?
+        Enchants?
+        Potions?
+                Drinkable
+                Throwable
+        Keys?
+
+
+
+
+
+
+________________
+
+
+Ideas
+
+
+Virtual and or Physical, up in the air but leaning towards physical for now
+Different difficulties? Game modes?
+Game type - One person is one of a handful of dungeon masters who do different things and have a certain win condition against the players and the players win if they defeat and/or foil his plans
+Game Type - Team race competition
+Game Type - Players start in random locations of the dungeon and meet up with at the center with keys
+Game Type - Bosses can be spawned earlier than the end of the game
+
+
+Modifier cards are placed down at the beginning of the game with dungeon cards
+This way rooms have forced levels
+shopkeep ?
+Players at the shop rolls the loot die 4 times and draws that many pieces of loot, rare loot or phoenix ups and those items are what is available at the shop.
+POP? (I just want the word pop used somehow)
+        popping a guy is like one-shotting him or maybe a crit
+                if you do this you get something special maybe?
+idol/pillar tiles for ascension wincon
+        players have to see/pray at a certain number of pillars or shrines to win
+Rogue has throwing knives or something
+Game mode toggle ideas
+        Glass - one shot, one kill
+        enemies are only bosses
+Keys
+Potions
+________________
+
+
+To do/Talk About
+Make dungeon cards
+Make some modifier cards
+Make some loot cards
+Backtracking through the dungeon
+Finish the game guide
+Think of a name for the game
+* Dungeon of Chaos
+Think of a better name for modifier cards
+Crit Chance?????
+combat in java
