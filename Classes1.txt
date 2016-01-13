@@ -1,16 +1,24 @@
-Rogue
-12
-6
-1
-Elementalist
-10
-8
-2
-Warrior
-14
-8
-2
-Priest
-10
-6
-2
+	{
+	class: 'Rogue',
+	hp: 12,
+	atk: 6,
+	miss: 1
+}
+	{
+	class: 'Sorceress',
+	hp: 10,
+	atk: 8,
+	miss: 2
+}
+	{
+	class: 'Warrior',
+	hp: 14,
+	atk: 8,
+	miss: 2,
+}
+	{
+	class: 'Priest',
+	hp: 10,
+	atk: 6,
+	miss: 2
+}
