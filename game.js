@@ -15,6 +15,9 @@ function DungeonGame() {
 	this.rounds = 0;
 
 	this.reset = function () {
+		// clear the log
+		this.clearLog();
+
 		this.output('-------------------');
 		// Reset player, mob, round count
 		this.player = new Hero("Player", 12, 5);
