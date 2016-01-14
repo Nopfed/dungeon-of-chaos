@@ -4,7 +4,7 @@ var actions = {
 		'rolls': 1,
 		'target-stat': 'hp',
 		'verb': 'hits for',
-		'verb-damage': 'hp'
+		'verb-damage': 'damage'
 	},
 	'Steal': {
 		'stat': 'atk',

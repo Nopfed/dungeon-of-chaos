@@ -222,7 +222,7 @@ function DungeonGame(options) {
 					continue;
 				}
 
-				document.getElementById('player-'+stat).textContent = stat+': ' + this.player[stat];
+				document.getElementById('player-' + stat).textContent = stat +': ' + this.player[stat];
 			}
 		}
 
@@ -241,7 +241,7 @@ function DungeonGame(options) {
 					continue;
 				}
 
-				document.getElementById('mob-'+stat).textContent = stat+': ' + this.mob[stat];
+				document.getElementById('mob-' + stat).textContent = stat + ': ' + this.mob[stat];
 			}
 		}
 
@@ -339,7 +339,7 @@ function DungeonGame(options) {
 		// Has to wait for the voice list to load first
 		window.speechSynthesis.onvoiceschanged = (function () {
 			var voices = window.speechSynthesis.getVoices();
-			this.voice = voices[16];
+			this.voice = voices[3];
 			this.synthMessage.voice = this.voice;
 		}).bind(this);
 
