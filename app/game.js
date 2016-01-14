@@ -102,7 +102,7 @@ function DungeonGame(options) {
 		this.round = 0;
 
 		// announce the fight & update UI
-		this.output(this.player.formatName() + ' vs. ' + this.mob.formatName());
+		this.output(this.player.name + ' vs. ' + this.mob.name);
 		this.updateInterface();
 	};
 
@@ -114,6 +114,9 @@ function DungeonGame(options) {
 
 		// default to 'Melee' action
 		action = action || 'Melee';
+
+		// fix for speech synth
+		window.speechSynthesis.cancel();
 
 		// Fight cannot continue if a participant is dead
 		if (this.player.hp > 0 && this.mob.hp > 0) {
@@ -287,17 +290,37 @@ function DungeonGame(options) {
 	};
 
 	this.speaking = false;
+	this.speechQueue = [];
+	var speechReady = new Event('speech-ready');
+	window.speechSynthesis.addEventListener('speech-ready', function (e) {
+		console.log('heard speech-ready');
+	});
 	this.speak = function (message) {
 		if (this.voice) {
 			this.synthMessage = new SpeechSynthesisUtterance(message);
 			this.synthMessage.text = message;
 			this.synthMessage.voice = this.voice;
-			this.synthMessage.lang = 'en-US';
+			//this.synthMessage.lang = 'en-US';
 			this.synthMessage.volume = 1; // 0 to 1
 			this.synthMessage.rate = 0.75; // 0 to 10
 			this.synthMessage.pitch = 1; // 0 to 2
 
-			window.speechSynthesis.speak(this.synthMessage);
+			this.synthMessage.onend = function onend(evt) {
+				console.log('end', evt);
+				if (this.speechQueue.length > 0) {
+					window.speechSynthesis.speak(this.speechQueue.shift());
+				}
+			}.apply(this);
+
+			this.synthMessage.onerror = function onerror(evt) {
+				console.log('error', evt);
+			}.apply(this);
+
+			if (window.speechSynthesis.speaking || window.speechSynthesis.pending) {
+				this.speechQueue.push(this.synthMessage);
+			} else {
+				window.speechSynthesis.speak(this.synthMessage);
+			}
 		}
 	};
 
@@ -339,7 +362,7 @@ function DungeonGame(options) {
 		// Has to wait for the voice list to load first
 		window.speechSynthesis.onvoiceschanged = (function () {
 			var voices = window.speechSynthesis.getVoices();
-			this.voice = voices[1];
+			this.voice = voices[3];
 			this.synthMessage.voice = this.voice;
 		}).bind(this);
 
