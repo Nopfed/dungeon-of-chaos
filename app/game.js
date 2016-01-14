@@ -105,8 +105,8 @@ function DungeonGame(options) {
 	// Simulate a round of fighting
 	// if action is not supplied, assume 'Melee' action
 	this.fight = function (action) {
-		var playerActionStat, playerStat, playerRoll, playerRolls, playerTargetStat,
-			mobAction, mobActionStat, mobStat, mobRoll, mobRolls, mobTargetStat;
+		var playerActionStat, playerStat, playerRoll, playerActionDamage, playerRolls, playerTargetStat,
+			mobAction, mobActionStat, mobStat, mobRoll, mobActionDamage, mobRolls, mobTargetStat;
 
 		// default to 'Melee' action
 		action = action || 'Melee';
@@ -122,8 +122,15 @@ function DungeonGame(options) {
 			playerStat = this.player[playerActionStat] || 0;
 			playerTargetStat = actions[action]['target-stat'];
 			playerRoll = (this.dieRoll(playerStat)*actions[action].rolls) - this.player.miss;
+
 			if (playerRoll < 0) {
 				playerRoll = 0;
+			}
+
+			playerActionDamage = playerRoll - this.mob.armor;
+
+			if (playerActionDamage < 0) {
+				playerActionDamage = 0;
 			}
 
 			// Announce player action
@@ -131,10 +138,9 @@ function DungeonGame(options) {
 				this.output(this.player.name+'\'s ' + action + ' missed!');
 			} else {
 				this.output(this.player.name+'\'s ' + action + ' ' + actions[action].verb + ' ' + playerRoll + ' ' + playerTargetStat + '!');
+				// Subtract player roll from mob target stat
+				this.mob[playerTargetStat] = this.mob[playerTargetStat] - playerActionDamage;
 			}
-
-			// Subtract player roll from mob target stat
-			this.mob[playerTargetStat] = this.mob[playerTargetStat] - playerRoll;
 
 			// Announce result of player action
 			this.output(this.mob.name+'\'s ' + playerTargetStat + ' is at ' + this.mob[playerTargetStat]);
@@ -153,8 +159,15 @@ function DungeonGame(options) {
 				mobStat = this.player[mobActionStat] || 0;
 				mobTargetStat = actions[mobAction]['target-stat'];
 				mobRoll = (this.dieRoll(playerStat)*actions[mobAction].rolls) - this.mob.miss;
+				
 				if (mobRoll < 0) {
 					mobRoll = 0;
+				}
+
+				mobActionDamage = mobRoll - this.player.armor;
+
+				if (mobActionDamage < 0) {
+					mobActionDamage = 0;
 				}
 
 				// Announce mob action
@@ -162,10 +175,10 @@ function DungeonGame(options) {
 					this.output(this.mob.name+'\'s ' + mobAction + ' missed!');
 				} else {
 					this.output(this.mob.name+'\'s ' + mobAction + ' ' + actions[mobAction].verb + ' ' + mobRoll + ' ' + mobTargetStat + '!');
+					
+					// Subtract mob roll from player target stat
+					this.player[mobTargetStat] = this.player[mobTargetStat] - mobRoll;
 				}
-
-				// Subtract mob roll from player target stat
-				this.player[mobTargetStat] = this.player[mobTargetStat] - mobRoll;
 
 				// Announce result of mob action
 				this.output(this.player.name+'\'s ' + mobTargetStat + ' is at ' + this.player[mobTargetStat]);
