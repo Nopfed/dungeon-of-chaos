@@ -3,19 +3,21 @@ var actions = {
 		'stat': 'atk',
 		'rolls': 1,
 		'target-stat': 'hp',
-		'verb': 'hits for'
+		'verb': 'hits for',
+		'verb-damage': 'damage',
 	},
 	'Steal': {
 		'stat': 'atk',
 		'rolls': 1,
 		'target-stat': 'gold',
-		'verb': 'snags'
+		'verb': 'snags',
 	},
 	'Dual Strike': {
 		'stat': 'atk',
 		'rolls': 2,
 		'target-stat': 'hp',
 		'verb': 'bops for',
+		'verb-damage': 'damage',
 	},
 	'Blade Storm': {
 		'stat': 'atk',

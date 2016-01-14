@@ -137,7 +137,8 @@ function DungeonGame(options) {
 			if (playerRoll === 0) {
 				this.output(this.player.name+'\'s ' + action + ' missed!');
 			} else {
-				this.output(this.player.name+'\'s ' + action + ' ' + actions[action].verb + ' ' + playerRoll + ' ' + playerTargetStat + '!');
+				this.output(this.player.name+'\'s ' + action + ' ' + actions[action].verb + ' ' + playerRoll + ' ' + playerTargetStat + actions[action]['verb-damage'] + '!');
+				
 				// Subtract player roll from mob target stat
 				this.mob[playerTargetStat] = this.mob[playerTargetStat] - playerActionDamage;
 			}
@@ -262,6 +263,7 @@ function DungeonGame(options) {
 			this.fightLog.appendChild(messageText);
 			this.fightLog.appendChild(lineBreak);
 		}
+		this.speak(message);
 	};
 
 	// Roll a die
@@ -275,6 +277,11 @@ function DungeonGame(options) {
 	this.clearLog = function () {
 		this.fightLog.textContent = '';
 		console.clear();
+	};
+
+	this.speak = function (message) {
+		var messageObject = new SpeechSynthesisUtterance(message);
+		window.speechSynthesis.speak(messageObject);
 	};
 
 	// Initialize
