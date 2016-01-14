@@ -4,7 +4,7 @@ var actions = {
 		'rolls': 1,
 		'target-stat': 'hp',
 		'verb': 'hits for',
-		'verb-damage': 'damage'
+		'verb-damage': 'hp'
 	},
 	'Steal': {
 		'stat': 'atk',
@@ -24,7 +24,8 @@ var actions = {
 		'stat': 'atk',
 		'rolls': 3,
 		'target-stat': 'hp',
-		'verb': 'SMACKS FOR'
+		'verb': 'SMACKS FOR',
+		'verb-damage': 'hp',
 	},
 	'Wind Strike': {
 		'stat': 'atk',
@@ -61,7 +62,7 @@ var actions = {
 		'verb': 'hits for',
 		'verb-damage': 'mixed damage'
 	},
-	'Wind Strike': {
+	'Chaos Storm': {
 		'stat': 'atk',
 		'rolls': 4,
 		'target-stat': 'hp',

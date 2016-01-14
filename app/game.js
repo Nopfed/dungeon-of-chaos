@@ -102,7 +102,7 @@ function DungeonGame(options) {
 		this.round = 0;
 
 		// announce the fight & update UI
-		this.output(this.player.formatName() + ' vs. ' + this.mob.formatName());
+		this.output(this.player.name + ' vs. ' + this.mob.name);
 		this.updateInterface();
 	};
 
@@ -141,14 +141,14 @@ function DungeonGame(options) {
 			if (playerRoll === 0) {
 				this.output(this.player.name+'\'s ' + action + ' missed!');
 			} else {
-				this.output(this.player.name+'\'s ' + action + ' ' + actions[action].verb + ' ' + playerActionDamage + ' ' + playerTargetStat + ' ' + actions[action]['verb-damage'] + '!');
+				this.output(this.player.name+'\'s ' + action + ' ' + actions[action].verb + ' ' + playerActionDamage + ' ' + actions[action]['verb-damage'] + '!');
 				
 				// Subtract player roll from mob target stat
 				this.mob[playerTargetStat] = this.mob[playerTargetStat] - playerActionDamage;
 			}
 
 			// Announce result of player action
-			this.output(this.mob.name+'\'s ' + playerTargetStat + ' is at ' + this.mob[playerTargetStat]);
+			this.output(this.mob.name+'\'s ' + playerTargetStat + ' is at ' + this.mob[playerTargetStat] + '.');
 			this.updateInterface();			
 
 			// Check if mob is dead
@@ -186,7 +186,7 @@ function DungeonGame(options) {
 				}
 
 				// Announce result of mob action
-				this.output(this.player.name+'\'s ' + mobTargetStat + ' is at ' + this.player[mobTargetStat]);
+				this.output(this.player.name+'\'s ' + mobTargetStat + ' is at ' + this.player[mobTargetStat] + '.');
 
 				// Check if player is dead
 				if (this.player.hp <= 0) {
@@ -292,7 +292,7 @@ function DungeonGame(options) {
 			this.synthMessage = new SpeechSynthesisUtterance(message);
 			this.synthMessage.text = message;
 			this.synthMessage.voice = this.voice;
-			this.synthMessage.lang = 'en-US';
+			//this.synthMessage.lang = 'en-US';
 			this.synthMessage.volume = 1; // 0 to 1
 			this.synthMessage.rate = 0.75; // 0 to 10
 			this.synthMessage.pitch = 1; // 0 to 2
@@ -339,7 +339,7 @@ function DungeonGame(options) {
 		// Has to wait for the voice list to load first
 		window.speechSynthesis.onvoiceschanged = (function () {
 			var voices = window.speechSynthesis.getVoices();
-			this.voice = voices[1];
+			this.voice = voices[16];
 			this.synthMessage.voice = this.voice;
 		}).bind(this);
 
