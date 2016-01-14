@@ -1,7 +1,7 @@
 var heroes = {
 	"Rogue": [
 		{
-			name: "Lvl 1 Rogue",
+			name: "Rogue",
 			lvl: 1,
 			hp: 12,
 			atk: 6,
@@ -11,7 +11,7 @@ var heroes = {
 			],
 		},
 		{
-			name: "Lvl 2 Rogue",
+			name: "Rogue",
 			lvl: 2,
 			hp: 18,
 			atk: 8,
@@ -22,7 +22,7 @@ var heroes = {
 			],
 		},
 		{
-			name: "Lvl 3 Rogue",
+			name: "Rogue",
 			lvl: 3,
 			hp: 27,
 			atk: 10,
@@ -34,7 +34,7 @@ var heroes = {
 			],
 		},
 		{
-			name: "Lvl 4 Rogue",
+			name: "Rogue",
 			lvl: 4,
 			hp: 41,
 			atk: 12,
@@ -47,7 +47,7 @@ var heroes = {
 			],
 		},
 		{
-			name: "Lvl 5 Rogue",
+			name: "Rogue",
 			lvl: 5,
 			hp: 62,
 			atk: 20,
@@ -63,7 +63,7 @@ var heroes = {
 	],
 	"Sorceress": [
 		{
-			name: "Lvl 1 Sorc",
+			name: "Sorceress",
 			lvl: 1,
 			hp: 10,
 			atk: 8,
@@ -73,7 +73,7 @@ var heroes = {
 			],
 		},
 		{
-			name: "Lvl 2 Sorc",
+			name: "Sorceress",
 			lvl: 2,
 			hp: 15,
 			atk: 10,
@@ -84,7 +84,7 @@ var heroes = {
 			],
 		},
 		{
-			name: "Lvl 3 Sorc",
+			name: "Sorceress",
 			lvl: 3,
 			hp: 23,
 			atk: 12,
@@ -97,7 +97,7 @@ var heroes = {
 			],
 		},
 		{
-			name: "Lvl 4 Sorc",
+			name: "Sorceress",
 			lvl: 4,
 			hp: 35,
 			atk: 12,
@@ -112,7 +112,7 @@ var heroes = {
 			],
 		},
 		{
-			name: "Lvl 5 Sorc",
+			name: "Sorceress",
 			lvl: 5,
 			hp: 53,
 			atk: 20,
@@ -130,7 +130,7 @@ var heroes = {
 	],
 	"Warrior": [
 		{
-			name: "Lvl 1 Warr",
+			name: "Warrior",
 			lvl: 1,
 			hp: 14,
 			atk: 8,
@@ -140,7 +140,7 @@ var heroes = {
 			],
 		},
 		{
-			name: "Lvl 2 Warr",
+			name: "Warrior",
 			lvl: 2,
 			hp: 21,
 			atk: 10,
@@ -151,7 +151,7 @@ var heroes = {
 			],
 		},
 		{
-			name: "Lvl 3 Warr",
+			name: "Warrior",
 			lvl: 3,
 			hp: 32,
 			atk: 12,
@@ -163,7 +163,7 @@ var heroes = {
 			],
 		},
 		{
-			name: "Lvl 4 Warr",
+			name: "Warrior",
 			lvl: 4,
 			hp: 48,
 			atk: 20,
@@ -176,7 +176,7 @@ var heroes = {
 			],
 		},
 		{
-			name: "Lvl 5 Warr",
+			name: "Warrior",
 			lvl: 5,
 			hp: 72,
 			atk: 20,
@@ -192,7 +192,7 @@ var heroes = {
 	],
 	"Priest": [
 		{
-			name: "Lvl 1 Priest",
+			name: "Priest",
 			lvl: 1,
 			hp: 10,
 			atk: 6,
@@ -202,7 +202,7 @@ var heroes = {
 			],
 		},
 		{
-			name: "Lvl 2 Priest",
+			name: "Priest",
 			lvl: 2,
 			hp: 14,
 			atk: 8,
@@ -213,7 +213,7 @@ var heroes = {
 			],
 		},
 		{
-			name: "Lvl 3 Priest",
+			name: "Priest",
 			lvl: 3,
 			hp: 22,
 			atk: 10,
@@ -225,7 +225,7 @@ var heroes = {
 			],
 		},
 		{
-			name: "Lvl 4 Priest",
+			name: "Priest",
 			lvl: 4,
 			hp: 34,
 			atk: 12,
@@ -238,7 +238,7 @@ var heroes = {
 			],
 		},
 		{
-			name: "Lvl 5 Priest",
+			name: "Priest",
 			lvl: 5,
 			hp: 52,
 			atk: 20,

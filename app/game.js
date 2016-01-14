@@ -32,6 +32,10 @@ function DungeonGame(options) {
 	this.mobSelectElem = document.getElementById(this.mobSelectSelector);
 	this.mobStatListElem = document.getElementById(this.mobStatListSelector);
 
+	// Initialize speech synthesis voice and message container
+	this.voice = window.speechSynthesis.getVoices()[1]; // en-US
+	this.synthMessage = new SpeechSynthesisUtterance();
+
 	// Reset the fight
 	this.reset = function () {
 		var i, stat, playerSelection, mobSelection;
@@ -39,7 +43,7 @@ function DungeonGame(options) {
 		// clear the log
 		this.clearLog();
 
-		this.output('-------------------');
+		this.output('-------------------', true);
 
 		// Reset player
 		playerSelection = this.playerSelectElem.options[this.playerSelectElem.selectedIndex];
@@ -137,7 +141,7 @@ function DungeonGame(options) {
 			if (playerRoll === 0) {
 				this.output(this.player.name+'\'s ' + action + ' missed!');
 			} else {
-				this.output(this.player.name+'\'s ' + action + ' ' + actions[action].verb + ' ' + playerRoll + ' ' + playerTargetStat + actions[action]['verb-damage'] + '!');
+				this.output(this.player.name+'\'s ' + action + ' ' + actions[action].verb + ' ' + playerActionDamage + ' ' + playerTargetStat + ' ' + actions[action]['verb-damage'] + '!');
 				
 				// Subtract player roll from mob target stat
 				this.mob[playerTargetStat] = this.mob[playerTargetStat] - playerActionDamage;
@@ -175,10 +179,10 @@ function DungeonGame(options) {
 				if (mobRoll === 0) {
 					this.output(this.mob.name+'\'s ' + mobAction + ' missed!');
 				} else {
-					this.output(this.mob.name+'\'s ' + mobAction + ' ' + actions[mobAction].verb + ' ' + mobRoll + ' ' + mobTargetStat + '!');
+					this.output(this.mob.name+'\'s ' + mobAction + ' ' + actions[mobAction].verb + ' ' + mobActionDamage + ' ' + mobTargetStat + '!');
 					
 					// Subtract mob roll from player target stat
-					this.player[mobTargetStat] = this.player[mobTargetStat] - mobRoll;
+					this.player[mobTargetStat] = this.player[mobTargetStat] - mobActionDamage;
 				}
 
 				// Announce result of mob action
@@ -246,7 +250,7 @@ function DungeonGame(options) {
 	};
 
 	// Output a message to both the fight log container and window.console
-	this.output = function (message) {
+	this.output = function (message, muteSpeech) {
 		var messageDiv, lineBreak;
 
 		// log to console
@@ -263,7 +267,10 @@ function DungeonGame(options) {
 			this.fightLog.appendChild(messageText);
 			this.fightLog.appendChild(lineBreak);
 		}
-		this.speak(message);
+
+		if (!muteSpeech) {
+			this.speak(message);
+		}
 	};
 
 	// Roll a die
@@ -279,9 +286,19 @@ function DungeonGame(options) {
 		console.clear();
 	};
 
+	this.speaking = false;
 	this.speak = function (message) {
-		var messageObject = new SpeechSynthesisUtterance(message);
-		window.speechSynthesis.speak(messageObject);
+		if (this.voice) {
+			this.synthMessage = new SpeechSynthesisUtterance(message);
+			this.synthMessage.text = message;
+			this.synthMessage.voice = this.voice;
+			this.synthMessage.lang = 'en-US';
+			this.synthMessage.volume = 1; // 0 to 1
+			this.synthMessage.rate = 0.75; // 0 to 10
+			this.synthMessage.pitch = 1; // 0 to 2
+
+			window.speechSynthesis.speak(this.synthMessage);
+		}
 	};
 
 	// Initialize
@@ -297,7 +314,7 @@ function DungeonGame(options) {
 			// Add each class as an <option>
 			for (i = 0; i < group.length; i++) {
 				optionElem = document.createElement('option');
-				optionElem.textContent = group[i].name;
+				optionElem.textContent = group[i].name + '(' + group[i].lvl +')';
 				optionElem.value = i;
 
 				// Add player class <option> to lvl 1 <optgroup>
@@ -317,6 +334,14 @@ function DungeonGame(options) {
 		populateSelect(this.mobSelectElem, "Swamp Mobs", mobs["Swamp Mobs"]);
 		populateSelect(this.mobSelectElem, "Desert Mobs", mobs["Desert Mobs"]);
 		populateSelect(this.mobSelectElem, "Cave Mobs", mobs["Cave Mobs"]);
+
+		// Voice Synthesis
+		// Has to wait for the voice list to load first
+		window.speechSynthesis.onvoiceschanged = (function () {
+			var voices = window.speechSynthesis.getVoices();
+			this.voice = voices[1];
+			this.synthMessage.voice = this.voice;
+		}).bind(this);
 
 		//Reset
 		this.reset();

@@ -4,67 +4,68 @@ var actions = {
 		'rolls': 1,
 		'target-stat': 'hp',
 		'verb': 'hits for',
-		'verb-damage': 'damage',
+		'verb-damage': 'damage'
 	},
 	'Steal': {
 		'stat': 'atk',
 		'rolls': 1,
 		'target-stat': 'gold',
 		'verb': 'snags',
+		'verb-damage': 'shekels'
 	},
 	'Dual Strike': {
 		'stat': 'atk',
 		'rolls': 2,
 		'target-stat': 'hp',
 		'verb': 'bops for',
-		'verb-damage': 'damage',
+		'verb-damage': 'damage'
 	},
 	'Blade Storm': {
 		'stat': 'atk',
 		'rolls': 3,
 		'target-stat': 'hp',
-		'verb': 'SMACKS FOR',
+		'verb': 'SMACKS FOR'
 	},
 	'Wind Strike': {
 		'stat': 'atk',
 		'rolls': 1,
 		'target-stat': 'hp',
 		'verb': 'blows for',
-		'verb-damage': 'wind damage',
+		'verb-damage': 'wind damage'
 	},
 	'Flame': {
 		'stat': 'atk',
 		'rolls': 1,
 		'target-stat': 'hp',
 		'verb': 'burns for',
-		'verb-damage': 'fire damage',
+		'verb-damage': 'fire damage'
 	},
 	'Aqua Blast': {
 		'stat': 'atk',
 		'rolls': 1,
 		'target-stat': 'hp',
 		'verb': 'soaks for',
-		'verb-damage': 'water damage',
+		'verb-damage': 'water damage'
 	},
 	'Lightning': {
 		'stat': 'atk',
 		'rolls': 1,
 		'target-stat': 'hp',
 		'verb': 'zaps for',
-		'verb-damage': 'lightning damage',
+		'verb-damage': 'lightning damage'
 	},
 	'Double Cast': {
 		'stat': 'atk',
 		'rolls': 2,
-		'target-stat': 'hp'
+		'target-stat': 'hp',
 		'verb': 'hits for',
-		'verb-damage': 'mixed damage',
+		'verb-damage': 'mixed damage'
 	},
 	'Wind Strike': {
 		'stat': 'atk',
 		'rolls': 4,
 		'target-stat': 'hp',
 		'verb': 'kaBOOMS for',
-		'verb-damage': 'mixed elemental damage',
-	},
+		'verb-damage': 'mixed elemental damage'
+	}
 };
