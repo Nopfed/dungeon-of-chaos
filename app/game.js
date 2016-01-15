@@ -144,14 +144,14 @@ function DungeonGame(options) {
 			if (playerRoll === 0) {
 				this.output(this.player.name+'\'s ' + action + ' missed!');
 			} else {
-				this.output(this.player.name+'\'s ' + action + ' ' + actions[action].verb + ' ' + playerActionDamage + ' ' + playerTargetStat + ' ' + actions[action]['verb-damage'] + '!');
+				this.output(this.player.name+'\'s ' + action + ' ' + actions[action].verb + ' ' + playerActionDamage + ' ' + actions[action]['verb-damage'] + '!');
 				
 				// Subtract player roll from mob target stat
 				this.mob[playerTargetStat] = this.mob[playerTargetStat] - playerActionDamage;
 			}
 
 			// Announce result of player action
-			this.output(this.mob.name+'\'s ' + playerTargetStat + ' is at ' + this.mob[playerTargetStat]);
+			this.output(this.mob.name+'\'s ' + playerTargetStat + ' is at ' + this.mob[playerTargetStat] + '.');
 			this.updateInterface();			
 
 			// Check if mob is dead
@@ -189,7 +189,7 @@ function DungeonGame(options) {
 				}
 
 				// Announce result of mob action
-				this.output(this.player.name+'\'s ' + mobTargetStat + ' is at ' + this.player[mobTargetStat]);
+				this.output(this.player.name+'\'s ' + mobTargetStat + ' is at ' + this.player[mobTargetStat] + '.');
 
 				// Check if player is dead
 				if (this.player.hp <= 0) {
@@ -225,7 +225,7 @@ function DungeonGame(options) {
 					continue;
 				}
 
-				document.getElementById('player-'+stat).textContent = stat+': ' + this.player[stat];
+				document.getElementById('player-' + stat).textContent = stat +': ' + this.player[stat];
 			}
 		}
 
@@ -244,7 +244,7 @@ function DungeonGame(options) {
 					continue;
 				}
 
-				document.getElementById('mob-'+stat).textContent = stat+': ' + this.mob[stat];
+				document.getElementById('mob-' + stat).textContent = stat + ': ' + this.mob[stat];
 			}
 		}
 
