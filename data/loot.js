@@ -1,6 +1,6 @@
 var loots = {
 	'Abyssal Greaves': {
-		type: 'feet',
+		type: 'Feet',
 		rarity: 'Common',
 		dmg: 2,
 		armor: 2,

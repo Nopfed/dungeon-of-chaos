@@ -9,10 +9,17 @@ function Hero(options) {
 	this.armor = options.armor || 0;
 	this.gold = options.gold || 10;
 	this.abilities = options.abilities || [];
+	this.inventory = options.inventory || [];
 
 	this.formatName = function () {
 		return this.name + '(' + this.lvl + ')';
 	};
+
+	//this.equip = function (item){
+//
+//		this.hp = this.hp + item.hp;
+//
+//	}
 
 	//this.attack = function (otherHero) {
 	//	return this.atk - otherHero.armor;
