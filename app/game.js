@@ -4,7 +4,7 @@ function DungeonGame(options) {
 	// Initialize player, mob, and round count
 	this.player = options.player || new Hero();
 	this.mob = options.mob || new Hero();
-	this.round = 0;
+	//this.round = 0;
 
 	// UI selectors
 	this.fightLogSelector = options.fightLogSelector || 'fight-log';
@@ -75,7 +75,7 @@ function DungeonGame(options) {
 		this.getMob();
 		
 		// Reset round
-		this.round = 0;
+		//this.round = 0;
 
 		// announce the fight & update UI
 		this.output(this.player.name + ' vs. ' + this.mob.name);
@@ -113,8 +113,8 @@ function DungeonGame(options) {
 		// Fight cannot continue if a participant is dead
 		if (this.player.hp > 0) {
 			// Iterate & announce the round
-			this.round++;
-			this.output('--Round ' + this.round + '--');
+			//this.round++;
+			//this.output('--Round ' + this.round + '--');
 
 			// Player makes action roll
 			playerActionStat = actions[action]['stat'];
@@ -137,6 +137,10 @@ function DungeonGame(options) {
 				this.output(this.player.name+'\'s ' + action + ' missed!');
 			} else {
 				this.output(this.player.name+'\'s ' + action + ' ' + actions[action].verb + ' ' + playerActionDamage + ' ' + actions[action]['verb-damage'] + '!');
+
+				if (action === 'Steal'){
+					this.player.gold = this.player.gold + playerRoll;
+				}
 				
 				// Subtract player roll from mob target stat
 				this.mob[playerTargetStat] = this.mob[playerTargetStat] - playerActionDamage;
@@ -149,6 +153,7 @@ function DungeonGame(options) {
 			// Check if mob is dead
 			if (this.mob.hp <= 0) {
 				this.output(this.mob.name + ' has died!');
+				
 				//this.getLoot();
 				this.getMob();
 				this.updateInterface();
