@@ -78,7 +78,7 @@ function DungeonGame(options) {
 		//this.round = 0;
 
 		// announce the fight & update UI
-		this.output(this.player.name + ' vs. ' + this.mob.name);
+		//this.output(this.player.name + ' vs. ' + this.mob.name);
 		this.updateInterface();
 	};
 
@@ -153,7 +153,8 @@ function DungeonGame(options) {
 			// Check if mob is dead
 			if (this.mob.hp <= 0) {
 				this.output(this.mob.name + ' has died!');
-				
+				this.output(br);
+
 				//this.getLoot();
 				this.getMob();
 				this.updateInterface();
