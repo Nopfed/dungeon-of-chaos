@@ -3,6 +3,7 @@ var heroes = {
 		{
 			name: "Rogue",
 			lvl: 1,
+			xp: 0,
 			hp: 12,
 			atk: 6,
 			miss: 1,
@@ -13,6 +14,7 @@ var heroes = {
 		{
 			name: "Rogue",
 			lvl: 2,
+			xp: 0,
 			hp: 18,
 			atk: 8,
 			miss: 1,
@@ -24,6 +26,7 @@ var heroes = {
 		{
 			name: "Rogue",
 			lvl: 3,
+			xp: 0,
 			hp: 27,
 			atk: 10,
 			miss: 1,
@@ -36,6 +39,7 @@ var heroes = {
 		{
 			name: "Rogue",
 			lvl: 4,
+			xp: 0,
 			hp: 41,
 			atk: 12,
 			miss: 1,
@@ -49,6 +53,7 @@ var heroes = {
 		{
 			name: "Rogue",
 			lvl: 5,
+			xp: 0,
 			hp: 62,
 			atk: 20,
 			miss: 1,
@@ -65,6 +70,7 @@ var heroes = {
 		{
 			name: "Sorceress",
 			lvl: 1,
+			xp: 0,
 			hp: 10,
 			atk: 8,
 			miss: 2,
@@ -75,6 +81,7 @@ var heroes = {
 		{
 			name: "Sorceress",
 			lvl: 2,
+			xp: 0,
 			hp: 15,
 			atk: 10,
 			miss: 2,
@@ -86,6 +93,7 @@ var heroes = {
 		{
 			name: "Sorceress",
 			lvl: 3,
+			xp: 0,
 			hp: 23,
 			atk: 12,
 			miss: 2,
@@ -99,6 +107,7 @@ var heroes = {
 		{
 			name: "Sorceress",
 			lvl: 4,
+			xp: 0,
 			hp: 35,
 			atk: 12,
 			miss: 2,
@@ -114,6 +123,7 @@ var heroes = {
 		{
 			name: "Sorceress",
 			lvl: 5,
+			xp: 0,
 			hp: 53,
 			atk: 20,
 			miss: 2,
@@ -132,6 +142,7 @@ var heroes = {
 		{
 			name: "Warrior",
 			lvl: 1,
+			xp: 0,
 			hp: 14,
 			atk: 8,
 			miss: 2,
@@ -142,6 +153,7 @@ var heroes = {
 		{
 			name: "Warrior",
 			lvl: 2,
+			xp: 0,
 			hp: 21,
 			atk: 10,
 			miss: 2,
@@ -153,6 +165,7 @@ var heroes = {
 		{
 			name: "Warrior",
 			lvl: 3,
+			xp: 0,
 			hp: 32,
 			atk: 12,
 			miss: 2,
@@ -165,6 +178,7 @@ var heroes = {
 		{
 			name: "Warrior",
 			lvl: 4,
+			xp: 0,
 			hp: 48,
 			atk: 20,
 			miss: 3,
@@ -178,6 +192,7 @@ var heroes = {
 		{
 			name: "Warrior",
 			lvl: 5,
+			xp: 0,
 			hp: 72,
 			atk: 20,
 			miss: 2,
@@ -194,6 +209,7 @@ var heroes = {
 		{
 			name: "Priest",
 			lvl: 1,
+			xp: 0,
 			hp: 10,
 			atk: 6,
 			miss: 2,
@@ -204,6 +220,7 @@ var heroes = {
 		{
 			name: "Priest",
 			lvl: 2,
+			xp: 0,
 			hp: 14,
 			atk: 8,
 			miss: 2,
@@ -215,6 +232,7 @@ var heroes = {
 		{
 			name: "Priest",
 			lvl: 3,
+			xp: 0,
 			hp: 22,
 			atk: 10,
 			miss: 2,
@@ -227,6 +245,7 @@ var heroes = {
 		{
 			name: "Priest",
 			lvl: 4,
+			xp: 0,
 			hp: 34,
 			atk: 12,
 			miss: 2,
@@ -240,6 +259,7 @@ var heroes = {
 		{
 			name: "Priest",
 			lvl: 5,
+			xp: 0,
 			hp: 52,
 			atk: 20,
 			miss: 3,
