@@ -153,8 +153,6 @@ function DungeonGame(options) {
 			// Check if mob is dead
 			if (this.mob.hp <= 0) {
 				this.output(this.mob.name + ' has died!');
-				this.output(br);
-
 				//this.getLoot();
 				this.getMob();
 				this.updateInterface();
@@ -240,7 +238,7 @@ function DungeonGame(options) {
 		// log to console
 		console.log(message);
 
-		if (this.fightLog) {
+		if (this.fightLog === '') {
 			// create a new text node with the message
 			messageText = document.createTextNode(message);
 
@@ -250,6 +248,14 @@ function DungeonGame(options) {
 			// append message text and line break
 			this.fightLog.appendChild(messageText);
 			this.fightLog.appendChild(lineBreak);
+		}else {
+			messageText = document.createTextNode(message);
+
+			lineBreak = document.createElement('br');
+
+			this.fightLog.insertBefore(lineBreak, this.fightLog.childNodes[0]);
+			this.fightLog.insertBefore(messageText, this.fightLog.childNodes[0]);
+
 		}
 
 		if (!muteSpeech) {
