@@ -11,15 +11,9 @@
 			<h1><span id="player-name"></span>: <span id="player-hp"></span></h1>
 			<h3><ul id="player-stat-list"></ul></h3>
 		</div>
-		<div class="entity-container">
-			<h1><span id="mob-name"></span>: <span id="mob-hp"></span></h1>
-			<h3><ul id="mob-stat-list"></ul></h3>
-		</div>
-		<h2>Round: <span id="round-count"></span></h2>
 		<hr />
 		<div>
-			<label for="player-select">Player: <select name="player-select" id="player-select" onchange="dungeon.reset()" /></select>
-			<label for="mob-select">Mob: <select name="mob-select" id="mob-select" onchange="dungeon.reset()" /></select>
+			<label for="player-select">Hero: <select name="player-select" id="player-select" onchange="dungeon.reset()" /></select>
 		</div>
 		<div>
 			<button id="btn-fight" onclick="dungeon.fight();">Melee</button>
@@ -43,6 +37,7 @@
 	<script src="data/heroes.js"></script>
 	<script src="data/mobs.js"></script>
 	<script src="data/actions.js"></script>
+	<script src="data/loot.js"></script>
 
 	<!-- Game App Files -->
 	<script src="app/hero.js"></script>

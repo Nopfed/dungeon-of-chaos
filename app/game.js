@@ -14,10 +14,10 @@ function DungeonGame(options) {
 	this.playerSelectSelector = options.playerSelectSelector || 'player-select';
 	this.playerStatListSelector = options.playerStatListSelector || 'player-stat-list';
 
-	this.mobNameSelector = options.mobNameSelector || 'mob-name';
-	this.mobHpSelector = options.mobHpSelector || 'mob-hp';
-	this.mobSelectSelector = options.mobSelectSelector || 'mob-select';
-	this.mobStatListSelector = options.mobStatListSelector || 'mob-stat-list';
+	//this.mobNameSelector = options.mobNameSelector || 'mob-name';
+	//this.mobHpSelector = options.mobHpSelector || 'mob-hp';
+	//this.mobSelectSelector = options.mobSelectSelector || 'mob-select';
+	//this.mobStatListSelector = options.mobStatListSelector || 'mob-stat-list';
 
 	// Cached UI Element wrappers
 	this.fightLog = document.getElementById(this.fightLogSelector);
@@ -27,10 +27,10 @@ function DungeonGame(options) {
 	this.playerSelectElem = document.getElementById(this.playerSelectSelector);
 	this.playerStatListElem = document.getElementById(this.playerStatListSelector);
 
-	this.mobNameElem = document.getElementById(this.mobNameSelector);
-	this.mobHpElem = document.getElementById(this.mobHpSelector);
-	this.mobSelectElem = document.getElementById(this.mobSelectSelector);
-	this.mobStatListElem = document.getElementById(this.mobStatListSelector);
+	//this.mobNameElem = document.getElementById(this.mobNameSelector);
+	//this.mobHpElem = document.getElementById(this.mobHpSelector);
+	//this.mobSelectElem = document.getElementById(this.mobSelectSelector);
+	//this.mobStatListElem = document.getElementById(this.mobStatListSelector);
 
 	// Initialize speech synthesis voice and message container
 	this.voice = window.speechSynthesis.getVoices()[1]; // en-US
@@ -72,31 +72,7 @@ function DungeonGame(options) {
 		}
 
 		// Reset mob
-		mobSelection = this.mobSelectElem.options[this.mobSelectElem.selectedIndex];
-		this.mob = new Hero(mobs[mobSelection.parentNode.label][mobSelection.value]);
-		// Reset and generate player stat list elements
-		while (this.mobStatListElem.firstChild) {
-			this.mobStatListElem.removeChild(this.mobStatListElem.firstChild);
-		}
-		for (stat in this.mob) {
-			// Only direct properties, strings, numbers, & booleans
-			if (this.mob.hasOwnProperty(stat)
-				&& (typeof this.mob[stat] === 'string'
-					|| typeof this.mob[stat] === 'number'
-					|| typeof this.player[stat] === 'boolean')) {
-				// skip name and hp, already displayed
-				if (stat === 'name' || stat === 'hp') {
-					continue;
-				}
-
-				statElem = document.createElement('li');
-				statElem.textContent = stat + ': ' + this.mob[stat];
-				statElem.setAttribute('id', 'mob-'+stat);
-
-				this.mobStatListElem.appendChild(statElem);
-			}
-		}
-
+		this.getMob();
 		
 		// Reset round
 		this.round = 0;
@@ -104,6 +80,25 @@ function DungeonGame(options) {
 		// announce the fight & update UI
 		this.output(this.player.name + ' vs. ' + this.mob.name);
 		this.updateInterface();
+	};
+
+	//select a random monster based on player's current level
+	this.getMob = function (){
+		var biome = this.dieRoll(1,4);
+
+		if (biome === 1){
+			this.mob = new Hero(mobs["Cave Mobs"][this.dieRoll((this.player.lvl*3)-3,(this.player.lvl*3)-1)]);
+			this.output(this.mob.name + ' appears!',0)
+		} else if (biome === 2){
+			this.mob = new Hero(mobs["Desert Mobs"][this.dieRoll((this.player.lvl*3)-3,(this.player.lvl*3)-1)]);
+			this.output(this.mob.name + ' appears!',0)
+		} else if (biome === 3){
+			this.mob = new Hero(mobs["Swamp Mobs"][this.dieRoll((this.player.lvl*3)-3,(this.player.lvl*3)-1)]);
+			this.output(this.mob.name + ' appears!',0)
+		} else {
+			this.mob = new Hero(mobs["Snow Mobs"][this.dieRoll((this.player.lvl*3)-3,(this.player.lvl*3)-1)]);
+			this.output(this.mob.name + ' appears!',0)
+		}
 	};
 
 	// Simulate a round of fighting
@@ -116,7 +111,7 @@ function DungeonGame(options) {
 		action = action || 'Melee';
 
 		// Fight cannot continue if a participant is dead
-		if (this.player.hp > 0 && this.mob.hp > 0) {
+		if (this.player.hp > 0) {
 			// Iterate & announce the round
 			this.round++;
 			this.output('--Round ' + this.round + '--');
@@ -125,7 +120,7 @@ function DungeonGame(options) {
 			playerActionStat = actions[action]['stat'];
 			playerStat = this.player[playerActionStat] || 0;
 			playerTargetStat = actions[action]['target-stat'];
-			playerRoll = (this.dieRoll(playerStat)*actions[action].rolls) - this.player.miss;
+			playerRoll = (this.dieRoll(1, playerStat)*actions[action].rolls) - this.player.miss;
 
 			if (playerRoll < 0) {
 				playerRoll = 0;
@@ -154,16 +149,19 @@ function DungeonGame(options) {
 			// Check if mob is dead
 			if (this.mob.hp <= 0) {
 				this.output(this.mob.name + ' has died!');
-				this.output(this.player.name + ' wins!');
+				//this.getLoot();
+				this.getMob();
+				this.updateInterface();
+				//this.output(this.player.name + ' wins!');
 			} else {
 				// Mob chooses action
 				mobAction = 'Melee';
 
 				// Mob makes action roll
 				mobActionStat = actions[mobAction]['stat'];
-				mobStat = this.player[mobActionStat] || 0;
+				mobStat = this.mob[mobActionStat] || 0;
 				mobTargetStat = actions[mobAction]['target-stat'];
-				mobRoll = (this.dieRoll(playerStat)*actions[mobAction].rolls) - this.mob.miss;
+				mobRoll = (this.dieRoll(1, mobStat)*actions[mobAction].rolls) - this.mob.miss;
 				
 				if (mobRoll < 0) {
 					mobRoll = 0;
@@ -179,7 +177,7 @@ function DungeonGame(options) {
 				if (mobRoll === 0) {
 					this.output(this.mob.name+'\'s ' + mobAction + ' missed!');
 				} else {
-					this.output(this.mob.name+'\'s ' + mobAction + ' ' + actions[mobAction].verb + ' ' + mobActionDamage + ' ' + mobTargetStat + '!');
+					this.output(this.mob.name+'\'s ' + mobAction + ' ' + actions[mobAction].verb + ' ' + mobActionDamage + ' ' + actions[mobAction]['verb-damage'] + '!');
 					
 					// Subtract mob roll from player target stat
 					this.player[mobTargetStat] = this.player[mobTargetStat] - mobActionDamage;
@@ -191,7 +189,8 @@ function DungeonGame(options) {
 				// Check if player is dead
 				if (this.player.hp <= 0) {
 					this.output(this.player.name + ' has died!');
-					this.output(this.mob.name + ' wins!');
+					this.output('You were defeated by ' + this.mob.name + '.');
+					//this.output(this.playerFinalStats());
 				}
 			}
 
@@ -199,7 +198,7 @@ function DungeonGame(options) {
 			this.updateInterface();
 
 		} else {
-			this.output('The fight is already over!');
+			this.output('You have died. Please play again.');
 		}
 	};
 
@@ -226,27 +225,6 @@ function DungeonGame(options) {
 			}
 		}
 
-		// update mob stats
-		this.mobHpElem.textContent = this.mob.hp;
-		this.mobNameElem.textContent = this.mob.name;
-		// other stats
-		for (var stat in this.mob) {
-			// Only direct properties, strings, numbers, & booleans
-			if (this.mob.hasOwnProperty(stat)
-				&& (typeof this.mob[stat] === 'string'
-					|| typeof this.mob[stat] === 'number'
-					|| typeof this.mob[stat] === 'boolean')) {
-				// skip name and hp, already displayed
-				if (stat === 'name' || stat === 'hp') {
-					continue;
-				}
-
-				document.getElementById('mob-' + stat).textContent = stat + ': ' + this.mob[stat];
-			}
-		}
-
-		// update round information
-		document.getElementById('round-count').textContent = this.round;
 	};
 
 	// Output a message to both the fight log container and window.console
@@ -274,9 +252,9 @@ function DungeonGame(options) {
 	};
 
 	// Roll a die
-	// Returns random number from 1 to sides (inclusive)
-	this.dieRoll = function (sides) {
-		var min = 1;
+	// Returns random number from min to sides (inclusive)
+	this.dieRoll = function (min, sides) {
+
 		return Math.floor(Math.random() * (sides - min + 1)) + min;
 	};
 
@@ -330,10 +308,10 @@ function DungeonGame(options) {
 		populateSelect(this.playerSelectElem, "Warrior", heroes["Warrior"]);
 		populateSelect(this.playerSelectElem, "Priest", heroes["Priest"]);
 
-		populateSelect(this.mobSelectElem, "Snow Mobs", mobs["Snow Mobs"]);
-		populateSelect(this.mobSelectElem, "Swamp Mobs", mobs["Swamp Mobs"]);
-		populateSelect(this.mobSelectElem, "Desert Mobs", mobs["Desert Mobs"]);
-		populateSelect(this.mobSelectElem, "Cave Mobs", mobs["Cave Mobs"]);
+		//populateSelect(this.mobSelectElem, "Snow Mobs", mobs["Snow Mobs"]);
+		//populateSelect(this.mobSelectElem, "Swamp Mobs", mobs["Swamp Mobs"]);
+		//populateSelect(this.mobSelectElem, "Desert Mobs", mobs["Desert Mobs"]);
+		//populateSelect(this.mobSelectElem, "Cave Mobs", mobs["Cave Mobs"]);
 
 		// Voice Synthesis
 		// Has to wait for the voice list to load first
