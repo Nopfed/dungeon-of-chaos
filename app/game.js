@@ -156,7 +156,7 @@ function DungeonGame(options) {
 			// Check if mob is dead
 			if (this.mob.hp <= 0) {
 				this.output(this.mob.name + ' has died!');
-				this.output(br);
+				this.output('');
 
 				//this.getLoot();
 				this.getMob();
@@ -255,7 +255,7 @@ function DungeonGame(options) {
 			this.fightLog.appendChild(lineBreak);
 		}
 
-		if (!muteSpeech) {
+		if (!muteSpeech && message != '') {
 			this.speak(message);
 		}
 	};
