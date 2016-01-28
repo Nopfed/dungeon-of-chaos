@@ -20,6 +20,8 @@ function Hero(options) {
 	this.pants = options.pants || {};
 	this.feet = options.feet || {};
 
+	this.randomColor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+
 	//this.attack = function (otherHero) {
 	//	return this.atk - otherHero.armor;
 	//}
