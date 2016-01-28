@@ -4,11 +4,20 @@
 	vertical-align: top;
 }
 
+h1 {
+	font-family: "Courier New", Courier, monospace;
+}
+
+body {
+	background-color: black;
+	color: white;
+}
+
 #fight-log {
 	height: 500px;
 	width: auto;
-	border: 0px solid #ccc;
-	font: 16px/24px Georgia, Garamond, Serif;
+	border: 2px solid #ccc;
+	font: 14px/24px "Courier New", Courier, monospace;
 	overflow: scroll;
 }
 #canvas-container {
