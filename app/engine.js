@@ -5,12 +5,26 @@ function DungeonEngine(canvasId) {
 	// UI variables, sizes
 	this.statusBoxHeight = 150;
 	this.statusBoxFontColor = "#FFFFFF";
+
+	// Player name
 	this.playerNameFont = "20px Verdana";
 	this.playerNameOffsetX = 20;
 	this.playerNameOffsetY = 5;
+
+	// Player stats
 	this.playerStatsFont = "15px Verdana";
 	this.playerStatsOffsetX = 25;
 	this.playerStatsOffsetY = 25;
+
+	// Mob name
+	this.mobNameFont = "20px Verdana";
+	this.mobNameOffsetX = 250;
+	this.mobNameOffsetY = 5;
+
+	// Mob stats
+	this.mobStatsFont = "15px Verdana";
+	this.mobStatsOffsetX = 255;
+	this.mobStatsOffsetY = 25;
 
 	// EaselJS Update loop
 	this.updateLoop = function (gameState) {
@@ -28,7 +42,7 @@ function DungeonEngine(canvasId) {
 
 		// Draw status box at bottom of screen
 		function drawStatusBox() {
-			var i;
+			var i, stat;
 
 			// Draw outline
 			var statusBox = new createjs.Shape();
@@ -45,7 +59,7 @@ function DungeonEngine(canvasId) {
 
 			// Draw player stats
 			i = 0;
-			for (var stat in gameState.player) {
+			for (stat in gameState.player) {
 				// Only direct properties, strings, numbers, & booleans
 				if (gameState.player.hasOwnProperty(stat)
 					&& (typeof gameState.player[stat] === 'string'
@@ -60,6 +74,34 @@ function DungeonEngine(canvasId) {
 					var statText = new createjs.Text(stat +': ' + gameState.player[stat], this.playerStatsFont, this.statusBoxFontColor);
 					statText.x = this.playerStatsOffsetX;
 					statText.y = this.stage.canvas.height - this.statusBoxHeight + this.playerStatsOffsetY + this.playerNameOffsetY + (i*15);
+					this.stage.addChild(statText);
+					i++;
+				}
+			}
+
+			// Draw Mob name
+			var mobName = new createjs.Text(gameState.mob.name + ': ' + gameState.mob.hp, this.mobNameFont, this.statusBoxFontColor);
+			mobName.x = this.mobNameOffsetX;
+			mobName.y = this.stage.canvas.height - this.statusBoxHeight + this.mobNameOffsetY;
+			this.stage.addChild(mobName);
+
+			// Draw player stats
+			i = 0;
+			for (stat in gameState.mob) {
+				// Only direct properties, strings, numbers, & booleans
+				if (gameState.mob.hasOwnProperty(stat)
+					&& (typeof gameState.mob[stat] === 'string'
+						|| typeof gameState.mob[stat] === 'number'
+						|| typeof gameState.mob[stat] === 'boolean')) {
+					// skip name and hp, already displayed
+					if (stat === 'name' || stat === 'hp') {
+						continue;
+					}
+
+					// draw stat
+					var statText = new createjs.Text(stat +': ' + gameState.mob[stat], this.mobStatsFont, this.statusBoxFontColor);
+					statText.x = this.mobStatsOffsetX;
+					statText.y = this.stage.canvas.height - this.statusBoxHeight + this.mobStatsOffsetY + this.mobNameOffsetY + (i*15);
 					this.stage.addChild(statText);
 					i++;
 				}

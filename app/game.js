@@ -347,6 +347,7 @@ function DungeonGame(options) {
 		// Update GUI, pass in game state object
 		this.dungeonEngine.updateLoop({
 			player: this.player,
+			mob: this.mob
 		});
 	};
 
