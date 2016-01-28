@@ -4,17 +4,12 @@
 	<title>Dungeon of Chaos</title>
 	<link rel="stylesheet" href="style/style.css">
 </head>
-<body onload="initDungeon();">
+<body>
 	<h1>Dungeon of Chaos</h1>
 	<div>
-		<div>
-			<div class="entity-container">
-				<h1><span id="player-name"></span>: <span id="player-hp"></span></h1>
-				<h3><ul id="player-stat-list"></ul></h3>
-			</div>
-			<div id="canvas-container">
-				<canvas id="dungeon-canvas" width="500" height="500"></canvas>
-			</div>
+		<div class="entity-container">
+			<h1><span id="player-name"></span>: <span id="player-hp"></span></h1>
+			<h3><ul id="player-stat-list"></ul></h3>
 		</div>
 		<div class="entity-container">
 			<h1><span id="player-inventory"></span>: <span id="player-gold"></span></h1>
@@ -31,11 +26,9 @@
 			<button id="btn-reset" onclick="dungeon.reset();">Reset Combat</button>
 		</div>
 		<hr />
-		<div id="fight-log"></div>
-	</div>
 
-	<!-- Development Libs -->
-	<script src="lib/easeljs/lib/easeljs-0.8.2.combined.js"></script>
+		<div style="height:300px;width:400px;border:2px solid #ccc;font:14px/24px Verdana, Geneva, sans-serif;overflow:auto;" id="fight-log"></div>
+	</div>
 
 	<!-- Game Data Files -->
 	<script src="data/heroes.js"></script>
@@ -45,8 +38,6 @@
 
 	<!-- Game App Files -->
 	<script src="app/hero.js"></script>
-	<script src="app/engine.js"></script>
 	<script src="app/game.js"></script>
-	<script src="app/app.js"></script>
 </body>
 </html>
