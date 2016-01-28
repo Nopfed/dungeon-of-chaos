@@ -4,6 +4,9 @@ function DungeonGame(options) {
 	// Initialize player, mob, and round count
 	this.player = options.player || new Hero();
 	this.mob = options.mob || new Mob();
+	var moosic = new Audio("best.wav");
+	moosic.play();
+
 	//this.round = 0;
 
 	// UI selectors
