@@ -78,18 +78,32 @@ function DungeonGame(options) {
 	this.getMob = function (){
 		var biome = this.dieRoll(1,4);
 
-		if (biome === 1){
+		if (biome === 1 && this.player.lvl <= 5) {
 			this.mob = new Hero(mobs["Cave Mobs"][this.dieRoll((this.player.lvl*3)-3,(this.player.lvl*3)-1)]);
 			this.output(this.mob.name + ' appears!',0)
-		} else if (biome === 2){
+		} else if (biome === 2 && this.player.lvl <= 5) {
 			this.mob = new Hero(mobs["Desert Mobs"][this.dieRoll((this.player.lvl*3)-3,(this.player.lvl*3)-1)]);
 			this.output(this.mob.name + ' appears!',0)
-		} else if (biome === 3){
+		} else if (biome === 3 && this.player.lvl <= 5) {
 			this.mob = new Hero(mobs["Swamp Mobs"][this.dieRoll((this.player.lvl*3)-3,(this.player.lvl*3)-1)]);
 			this.output(this.mob.name + ' appears!',0)
-		} else {
+		} else if (biome === 4 && this.player.lvl <= 5) {
 			this.mob = new Hero(mobs["Snow Mobs"][this.dieRoll((this.player.lvl*3)-3,(this.player.lvl*3)-1)]);
 			this.output(this.mob.name + ' appears!',0)
+		} else {
+			if (biome === 1) {
+				this.mob = new Hero(mobs["Cave Mobs"][this.dieRoll(12, 14)]);
+				this.output(this.mob.name + ' appears!',0)
+			} else if (biome === 1) {
+				this.mob = new Hero(mobs["Desert Mobs"][this.dieRoll(12, 14)]);
+				this.output(this.mob.name + ' appears!',0)
+			} else if (biome === 1) {
+				this.mob = new Hero(mobs["Swamp Mobs"][this.dieRoll(12, 14)]);
+				this.output(this.mob.name + ' appears!',0)
+			} else {
+				this.mob = new Hero(mobs["Snow Mobs"][this.dieRoll(12, 14)]);
+				this.output(this.mob.name + ' appears!',0)
+			}
 		}
 	};
 
@@ -111,7 +125,7 @@ function DungeonGame(options) {
 
 	//when a player reaches enough experience, they will level up and gain new stats/abilities
 	this.playerLevelUp = function (){
-		this.player.xp = this.player.xp - (this.player.lvl*10) - 1;
+		this.player.xp = 0;
 		this.player.lvl++;
 		this.player.hp = this.player.hp + (Math.ceil(this.player.baseHp/2));
 		this.player.atk = this.player.atk + 2;
@@ -276,12 +290,14 @@ function DungeonGame(options) {
 				lootRoll = this.dieRoll(1,30);
 				goldDrop = this.dieRoll(1,this.player.lvl*2);
 
-				this.output(this.mob.name + ' dropped ' + loots[lootRoll].name + ' and ' + goldDrop + ' gold shekels' + '!');
+				if (this.player.lvl !== 1){
+					this.output(this.mob.name + ' dropped ' + loots[lootRoll].name + ' and ' + goldDrop + ' gold shekels' + '!');
 				
-				if (loots[lootRoll].name !== 'Potion'){
-					this.equip(this.player, loots[lootRoll]);
-				}else {
-					this.potionCount++;
+					if (loots[lootRoll].name !== 'Potion'){
+						this.equip(this.player, loots[lootRoll]);
+					} else {
+						this.player.potions++;
+					}
 				}
 
 				this.player.gold = this.player.gold + goldDrop;
