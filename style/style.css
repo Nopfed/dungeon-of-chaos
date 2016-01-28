@@ -1,7 +1,11 @@
-.entity-container {
-	display: inline-block;
-	border: 1px solid black;
-	vertical-align: top;
+.game-container {
+	margin: 0 auto;
+	width: 810px;
+}
+
+.controls-container {
+	margin: 0 auto;
+	width: 810px;
 }
 
 h1 {
@@ -22,6 +26,7 @@ body {
 	overflow: scroll;
 	display: inline-block;
 }
+
 #canvas-container {
 	display: inline-block;
 }
