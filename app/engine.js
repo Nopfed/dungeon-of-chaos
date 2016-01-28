@@ -17,14 +17,31 @@ function DungeonEngine(canvasId) {
 	this.playerStatsOffsetY = 25;
 
 	// Mob name
-	this.mobNameFont = "20px Verdana";
-	this.mobNameOffsetX = 250;
+	this.mobFontSize = 20;
+	this.mobNameFont = this.mobFontSize + 'px Verdana';
+	this.mobNameOffsetX = 300;
 	this.mobNameOffsetY = 5;
 
 	// Mob stats
 	this.mobStatsFont = "15px Verdana";
-	this.mobStatsOffsetX = 255;
-	this.mobStatsOffsetY = 25;
+	this.mobStatsOffsetX = this.mobNameOffsetX + 5;
+	this.mobStatsOffsetY = this.mobFontSize + this.mobNameOffsetY;
+
+	// Player graphic
+	this.playerGraphicOffsetX = 20;
+	this.playerGraphicOffsetY = 0;
+	this.playerGraphicBodyWidth = 100;
+	this.playerGraphicBodyHeight = 200;
+	this.playerGraphicHeadWidth = 100;
+	this.playerGraphicHeadHeight = 100;
+
+	// Mob graphic
+	this.mobGraphicOffsetX = 300;
+	this.mobGraphicOffsetY = 0;
+	this.mobGraphicBodyWidth = 100;
+	this.mobGraphicBodyHeight = 200;
+	this.mobGraphicHeadWidth = 100;
+	this.mobGraphicHeadHeight = 100;
 
 	// EaselJS Update loop
 	this.updateLoop = function (gameState) {
@@ -108,9 +125,53 @@ function DungeonEngine(canvasId) {
 			}
 		};
 
+		// Draw player
+		function drawPlayer() {
+			// create player graphic
+			// body
+			var playerGraphicBody = new createjs.Shape();
+			playerGraphicBody.graphics.beginFill(gameState.player.randomColor)
+				.drawRect(this.playerGraphicOffsetX,
+					this.stage.canvas.height-this.statusBoxHeight-this.playerGraphicBodyHeight,
+					this.playerGraphicBodyWidth,
+					this.playerGraphicBodyHeight);
+			this.stage.addChild(playerGraphicBody);
+			// head
+			var playerGraphicHead = new createjs.Shape();
+			playerGraphicHead.graphics.beginFill(gameState.player.randomColor)
+				.drawRect(this.playerGraphicOffsetX,
+					this.stage.canvas.height-this.statusBoxHeight-this.playerGraphicBodyHeight-this.playerGraphicHeadHeight,
+					this.playerGraphicHeadWidth,
+					this.playerGraphicHeadHeight);
+			this.stage.addChild(playerGraphicHead);
+		};
+
+		// Draw mob
+		function drawMob() {
+			// create mob graphic
+			// body
+			var mobGraphicBody = new createjs.Shape();
+			mobGraphicBody.graphics.beginFill(gameState.mob.randomColor)
+				.drawRect(this.mobGraphicOffsetX,
+					this.stage.canvas.height-this.statusBoxHeight-this.mobGraphicBodyHeight,
+					this.mobGraphicBodyWidth,
+					this.mobGraphicBodyHeight);
+			this.stage.addChild(mobGraphicBody);
+			// head
+			var mobGraphicHead = new createjs.Shape();
+			mobGraphicHead.graphics.beginFill(gameState.mob.randomColor)
+				.drawRect(this.mobGraphicOffsetX,
+					this.stage.canvas.height-this.statusBoxHeight-this.mobGraphicBodyHeight-this.mobGraphicHeadHeight,
+					this.mobGraphicHeadWidth,
+					this.mobGraphicHeadHeight);
+			this.stage.addChild(mobGraphicHead);
+		};
+
 		// Call draw functions for this scene
 		drawBackground.call(this);
 		drawStatusBox.call(this);
+		drawPlayer.call(this);
+		drawMob.call(this);
 
 		// Update the stage
 		this.stage.update();

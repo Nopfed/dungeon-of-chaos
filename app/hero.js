@@ -22,6 +22,8 @@ function Hero(options) {
 	this.feet = options.feet || {};
 	this.potions = options.potions || 3;
 
+	this.randomColor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+
 	//this.attack = function (otherHero) {
 	//	return this.atk - otherHero.armor;
 	//}
