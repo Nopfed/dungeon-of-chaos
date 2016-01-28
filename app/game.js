@@ -107,12 +107,14 @@ function DungeonGame(options) {
 		
 		if (potionCount <= 0){
 			this.output('You are all out of potions!');
-		}else {
+		}else if(this.player.hp !== this.player.maxHp) {
 			this.player.hp = this.player.hp + Math.ceil(this.player.maxHp/2);
 			potionCount--;
 			this.output('You have ' + potionCount + ' potions left.');
 			this.output(this.player.name + '\'s hp is at' + this.player.hp + '.');
 			this.updateInterface();
+		}else {
+			this.output('You are already at max HP!');
 		}
 	};
 
