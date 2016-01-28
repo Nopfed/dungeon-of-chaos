@@ -4,6 +4,7 @@ function Hero(options) {
 	this.name = options.name || 'New Hero';
 	this.lvl = options.lvl || 1;
 	this.maxHp = options.maxHp || 1;
+	this.baseHp = options.baseHp || 1;
 	this.hp = options.hp || 1;
 	this.xp = options.xp || 0;
 	this.atk = options.atk || 1;

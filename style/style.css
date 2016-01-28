@@ -14,7 +14,7 @@ body {
 }
 
 #fight-log {
-	height: 500px;
+	height: 350px;
 	width: auto;
 	border: 2px solid #ccc;
 	font: 14px/24px "Courier New", Courier, monospace;
@@ -25,7 +25,7 @@ body {
 }
 
 #dungeon-canvas {
-	border: 1px solid #000000;
+	border: 1px solid #FFFFFF;
 }
 
 .rainbow {
