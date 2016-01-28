@@ -21,10 +21,12 @@ function Hero(options) {
 	this.pants = options.pants || {};
 	this.feet = options.feet || {};
 
-	this.randomColor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+	this.randomColor = Math.floor(Math.random()*(256))
+		+','+Math.floor(Math.random()*(256))
+		+','+Math.floor(Math.random()*(256));
+	this.randomAlpha = Math.random();
 
 	//this.attack = function (otherHero) {
 	//	return this.atk - otherHero.armor;
 	//}
-
 };

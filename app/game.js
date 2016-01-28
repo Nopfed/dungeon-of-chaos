@@ -269,7 +269,7 @@ function DungeonGame(options) {
 				this.player.xp = this.player.xp + this.mob.xp;
 				this.output('You gained ' + this.mob.xp + ' xp.');
 				
-				if (this.player.xp >= (this.player.lvl*10)-1)){
+				if (this.player.xp >= (this.player.lvl*10)-1){
 					this.output('You leveled up!');
 					this.playerLevelUp();
 				}
