@@ -5,27 +5,23 @@
 	<link rel="stylesheet" href="style/style.css">
 </head>
 <body onload="initDungeon();">
-	<h1 class="rainbow">Dungeon of Chaos</h1>
 	<div>
+		<h1 class="rainbow">Dungeon of Chaos</h1>
 		<div id="canvas-container">
 			<canvas id="dungeon-canvas" width="500" height="500"></canvas>
 		</div>
-		<div class="entity-container">
-			<h1><span id="player-inventory"></span>: <span id="player-gold"></span></h1>
-			<h3><ul id="player-item-list"></ul></h3>
-		</div>
+		<div id="fight-log"></div>
 		<hr />
 		<div>
-			<label for="player-select">Hero: <select name="player-select" id="player-select" onchange="dungeon.reset()" /></select>
+			<label for="player-select">Hero: <select name="player-select" id="player-select" onchange="dungeon.reset()" /></select></label>
 		</div>
+		<br />
 		<div>
 			<button id="btn-fight" onclick="dungeon.fight();">Melee</button>
 			<button id="btn-steal" onclick="dungeon.fight('Steal');">Steal</button>
 			<button id="btn-potion" onclick="dungeon.drinkPotion();">Potion</button>
 			<button id="btn-reset" onclick="dungeon.reset();">Reset Combat</button>
-		</div>
-		<hr />
-		<div id="fight-log"></div>
+		</div>		
 	</div>
 
 	<!-- Development Libs -->
