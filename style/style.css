@@ -1,11 +1,17 @@
 .game-container {
+	width: 100%;
+	min-width:820px;
+	display: inline-block;
 	margin: 0 auto;
-	width: 810px;
+	text-align: center;
 }
 
 .controls-container {
+	width: 100%;
+	min-width:820px;
+	display: inline-block;
 	margin: 0 auto;
-	width: 810px;
+	text-align: center;
 }
 
 h1 {
