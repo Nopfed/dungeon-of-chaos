@@ -11,7 +11,7 @@ var actions = {
 		'rolls': 1,
 		'target-stat': 'gold',
 		'verb': 'snags',
-		'verb-damage': 'shekels'
+		'verb-damage': 'shmeckles'
 	},
 	'Dual Strike': {
 		'stat': 'atk',
