@@ -122,53 +122,53 @@ function DungeonGame(options) {
 	//equip a piece of gear to the appropriate gear slot, swaps any gear currently equipped
 	this.equip = function (player, item){
 		
-		if(item['type'] === "Helmet" && player.helm !== item){
-			
+		if (item['type'] === "Helmet" && player.helm !== item) {
 			player.atk = player.atk + item.dmg - player.helm.dmg;
 			player.armor = player.armor + item.armor - player.helm.armor;
 			player.hp = player.hp + item.hp - player.helm.hp;
+			player.maxHp = player.maxHp + item.hp - player.helm.hp;
 			player.helm = item;
 			this.output('Equipped ' + item.name + '.');
-		}else if (item['type'] === "Neck" && player.neck !== item){
-			
+		} else if (item['type'] === "Neck" && player.neck !== item) {
 			player.atk = player.atk + item.dmg - player.neck.dmg;
 			player.armor = player.armor + item.armor - player.neck.armor;
 			player.hp = player.hp + item.hp - player.neck.hp;
+			player.maxHp = player.maxHp + item.hp - player.neck.hp;
 			player.neck = item;
 			this.output('Equipped ' + item.name + '.');
-		}else if (item['type'] === "Chest" && player.chest !== item){
-			
+		} else if (item['type'] === "Chest" && player.chest !== item) {
 			player.atk = player.atk + item.dmg - player.chest.dmg;
 			player.armor = player.armor + item.armor - player.chest.armor;
 			player.hp = player.hp + item.hp - player.chest.hp;
+			player.maxHp = player.maxHp + item.hp - player.chest.hp;
 			player.chest = item;
 			this.output('Equipped ' + item.name + '.');
-		}else if (item['type'] === "Ring" && player.ring !== item){
-			
+		} else if (item['type'] === "Ring" && player.ring !== item) {	
 			player.atk = player.atk + item.dmg - player.ring.dmg;
 			player.armor = player.armor + item.armor - player.ring.armor;
 			player.hp = player.hp + item.hp - player.ring.hp;
+			player.maxHp = player.maxHp + item.hp - player.ring.hp;
 			player.ring = item;
 			this.output('Equipped ' + item.name + '.');
-		}else if (item['type'] === "Weapon" && player.weap !== item){
-			
+		} else if (item['type'] === "Weapon" && player.weap !== item) {	
 			player.atk = player.atk + item.dmg - player.weap.dmg;
 			player.armor = player.armor + item.armor - player.weap.armor;
 			player.hp = player.hp + item.hp - player.weap.hp;
+			player.maxHp = player.maxHp + item.hp - player.weap.hp;
 			player.weap = item;
 			this.output('Equipped ' + item.name + '.');
-		}else if (item['type'] === "Pants" && player.pants !== item){
-			
+		} else if (item['type'] === "Pants" && player.pants !== item) {	
 			player.atk = player.atk + item.dmg - player.pants.dmg;
 			player.armor = player.armor + item.armor - player.pants.armor;
 			player.hp = player.hp + item.hp - player.pants.hp;
+			player.maxHp = player.maxHp + item.hp - player.pants.hp;
 			player.pants = item;
 			this.output('Equipped ' + item.name + '.');
-		}else if (item['type'] === "Feet" && player.feet !== item){
-			
+		} else if (item['type'] === "Feet" && player.feet !== item) {
 			player.atk = player.atk + item.dmg - player.feet.dmg;
 			player.armor = player.armor + item.armor - player.feet.armor;
 			player.hp = player.hp + item.hp - player.feet.hp;
+			player.maxHp = player.maxHp + item.hp - player.feet.hp;
 			player.feet = item;
 			this.output('Equipped ' + item.name + '.');
 		}else {
