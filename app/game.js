@@ -94,16 +94,16 @@ function DungeonGame(options) {
 		}
 	};
 
-	//player drinks a potion, which heals for half their maximum HP rounded up
+	//player drinks a potion, which heals for half their base maximum level HP rounded up
 	this.drinkPotion = function (){
 		
 		if (this.potionCount <= 0){
 			this.output('You are all out of potions!');
 		}else if(this.player.hp !== this.player.maxHp) {
-			this.player.hp = this.player.hp + Math.ceil(this.player.maxHp/2);
+			this.player.hp = this.player.hp + Math.ceil(this.player.baseHp/2);
 			this.potionCount--;
+			this.output('You gained ' + Math.ceil(this.player.baseHp/2) + ' hp.');
 			this.output('You have ' + this.potionCount + ' potions left.');
-			this.output(this.player.name + '\'s hp is at' + this.player.hp + '.');
 			this.updateInterface();
 		}else {
 			this.output('You are already at max HP!');
@@ -112,11 +112,11 @@ function DungeonGame(options) {
 
 	//when a player reaches enough experience, they will level up and gain new stats/abilities
 	this.playerLevelUp = function (){
-		this.player.xp = this.player.xp - (this.player.lvl*10);
+		this.player.xp = this.player.xp - (this.player.lvl*10) - 1;
 		this.player.lvl++;
-		this.player.hp = this.player.maxHp + (Math.ceil(this.player.maxHp/2));
+		this.player.hp = this.player.hp + (Math.ceil(this.player.baseHp/2));
 		this.player.atk = this.player.atk + 2;
-		this.player.maxHp = this.player.hp;
+		this.player.baseHp = this.player.baseHp + Math.ceil(this.player.baseHp/2);
 	};
 
 	//equip a piece of gear to the appropriate gear slot, swaps any gear currently equipped
@@ -267,9 +267,9 @@ function DungeonGame(options) {
 				
 
 				this.player.xp = this.player.xp + this.mob.xp;
-				this.output('Your experience points are now at ' + this.player.xp + '.');
+				this.output('You gained ' + this.mob.xp + ' xp.');
 				
-				if (this.player.xp >= this.player.lvl*10){
+				if (this.player.xp >= (this.player.lvl*10)-1)){
 					this.output('You leveled up!');
 					this.playerLevelUp();
 				}
