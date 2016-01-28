@@ -1,7 +1,7 @@
-div.entity-container {
+.entity-container {
 	display: inline-block;
 	border: 1px solid black;
-	padding: 10px;
+	vertical-align: top;
 }
 
 #fight-log {
@@ -10,4 +10,11 @@ div.entity-container {
 	border: 0px solid #ccc;
 	font: 16px/24px Georgia, Garamond, Serif;
 	overflow: scroll;
+}
+#canvas-container {
+	display: inline-block;
+}
+
+#dungeon-canvas {
+	border: 1px solid #000000;
 }

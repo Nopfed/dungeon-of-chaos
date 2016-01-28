@@ -273,6 +273,7 @@ function DungeonGame(options) {
 		console.clear();
 	};
 
+	// Speech Synthesis
 	this.speaking = false;
 	this.speechQueue = [];
 	var speechReady = new Event('speech-ready');
@@ -356,8 +357,4 @@ function DungeonGame(options) {
 
 	// Self-initialize
 	this.init();
-};
-
-window.onload = function () {
-	window.dungeon = new DungeonGame();
 };
