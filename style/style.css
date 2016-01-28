@@ -26,11 +26,12 @@ body {
 #fight-log {
 	vertical-align: top;
 	height: 500px;
-	width: 300px;
+	width: auto;
 	border: 2px solid #ccc;
 	font: 14px/24px "Courier New", Courier, monospace;
 	overflow: scroll;
 	display: inline-block;
+	text-align:left;
 }
 
 #canvas-container {
