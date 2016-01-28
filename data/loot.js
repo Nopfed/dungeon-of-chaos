@@ -1,5 +1,6 @@
-var loots = {
-	'Abyssal Greaves': {
+var loots = [
+	{
+		name: 'Abyssal Greaves',
 		'type': 'Feet',
 		rarity: 'Common',
 		dmg: 2,
@@ -7,7 +8,8 @@ var loots = {
 		hp: 0,
 		price: 80,
 	},
-	'Ancient Wedding Band': {
+	{
+		name: 'Ancient Wedding Band',
 		'type': 'Ring',
 		rarity: 'Common',
 		dmg: 0,
@@ -15,7 +17,8 @@ var loots = {
 		hp: 10,
 		price: 20,
 	},
-	'Brimstone Halo': {
+	{
+		name: 'Brimstone Halo',
 		'type': 'Helmet',
 		rarity: 'Common',
 		dmg: 3,
@@ -23,7 +26,8 @@ var loots = {
 		hp: -5,
 		price: 25,
 	},
-	'Cosmic Gem': {
+	{
+		name: 'Cosmic Gem',
 		'type': 'Neck',
 		rarity: 'Common',
 		dmg: 2,
@@ -31,7 +35,8 @@ var loots = {
 		hp: 10,
 		price: 40,
 	},
-	'Desert Sandals': {
+	{
+		name: 'Desert Sandals',
 		'type': 'Feet',
 		rarity: 'Common',
 		dmg: 0,
@@ -39,7 +44,8 @@ var loots = {
 		hp: 0,
 		price: 30,
 	},
-	'Dragon Mail': {
+	{
+		name: 'Dragon Mail',
 		'type': 'Chest',
 		rarity: 'Rare',
 		dmg: 1,
@@ -47,7 +53,8 @@ var loots = {
 		hp: 5,
 		price: 100,
 	},
-	'Dragon Scaled Chaps': {
+	{
+		name: 'Dragon Scaled Chaps',
 		'type': 'Pants',
 		rarity: 'Common',
 		dmg: 0,
@@ -55,23 +62,26 @@ var loots = {
 		hp: 15,
 		price: 90,
 	},
-	'Excalibur': {
-		'type': '2h Weapon',
+	{
+		name: 'Excalibur',
+		'type': 'Weapon',
 		rarity: 'Legendary',
 		dmg: 7,
 		armor: 0,
 		hp: 10,
 		price: 80,
 	},
-	'Fire Chain': {
-		'type': '1h Weapon',
+	{
+		name: 'Fire Chain',
+		'type': 'Weapon',
 		rarity: 'Common',
 		dmg: 1,
 		armor: 0,
 		hp: 5,
 		price: 15,
 	},
-	'Leather Body': {
+	{
+		name: 'Leather Body',
 		'type': 'Chest',
 		rarity: 'Common',
 		dmg: 1,
@@ -79,7 +89,8 @@ var loots = {
 		hp: 15,
 		price: 70,
 	},
-	'Leather Helm': {
+	{
+		name: 'Leather Helm',
 		'type': 'Helmet',
 		rarity: 'Common',
 		dmg: 0,
@@ -87,7 +98,8 @@ var loots = {
 		hp: 10,
 		price: 50,
 	},
-	'Leather Chaps': {
+	{
+		name: 'Leather Chaps',
 		'type': 'Pants',
 		rarity: 'Common',
 		dmg: 1,
@@ -95,7 +107,8 @@ var loots = {
 		hp: 10,
 		price: 60,
 	},
-	'Ring of The Pact': {
+	{
+		name: 'Ring of The Pact',
 		'type': 'Ring',
 		rarity: 'Legendary',
 		dmg: 5,
@@ -103,7 +116,8 @@ var loots = {
 		hp: -30,
 		price: 140,
 	},
-	'Steel Body': {
+	{
+		name: 'Steel Body',
 		'type': 'Chest',
 		rarity: 'Common',
 		dmg: 2,
@@ -111,7 +125,8 @@ var loots = {
 		hp: 20,
 		price: 120,
 	},
-	'Steel Helm': {
+	{
+		name: 'Steel Helm',
 		'type': 'Helmet',
 		rarity: 'Common',
 		dmg: 1,
@@ -119,7 +134,8 @@ var loots = {
 		hp: 15,
 		price: 70,
 	},
-	'Steel Chaps': {
+	{
+		name: 'Steel Chaps',
 		'type': 'Pants',
 		rarity: 'Common',
 		dmg: 2,
@@ -127,7 +143,8 @@ var loots = {
 		hp: 15,
 		price: 110,
 	},
-	'The Dark Heart Pendant': {
+	{
+		name: 'Dark Heart Pendant',
 		'type': 'Neck',
 		rarity: 'Common',
 		dmg: 0,
@@ -135,7 +152,8 @@ var loots = {
 		hp: 25,
 		price: 50,
 	},
-	'The Iron Maiden\'s Skirt': {
+	{
+		name: 'Iron Maiden\'s Skirt',
 		'type': 'Pants',
 		rarity: 'Common',
 		dmg: -2,
@@ -143,7 +161,8 @@ var loots = {
 		hp: 30,
 		price: 40,
 	},
-	'Wool Chaps': {
+	{
+		name: 'Wool Chaps',
 		'type': 'Pants',
 		rarity: 'Common',
 		dmg: 0,
@@ -151,7 +170,8 @@ var loots = {
 		hp: 10,
 		price: 15,
 	},
-	'Wool Robes': {
+	{
+		name: 'Wool Robes',
 		'type': 'Chest',
 		rarity: 'Common',
 		dmg: 0,
@@ -159,7 +179,8 @@ var loots = {
 		hp: 10,
 		price: 15,
 	},
-	'Wool Shoes': {
+	{
+		name: 'Wool Shoes',
 		'type': 'Feet',
 		rarity: 'Common',
 		dmg: 0,
@@ -167,4 +188,4 @@ var loots = {
 		hp: 5,
 		price: 10,
 	},
-};
+];

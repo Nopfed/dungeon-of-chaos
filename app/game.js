@@ -4,6 +4,7 @@ function DungeonGame(options) {
 	// Initialize player, mob, and round count
 	this.player = options.player || new Hero();
 	this.mob = options.mob || new Hero();
+	var potionCount = 3;
 	//this.round = 0;
 
 	// UI selectors
@@ -43,11 +44,11 @@ function DungeonGame(options) {
 		// clear the log
 		this.clearLog();
 
-		this.output('-------------------', true);
-
 		// Reset player
 		playerSelection = this.playerSelectElem.options[this.playerSelectElem.selectedIndex];
-		this.player = new Hero(heroes[playerSelection.parentNode.label][playerSelection.value]);
+		this.player = new Hero(heroes[playerSelection.value]);
+		this.player.maxHp = this.player.hp;
+
 		// Reset and generate player stat list elements
 		while (this.playerStatListElem.firstChild) {
 			this.playerStatListElem.removeChild(this.playerStatListElem.firstChild);
@@ -101,6 +102,111 @@ function DungeonGame(options) {
 		}
 	};
 
+	//player drinks a potion, which heals for half their maximum HP rounded up
+	this.drinkPotion = function (){
+		
+		if (potionCount <= 0){
+			this.output('You are all out of potions!');
+		}else {
+			this.player.hp = this.player.hp + Math.ceil(this.player.maxHp/2);
+			potionCount--;
+			this.output('You have ' + potionCount + ' potions left.');
+			this.output(this.player.name + '\'s hp is at' + this.player.hp + '.');
+			this.updateInterface();
+		}
+	};
+
+	//when a player reaches enough experience, they will level up and gain new stats/abilities
+	this.playerLevelUp = function (){
+		this.player.lvl++;
+		this.player.hp = this.player.maxHp + (Math.ceil(this.player.maxHp/2));
+		this.player.xp = this.player.xp - (this.player.lvl*10);
+		this.player.atk = this.player.atk + 2;
+		this.player.maxHp = this.player.hp;
+	};
+
+	//equip a piece of gear to the appropriate gear slot, swaps any gear currently equipped
+	this.equip = function (player, item){
+		
+		if(item['type'] === "Helmet" && player.helm !== item){
+			player.helm = item;
+			player.atk = player.atk + item.dmg;
+			player.armor = player.armor + item.armor;
+			player.hp = player.hp + item.hp;
+			this.output('Equipped ' + item.name + '.');
+		}else if (item['type'] === "Neck" && player.neck !== item){
+			player.neck = item;
+			player.atk = player.atk + item.dmg;
+			player.armor = player.armor + item.armor;
+			player.hp = player.hp + item.hp;
+			this.output('Equipped ' + item.name + '.');
+		}else if (item['type'] === "Chest" && player.chest !== item){
+			player.chest = item;
+			player.atk = player.atk + item.dmg;
+			player.armor = player.armor + item.armor;
+			player.hp = player.hp + item.hp;
+			this.output('Equipped ' + item.name + '.');
+		}else if (item['type'] === "Ring" && player.ring !== item){
+			player.ring = item;
+			player.atk = player.atk + item.dmg;
+			player.armor = player.armor + item.armor;
+			player.hp = player.hp + item.hp;
+			this.output('Equipped ' + item.name + '.');
+		}else if (item['type'] === "Weapon" && player.weap !== item){
+			player.weap = item;
+			player.atk = player.atk + item.dmg;
+			player.armor = player.armor + item.armor;
+			player.hp = player.hp + item.hp;
+			this.output('Equipped ' + item.name + '.');
+		}else if (item['type'] === "Pants" && player.pants !== item){
+			player.pants = item;
+			player.atk = player.atk + item.dmg;
+			player.armor = player.armor + item.armor;
+			player.hp = player.hp + item.hp;
+			this.output('Equipped ' + item.name + '.');
+		}else if (item['type'] === "Feet" && player.feet !== item){
+			player.feet = item;
+			player.atk = player.atk + item.dmg;
+			player.armor = player.armor + item.armor;
+			player.hp = player.hp + item.hp;
+			this.output('Equipped ' + item.name + '.');
+		}else {
+			this.output('You already have that item equipped!');
+		}
+
+		this.updateInterface();
+	};
+
+	//unequip a piece of gear from a gear slot
+	this.unequip = function (player, itemType){
+
+		switch(itemType) {
+    		case "Helmet":
+        		player.helm = {};
+        		break;
+    		case "Neck":
+        		player.neck = {};
+        		break;
+        	case "Chest":
+        		player.chest = {};
+        		break;
+        	case "Ring":
+        		player.ring = {};
+        		break;
+        	case "Weapon":
+        		player.weap = {};
+        		break;
+        	case "Pants":
+        		player.pants = {};
+        		break;
+        	case "Feet":
+        		player.feet = {};
+        		break;
+    		default:
+        		this.output('Nothing equipped in that gear slot.');
+		}
+	};
+
 	// Simulate a round of fighting
 	// if action is not supplied, assume 'Melee' action
 	this.fight = function (action) {
@@ -109,6 +215,9 @@ function DungeonGame(options) {
 
 		// default to 'Melee' action
 		action = action || 'Melee';
+
+		// fix for speech synth
+		window.speechSynthesis.cancel();
 
 		// Fight cannot continue if a participant is dead
 		if (this.player.hp > 0) {
@@ -120,11 +229,7 @@ function DungeonGame(options) {
 			playerActionStat = actions[action]['stat'];
 			playerStat = this.player[playerActionStat] || 0;
 			playerTargetStat = actions[action]['target-stat'];
-			playerRoll = (this.dieRoll(1, playerStat)*actions[action].rolls) - this.player.miss;
-
-			if (playerRoll < 0) {
-				playerRoll = 0;
-			}
+			playerRoll = (this.dieRoll(1, playerStat)*actions[action].rolls);
 
 			playerActionDamage = playerRoll - this.mob.armor;
 
@@ -133,7 +238,7 @@ function DungeonGame(options) {
 			}
 
 			// Announce player action
-			if (playerRoll === 0) {
+			if (playerRoll <= this.player.miss) {
 				this.output(this.player.name+'\'s ' + action + ' missed!');
 			} else {
 				this.output(this.player.name+'\'s ' + action + ' ' + actions[action].verb + ' ' + playerActionDamage + ' ' + actions[action]['verb-damage'] + '!');
@@ -146,6 +251,10 @@ function DungeonGame(options) {
 				this.mob[playerTargetStat] = this.mob[playerTargetStat] - playerActionDamage;
 			}
 
+			
+			if(this.mob[playerTargetStat] <= 0){
+				this.mob[playerTargetStat] = 0;
+			}
 			// Announce result of player action
 			this.output(this.mob.name+'\'s ' + playerTargetStat + ' is at ' + this.mob[playerTargetStat] + '.');
 			this.updateInterface();			
@@ -153,10 +262,16 @@ function DungeonGame(options) {
 			// Check if mob is dead
 			if (this.mob.hp <= 0) {
 				this.output(this.mob.name + ' has died!');
-				//this.getLoot();
+				this.output('');
+
+				this.player.xp = this.player.xp + this.mob.xp;
+				
+				if (this.player.xp >= this.player.lvl*10){
+					this.playerLevelUp();
+				}
+
 				this.getMob();
 				this.updateInterface();
-				//this.output(this.player.name + ' wins!');
 			} else {
 				// Mob chooses action
 				mobAction = 'Melee';
@@ -187,6 +302,9 @@ function DungeonGame(options) {
 					this.player[mobTargetStat] = this.player[mobTargetStat] - mobActionDamage;
 				}
 
+				if(this.player[mobTargetStat] <= 0){
+					this.player[mobTargetStat] = 0;
+				}
 				// Announce result of mob action
 				this.output(this.player.name+'\'s ' + mobTargetStat + ' is at ' + this.player[mobTargetStat] + '.');
 
@@ -228,7 +346,6 @@ function DungeonGame(options) {
 				document.getElementById('player-' + stat).textContent = stat +': ' + this.player[stat];
 			}
 		}
-
 	};
 
 	// Output a message to both the fight log container and window.console
@@ -248,17 +365,19 @@ function DungeonGame(options) {
 			// append message text and line break
 			this.fightLog.appendChild(messageText);
 			this.fightLog.appendChild(lineBreak);
-		}else {
+		} else {
+			// create a new text node with the message
 			messageText = document.createTextNode(message);
 
+			// create a new <br> element to act as a line break
 			lineBreak = document.createElement('br');
 
+			// append message text and line break
 			this.fightLog.insertBefore(lineBreak, this.fightLog.childNodes[0]);
 			this.fightLog.insertBefore(messageText, this.fightLog.childNodes[0]);
-
 		}
 
-		if (!muteSpeech) {
+		if (!muteSpeech && message != '') {
 			this.speak(message);
 		}
 	};
@@ -277,6 +396,12 @@ function DungeonGame(options) {
 	};
 
 	this.speaking = false;
+	this.speechQueue = [];
+	var speechReady = new Event('speech-ready');
+	window.speechSynthesis.addEventListener('speech-ready', function (e) {
+		console.log('heard speech-ready');
+	});
+
 	this.speak = function (message) {
 		if (this.voice) {
 			this.synthMessage = new SpeechSynthesisUtterance(message);
@@ -287,7 +412,22 @@ function DungeonGame(options) {
 			this.synthMessage.rate = 0.75; // 0 to 10
 			this.synthMessage.pitch = 1; // 0 to 2
 
-			window.speechSynthesis.speak(this.synthMessage);
+			this.synthMessage.onend = function onend(evt) {
+				console.log('end', evt);
+				if (this.speechQueue.length > 0) {
+					window.speechSynthesis.speak(this.speechQueue.shift());
+				}
+			}.apply(this);
+
+			this.synthMessage.onerror = function onerror(evt) {
+				console.log('error', evt);
+			}.apply(this);
+
+			if (window.speechSynthesis.speaking || window.speechSynthesis.pending) {
+				this.speechQueue.push(this.synthMessage);
+			} else {
+				window.speechSynthesis.speak(this.synthMessage);
+			}
 		}
 	};
 
@@ -304,7 +444,7 @@ function DungeonGame(options) {
 			// Add each class as an <option>
 			for (i = 0; i < group.length; i++) {
 				optionElem = document.createElement('option');
-				optionElem.textContent = group[i].name + '(' + group[i].lvl +')';
+				optionElem.textContent = group[i].name;
 				optionElem.value = i;
 
 				// Add player class <option> to lvl 1 <optgroup>
@@ -315,10 +455,7 @@ function DungeonGame(options) {
 			selectElem.appendChild(optgroupElem);
 		};
 
-		populateSelect(this.playerSelectElem, "Rogue", heroes["Rogue"]);
-		populateSelect(this.playerSelectElem, "Sorceress", heroes["Sorceress"]);
-		populateSelect(this.playerSelectElem, "Warrior", heroes["Warrior"]);
-		populateSelect(this.playerSelectElem, "Priest", heroes["Priest"]);
+		populateSelect(this.playerSelectElem, "Classes", heroes);
 
 		//populateSelect(this.mobSelectElem, "Snow Mobs", mobs["Snow Mobs"]);
 		//populateSelect(this.mobSelectElem, "Swamp Mobs", mobs["Swamp Mobs"]);

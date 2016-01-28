@@ -3,6 +3,7 @@ var mobs = {
 		{
 			name: 'Wolf',
 			hp: 5,
+			xp: 1,
 			atk: 5,
 			miss: 1,
 			spd: 16,
@@ -11,6 +12,7 @@ var mobs = {
 		{
 			name: 'Snowball',
 			hp: 4,
+			xp: 1,
 			atk: 6,
 			miss: 2,
 			spd: 6,
@@ -19,6 +21,7 @@ var mobs = {
 		{
 			name: 'Ghoul',
 			hp: 5,
+			xp: 1,
 			atk: 6,
 			miss: 1,
 			spd: 8,
@@ -27,6 +30,7 @@ var mobs = {
 		{
 			name: 'Grizzly Bear',
 			hp: 13,
+			xp: 2,
 			atk: 8,
 			miss: 1,
 			spd: 16,
@@ -35,6 +39,7 @@ var mobs = {
 		{
 			name: 'Eskimo',
 			hp: 9,
+			xp: 2,
 			atk: 7,
 			miss: 1,
 			spd: 9,
@@ -43,6 +48,7 @@ var mobs = {
 		{
 			name: 'Banshee',
 			hp: 11,
+			xp: 2,
 			atk: 8,
 			miss: 2,
 			spd: 13,
@@ -51,6 +57,7 @@ var mobs = {
 		{
 			name: 'Yeti',
 			hp: 28,
+			xp: 3,
 			atk: 12,
 			miss: 1,
 			spd: 3,
@@ -59,6 +66,7 @@ var mobs = {
 		{
 			name: 'Ice Apprentice',
 			hp: 20,
+			xp: 3,
 			atk: 9,
 			miss: 1,
 			spd: 9,
@@ -67,6 +75,7 @@ var mobs = {
 		{
 			name: 'Snow Beast',
 			hp: 24,
+			xp: 3,
 			atk: 12,
 			miss: 2,
 			spd: 16,
@@ -75,6 +84,7 @@ var mobs = {
 		{
 			name: 'Snow Golem',
 			hp: 36,
+			xp: 4,
 			atk: 16,
 			miss: 2,
 			spd: 3,
@@ -83,6 +93,7 @@ var mobs = {
 		{
 			name: 'Frost Wyvern',
 			hp: 30,
+			xp: 4,
 			atk: 14,
 			miss: 2,
 			spd: 14,
@@ -91,6 +102,7 @@ var mobs = {
 		{
 			name: 'Frigid Pine',
 			hp: 34,
+			xp: 4,
 			atk: 12,
 			miss: 2,
 			spd: 5,
@@ -99,6 +111,7 @@ var mobs = {
 		{
 			name: 'Ice Master',
 			hp: 90,
+			xp: 10,
 			atk: 20,
 			miss: 3,
 			spd: 9,
@@ -107,6 +120,7 @@ var mobs = {
 		{
 			name: 'Kraken',
 			hp: 120,
+			xp: 10,
 			atk: 20,
 			miss: 4,
 			spd: 5,
@@ -115,6 +129,7 @@ var mobs = {
 		{
 			name: 'Frost Dragon',
 			hp: 100,
+			xp: 10,
 			atk: 20,
 			miss: 2,
 			spd: 14,
@@ -125,6 +140,7 @@ var mobs = {
 		{
 			name: 'Giant Toad',
 			hp: 6,
+			xp: 1,
 			atk: 4,
 			miss: 2,
 			spd: 6,
@@ -133,6 +149,7 @@ var mobs = {
 		{
 			name: 'Slime',
 			hp: 7,
+			xp: 1,
 			atk: 4,
 			miss: 1,
 			spd: 2,
@@ -141,6 +158,7 @@ var mobs = {
 		{
 			name: 'Faerie',
 			hp: 4,
+			xp: 1,
 			atk: 4,
 			miss: 2,
 			spd: 13,
@@ -149,6 +167,7 @@ var mobs = {
 		{
 			name: 'Zombie',
 			hp: 10,
+			xp: 2,
 			atk: 6,
 			miss: 2,
 			spd: 3,
@@ -157,6 +176,7 @@ var mobs = {
 		{
 			name: 'Alligator',
 			hp: 12,
+			xp: 2,
 			atk: 8,
 			miss: 2,
 			spd: 6,
@@ -165,6 +185,7 @@ var mobs = {
 		{
 			name: 'Satyr',
 			hp: 9,
+			xp: 2,
 			atk: 6,
 			miss: 1,
 			spd: 14,
@@ -173,6 +194,7 @@ var mobs = {
 		{
 			name: 'Banshee',
 			hp: 18,
+			xp: 3,
 			atk: 10,
 			miss: 2,
 			spd: 8,
@@ -181,6 +203,7 @@ var mobs = {
 		{
 			name: 'Witch',
 			hp: 17,
+			xp: 3,
 			atk: 8,
 			miss: 1,
 			spd: 9,
@@ -189,6 +212,7 @@ var mobs = {
 		{
 			name: 'Giant Ooze',
 			hp: 26,
+			xp: 3,
 			atk: 8,
 			miss: 2,
 			spd: 1,
@@ -197,6 +221,7 @@ var mobs = {
 		{
 			name: 'Ogre',
 			hp: 40,
+			xp: 4,
 			atk: 12,
 			miss: 1,
 			spd: 4,
@@ -205,6 +230,7 @@ var mobs = {
 		{
 			name: 'Spectral Beast',
 			hp: 32,
+			xp: 4,
 			atk: 12,
 			miss: 2,
 			spd: 12,
@@ -213,6 +239,7 @@ var mobs = {
 		{
 			name: 'Black Wyvern',
 			hp: 38,
+			xp: 4,
 			atk: 12,
 			miss: 2,
 			spd: 14,
@@ -221,6 +248,7 @@ var mobs = {
 		{
 			name: 'Spectre',
 			hp: 90,
+			xp: 10,
 			atk: 20,
 			miss: 2,
 			spd: 15,
@@ -229,6 +257,7 @@ var mobs = {
 		{
 			name: 'Lochness Monster',
 			hp: 110,
+			xp: 10,
 			atk: 20,
 			miss: 4,
 			spd: 16,
@@ -237,6 +266,7 @@ var mobs = {
 		{
 			name: 'Black Dragon',
 			hp: 100,
+			xp: 10,
 			atk: 20,
 			miss: 2,
 			spd: 14,
@@ -247,6 +277,7 @@ var mobs = {
 		{
 			name: 'Cobra',
 			hp: 3,
+			xp: 1,
 			atk: 4,
 			miss: 1,
 			spd: 8,
@@ -255,6 +286,7 @@ var mobs = {
 		{
 			name: 'Red Skeleton',
 			hp: 5,
+			xp: 1,
 			atk: 6,
 			miss: 3,
 			spd: 4,
@@ -263,6 +295,7 @@ var mobs = {
 		{
 			name: 'Vulture',
 			hp: 4,
+			xp: 1,
 			atk: 4,
 			miss: 1,
 			spd: 13,
@@ -271,6 +304,7 @@ var mobs = {
 		{
 			name: 'Tomb Raider',
 			hp: 8,
+			xp: 2,
 			atk: 6,
 			miss: 2,
 			spd: 8,
@@ -279,6 +313,7 @@ var mobs = {
 		{
 			name: 'Mummy',
 			hp: 10,
+			xp: 2,
 			atk: 6,
 			miss: 3,
 			spd: 3,
@@ -287,6 +322,7 @@ var mobs = {
 		{
 			name: 'Dust Devil',
 			hp: 12,
+			xp: 2,
 			atk: 8,
 			miss: 2,
 			spd: 15,
@@ -295,6 +331,7 @@ var mobs = {
 		{
 			name: 'Rock Elemental',
 			hp: 23,
+			xp: 3,
 			atk: 10,
 			miss: 2,
 			spd: 3,
@@ -303,6 +340,7 @@ var mobs = {
 		{
 			name: 'Floor Master',
 			hp: 17,
+			xp: 3,
 			atk: 8,
 			miss: 1,
 			spd: 8,
@@ -311,6 +349,7 @@ var mobs = {
 		{
 			name: 'Basilisk',
 			hp: 18,
+			xp: 3,
 			atk: 8,
 			miss: 2,
 			spd: 4,
@@ -319,6 +358,7 @@ var mobs = {
 		{
 			name: 'Sand Golem',
 			hp: 38,
+			xp: 4,
 			atk: 10,
 			miss: 1,
 			spd: 4,
@@ -327,6 +367,7 @@ var mobs = {
 		{
 			name: 'Ancient',
 			hp: 28,
+			xp: 4,
 			atk: 12,
 			miss: 1,
 			spd: 9,
@@ -335,6 +376,7 @@ var mobs = {
 		{
 			name: 'Chimera',
 			hp: 31,
+			xp: 4,
 			atk: 12,
 			miss: 2,
 			spd: 12,
@@ -343,6 +385,7 @@ var mobs = {
 		{
 			name: 'Sand Worm',
 			hp: 120,
+			xp: 10,
 			atk: 40,
 			miss: 6,
 			spd: 3,
@@ -351,6 +394,7 @@ var mobs = {
 		{
 			name: 'Stone Giant',
 			hp: 100,
+			xp: 10,
 			atk: 40,
 			miss: 8,
 			spd: 5,
@@ -359,6 +403,7 @@ var mobs = {
 		{
 			name: 'Undead Pharoah',
 			hp: 90,
+			xp: 10,
 			atk: 20,
 			miss: 1,
 			spd: 10,
@@ -369,6 +414,7 @@ var mobs = {
 		{
 			name: 'Bat',
 			hp: 3,
+			xp: 1,
 			atk: 4,
 			miss: 2,
 			spd: 14,
@@ -377,6 +423,7 @@ var mobs = {
 		{
 			name: 'Skeleton',
 			hp: 4,
+			xp: 1,
 			atk: 6,
 			miss: 3,
 			spd: 4,
@@ -385,6 +432,7 @@ var mobs = {
 		{
 			name: 'Imp',
 			hp: 3,
+			xp: 1,
 			atk: 4,
 			miss: 2,
 			spd: 7,
@@ -393,6 +441,7 @@ var mobs = {
 		{
 			name: 'Acolyte',
 			hp: 10,
+			xp: 2,
 			atk: 6,
 			miss: 2,
 			spd: 8,
@@ -401,6 +450,7 @@ var mobs = {
 		{
 			name: 'Giant Spider',
 			hp: 11,
+			xp: 2,
 			atk: 6,
 			miss: 1,
 			spd: 9,
@@ -409,6 +459,7 @@ var mobs = {
 		{
 			name: 'Cave Bear',
 			hp: 14,
+			xp: 2,
 			atk: 8,
 			miss: 2,
 			spd: 13,
@@ -417,6 +468,7 @@ var mobs = {
 		{
 			name: 'Lesser Demon',
 			hp: 22,
+			xp: 3,
 			atk: 10,
 			miss: 2,
 			spd: 3,
@@ -425,6 +477,7 @@ var mobs = {
 		{
 			name: 'Witch',
 			hp: 17,
+			xp: 3,
 			atk: 8,
 			miss: 1,
 			spd: 9,
@@ -433,6 +486,7 @@ var mobs = {
 		{
 			name: 'Wizard',
 			hp: 17,
+			xp: 3,
 			atk: 8,
 			miss: 1,
 			spd: 8,
@@ -441,6 +495,7 @@ var mobs = {
 		{
 			name: 'Horror',
 			hp: 30,
+			xp: 4,
 			atk: 12,
 			miss: 1,
 			spd: 14,
@@ -449,6 +504,7 @@ var mobs = {
 		{
 			name: 'Gorgon',
 			hp: 26,
+			xp: 4,
 			atk: 12,
 			miss: 2,
 			spd: 5,
@@ -457,6 +513,7 @@ var mobs = {
 		{
 			name: 'Greater Demon',
 			hp: 38,
+			xp: 4,
 			atk: 20,
 			miss: 6,
 			spd: 4,
@@ -465,6 +522,7 @@ var mobs = {
 		{
 			name: 'Warlock',
 			hp: 85,
+			xp: 10,
 			atk: 20,
 			miss: 2,
 			spd: 10,
@@ -473,6 +531,7 @@ var mobs = {
 		{
 			name: 'Lich',
 			hp: 99,
+			xp: 10,
 			atk: 20,
 			miss: 3,
 			spd: 8,
@@ -481,6 +540,7 @@ var mobs = {
 		{
 			name: 'Demon Lord',
 			hp: 120,
+			xp: 10,
 			atk: 20,
 			miss: 1,
 			spd: 5,

@@ -11,6 +11,10 @@
 			<h1><span id="player-name"></span>: <span id="player-hp"></span></h1>
 			<h3><ul id="player-stat-list"></ul></h3>
 		</div>
+		<div class="entity-container">
+			<h1><span id="player-inventory"></span>: <span id="player-gold"></span></h1>
+			<h3><ul id="player-item-list"></ul></h3>
+		</div>
 		<hr />
 		<div>
 			<label for="player-select">Hero: <select name="player-select" id="player-select" onchange="dungeon.reset()" /></select>
@@ -18,19 +22,12 @@
 		<div>
 			<button id="btn-fight" onclick="dungeon.fight();">Melee</button>
 			<button id="btn-steal" onclick="dungeon.fight('Steal');">Steal</button>
-			<button id="btn-dual-strike" onclick="dungeon.fight('Dual Strike');">Dual Strike</button>
-			<button id="btn-blade-storm" onclick="dungeon.fight('Blade Storm');">Blade Storm</button>
-			<button id="btn-wind-strike" onclick="dungeon.fight('Wind Strike');">Wind Strike</button>
-			<button id="btn-flame" onclick="dungeon.fight('Flame');">Flame</button>
-			<button id="btn-aqua-blast" onclick="dungeon.fight('Aqua Blast');">Aqua Blast</button>
-			<button id="btn-lightning" onclick="dungeon.fight('Lightning');">Lightning</button>
-			<button id="btn-double-cast" onclick="dungeon.fight('Double Cast');">Double Cast</button>
-			<button id="btn-chaos-storm" onclick="dungeon.fight('Chaos Storm');">Chaos Storm</button>
+			<button id="btn-potion" onclick="dungeon.drinkPotion();">Potion</button>
 			<button id="btn-reset" onclick="dungeon.reset();">Reset Combat</button>
 		</div>
 		<hr />
 
-		<div style="height:500px;width:500px;border:0px solid #ccc;font:16px/24px Georgia, Garamond, Serif;overflow:visible;" id="fight-log"></div>
+		<div style="height:300px;width:400px;border:2px solid #ccc;font:14px/24px Verdana, Geneva, sans-serif;overflow:auto;" id="fight-log"></div>
 	</div>
 
 	<!-- Game Data Files -->

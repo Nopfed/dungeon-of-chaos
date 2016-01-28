@@ -3,6 +3,7 @@ function Hero(options) {
 
 	this.name = options.name || 'New Hero';
 	this.lvl = options.lvl || 1;
+	this.maxHp = options.maxHp || 1;
 	this.hp = options.hp || 1;
 	this.xp = options.xp || 0;
 	this.atk = options.atk || 1;
@@ -10,12 +11,14 @@ function Hero(options) {
 	this.armor = options.armor || 0;
 	this.gold = options.gold || 10;
 	this.abilities = options.abilities || [];
-	this.gear = options.gear || [];
 	this.bag = options.bag || [];
-
-	this.formatName = function () {
-		return this.name + '(' + this.lvl + ')';
-	};
+	this.helm = options.helm || {};
+	this.neck = options.neck || {};
+	this.chest = options.chest || {};
+	this.ring = options.ring || {};
+	this.weap = options.weap || {};
+	this.pants = options.pants || {};
+	this.feet = options.feet || {};
 
 	//this.attack = function (otherHero) {
 	//	return this.atk - otherHero.armor;
