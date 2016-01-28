@@ -4,7 +4,6 @@ function DungeonGame(options) {
 	// Initialize player, mob, and round count
 	this.player = options.player || new Hero();
 	this.mob = options.mob || new Hero();
-	this.potionCount = 3;
 	//this.round = 0;
 
 	// UI selectors
@@ -52,7 +51,7 @@ function DungeonGame(options) {
 		playerSelection = this.playerSelectElem.options[this.playerSelectElem.selectedIndex];
 		this.player = new Hero(heroes[playerSelection.value]);
 		this.player.maxHp = this.player.hp;
-		this.potionCount = 3;
+		this.player.baseHp = this.player.hp;
 
 		if (this.player){
 			this.player.helm = new item();
@@ -97,13 +96,13 @@ function DungeonGame(options) {
 	//player drinks a potion, which heals for half their base maximum level HP rounded up
 	this.drinkPotion = function (){
 		
-		if (this.potionCount <= 0){
+		if (this.player.potions <= 0){
 			this.output('You are all out of potions!');
 		}else if(this.player.hp !== this.player.maxHp) {
 			this.player.hp = this.player.hp + Math.ceil(this.player.baseHp/2);
-			this.potionCount--;
+			this.player.potions--;
 			this.output('You gained ' + Math.ceil(this.player.baseHp/2) + ' hp.');
-			this.output('You have ' + this.potionCount + ' potions left.');
+			this.output('You have ' + this.player.potions + ' potions left.');
 			this.updateInterface();
 		}else {
 			this.output('You are already at max HP!');
@@ -269,7 +268,7 @@ function DungeonGame(options) {
 				this.player.xp = this.player.xp + this.mob.xp;
 				this.output('You gained ' + this.mob.xp + ' xp.');
 				
-				if (this.player.xp >= (this.player.lvl*10)-1){
+				if (this.player.xp >= ((this.player.lvl*10)-1)){
 					this.output('You leveled up!');
 					this.playerLevelUp();
 				}

@@ -20,6 +20,7 @@ function Hero(options) {
 	this.weap = options.weap || {};
 	this.pants = options.pants || {};
 	this.feet = options.feet || {};
+	this.potions = options.potions || 3;
 
 	this.randomColor = Math.floor(Math.random()*(256))
 		+','+Math.floor(Math.random()*(256))
