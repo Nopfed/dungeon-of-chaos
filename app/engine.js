@@ -130,15 +130,18 @@ function DungeonEngine(canvasId) {
 			// create player graphic
 			// body
 			var playerGraphicBody = new createjs.Shape();
-			playerGraphicBody.graphics.beginFill(gameState.player.randomColor)
+			playerGraphicBody.graphics
+				.beginFill('rgb('+gameState.player.randomColor+')')
 				.drawRect(this.playerGraphicOffsetX,
 					this.stage.canvas.height-this.statusBoxHeight-this.playerGraphicBodyHeight,
 					this.playerGraphicBodyWidth,
 					this.playerGraphicBodyHeight);
 			this.stage.addChild(playerGraphicBody);
+
 			// head
 			var playerGraphicHead = new createjs.Shape();
-			playerGraphicHead.graphics.beginFill(gameState.player.randomColor)
+			playerGraphicHead.graphics
+				.beginFill('rgba('+gameState.player.randomColor+','+gameState.player.randomAlpha+')')
 				.drawRect(this.playerGraphicOffsetX,
 					this.stage.canvas.height-this.statusBoxHeight-this.playerGraphicBodyHeight-this.playerGraphicHeadHeight,
 					this.playerGraphicHeadWidth,
@@ -151,15 +154,18 @@ function DungeonEngine(canvasId) {
 			// create mob graphic
 			// body
 			var mobGraphicBody = new createjs.Shape();
-			mobGraphicBody.graphics.beginFill(gameState.mob.randomColor)
+			mobGraphicBody.graphics
+				.beginFill('rgb('+gameState.mob.randomColor+')')
 				.drawRect(this.mobGraphicOffsetX,
 					this.stage.canvas.height-this.statusBoxHeight-this.mobGraphicBodyHeight,
 					this.mobGraphicBodyWidth,
 					this.mobGraphicBodyHeight);
 			this.stage.addChild(mobGraphicBody);
+
 			// head
 			var mobGraphicHead = new createjs.Shape();
-			mobGraphicHead.graphics.beginFill(gameState.mob.randomColor)
+			mobGraphicHead.graphics
+				.beginFill('rgba('+gameState.mob.randomColor+','+gameState.mob.randomAlpha+')')
 				.drawRect(this.mobGraphicOffsetX,
 					this.stage.canvas.height-this.statusBoxHeight-this.mobGraphicBodyHeight-this.mobGraphicHeadHeight,
 					this.mobGraphicHeadWidth,
