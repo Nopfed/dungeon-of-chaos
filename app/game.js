@@ -53,29 +53,6 @@ function DungeonGame(options) {
 		this.player = new Hero(heroes[playerSelection.value]);
 		this.player.maxHp = this.player.hp;
 
-		// Reset and generate player stat list elements
-		while (this.playerStatListElem.firstChild) {
-			this.playerStatListElem.removeChild(this.playerStatListElem.firstChild);
-		}
-		for (var stat in this.player) {
-			// Only direct properties, strings, numbers, & booleans
-			if (this.player.hasOwnProperty(stat)
-				&& (typeof this.player[stat] === 'string'
-					|| typeof this.player[stat] === 'number'
-					|| typeof this.player[stat] === 'boolean')) {
-				// skip name and hp, already displayed
-				if (stat === 'name' || stat === 'hp') {
-					continue;
-				}
-
-				statElem = document.createElement('li');
-				statElem.textContent = stat + ': ' + this.player[stat];
-				statElem.setAttribute('id', 'player-'+stat);
-
-				this.playerStatListElem.appendChild(statElem);
-			}
-		}
-
 		// Reset mob
 		this.getMob();
 		
@@ -332,27 +309,6 @@ function DungeonGame(options) {
 
 	// Update the interface with game information
 	this.updateInterface = function () {
-		var i, stat;
-
-		// update player stats
-		this.playerHpElem.textContent = this.player.hp;
-		this.playerNameElem.textContent = this.player.name;
-		// other stats
-		for (var stat in this.player) {
-			// Only direct properties, strings, numbers, & booleans
-			if (this.player.hasOwnProperty(stat)
-				&& (typeof this.player[stat] === 'string'
-					|| typeof this.player[stat] === 'number'
-					|| typeof this.player[stat] === 'boolean')) {
-				// skip name and hp, already displayed
-				if (stat === 'name' || stat === 'hp') {
-					continue;
-				}
-
-				document.getElementById('player-' + stat).textContent = stat +': ' + this.player[stat];
-			}
-		}
-
 		// Update GUI, pass in game state object
 		this.dungeonEngine.updateLoop({
 			player: this.player,
