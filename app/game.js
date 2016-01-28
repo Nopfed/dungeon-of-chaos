@@ -4,7 +4,7 @@ function DungeonGame(options) {
 	// Initialize player, mob, and round count
 	this.player = options.player || new Hero();
 	this.mob = options.mob || new Hero();
-	var potionCount = 3;
+	this.potionCount = 3;
 	//this.round = 0;
 
 	// UI selectors
@@ -48,6 +48,17 @@ function DungeonGame(options) {
 		playerSelection = this.playerSelectElem.options[this.playerSelectElem.selectedIndex];
 		this.player = new Hero(heroes[playerSelection.value]);
 		this.player.maxHp = this.player.hp;
+		this.potionCount = 3;
+
+		if (this.player){
+			this.player.helm = new item();
+			this.player.neck = new item();
+			this.player.chest = new item();
+			this.player.ring = new item();
+			this.player.weap = new item();
+			this.player.pants = new item();
+			this.player.feet = new item();
+		}
 
 		// Reset and generate player stat list elements
 		while (this.playerStatListElem.firstChild) {
@@ -105,12 +116,12 @@ function DungeonGame(options) {
 	//player drinks a potion, which heals for half their maximum HP rounded up
 	this.drinkPotion = function (){
 		
-		if (potionCount <= 0){
+		if (this.potionCount <= 0){
 			this.output('You are all out of potions!');
 		}else if(this.player.hp !== this.player.maxHp) {
 			this.player.hp = this.player.hp + Math.ceil(this.player.maxHp/2);
-			potionCount--;
-			this.output('You have ' + potionCount + ' potions left.');
+			this.potionCount--;
+			this.output('You have ' + this.potionCount + ' potions left.');
 			this.output(this.player.name + '\'s hp is at' + this.player.hp + '.');
 			this.updateInterface();
 		}else {
@@ -120,9 +131,9 @@ function DungeonGame(options) {
 
 	//when a player reaches enough experience, they will level up and gain new stats/abilities
 	this.playerLevelUp = function (){
+		this.player.xp = this.player.xp - (this.player.lvl*10);
 		this.player.lvl++;
 		this.player.hp = this.player.maxHp + (Math.ceil(this.player.maxHp/2));
-		this.player.xp = this.player.xp - (this.player.lvl*10);
 		this.player.atk = this.player.atk + 2;
 		this.player.maxHp = this.player.hp;
 	};
@@ -131,46 +142,53 @@ function DungeonGame(options) {
 	this.equip = function (player, item){
 		
 		if(item['type'] === "Helmet" && player.helm !== item){
+			
+			player.atk = player.atk + item.dmg - player.helm.dmg;
+			player.armor = player.armor + item.armor - player.helm.armor;
+			player.hp = player.hp + item.hp - player.helm.hp;
 			player.helm = item;
-			player.atk = player.atk + item.dmg;
-			player.armor = player.armor + item.armor;
-			player.hp = player.hp + item.hp;
 			this.output('Equipped ' + item.name + '.');
 		}else if (item['type'] === "Neck" && player.neck !== item){
+			
+			player.atk = player.atk + item.dmg - player.neck.dmg;
+			player.armor = player.armor + item.armor - player.neck.armor;
+			player.hp = player.hp + item.hp - player.neck.hp;
 			player.neck = item;
-			player.atk = player.atk + item.dmg;
-			player.armor = player.armor + item.armor;
-			player.hp = player.hp + item.hp;
 			this.output('Equipped ' + item.name + '.');
 		}else if (item['type'] === "Chest" && player.chest !== item){
+			
+			player.atk = player.atk + item.dmg - player.chest.dmg;
+			player.armor = player.armor + item.armor - player.chest.armor;
+			player.hp = player.hp + item.hp - player.chest.hp;
 			player.chest = item;
-			player.atk = player.atk + item.dmg;
-			player.armor = player.armor + item.armor;
-			player.hp = player.hp + item.hp;
 			this.output('Equipped ' + item.name + '.');
 		}else if (item['type'] === "Ring" && player.ring !== item){
+			
+			player.atk = player.atk + item.dmg - player.ring.dmg;
+			player.armor = player.armor + item.armor - player.ring.armor;
+			player.hp = player.hp + item.hp - player.ring.hp;
 			player.ring = item;
-			player.atk = player.atk + item.dmg;
-			player.armor = player.armor + item.armor;
-			player.hp = player.hp + item.hp;
 			this.output('Equipped ' + item.name + '.');
 		}else if (item['type'] === "Weapon" && player.weap !== item){
+			
+			player.atk = player.atk + item.dmg - player.weap.dmg;
+			player.armor = player.armor + item.armor - player.weap.armor;
+			player.hp = player.hp + item.hp - player.weap.hp;
 			player.weap = item;
-			player.atk = player.atk + item.dmg;
-			player.armor = player.armor + item.armor;
-			player.hp = player.hp + item.hp;
 			this.output('Equipped ' + item.name + '.');
 		}else if (item['type'] === "Pants" && player.pants !== item){
+			
+			player.atk = player.atk + item.dmg - player.pants.dmg;
+			player.armor = player.armor + item.armor - player.pants.armor;
+			player.hp = player.hp + item.hp - player.pants.hp;
 			player.pants = item;
-			player.atk = player.atk + item.dmg;
-			player.armor = player.armor + item.armor;
-			player.hp = player.hp + item.hp;
 			this.output('Equipped ' + item.name + '.');
 		}else if (item['type'] === "Feet" && player.feet !== item){
+			
+			player.atk = player.atk + item.dmg - player.feet.dmg;
+			player.armor = player.armor + item.armor - player.feet.armor;
+			player.hp = player.hp + item.hp - player.feet.hp;
 			player.feet = item;
-			player.atk = player.atk + item.dmg;
-			player.armor = player.armor + item.armor;
-			player.hp = player.hp + item.hp;
 			this.output('Equipped ' + item.name + '.');
 		}else {
 			this.output('You already have that item equipped!');
@@ -213,7 +231,8 @@ function DungeonGame(options) {
 	// if action is not supplied, assume 'Melee' action
 	this.fight = function (action) {
 		var playerActionStat, playerStat, playerRoll, playerActionDamage, playerRolls, playerTargetStat,
-			mobAction, mobActionStat, mobStat, mobRoll, mobActionDamage, mobRolls, mobTargetStat;
+			mobAction, mobActionStat, mobStat, mobRoll, mobActionDamage, mobRolls, mobTargetStat, lootRoll,
+			goldDrop;
 
 		// default to 'Melee' action
 		action = action || 'Melee';
@@ -264,14 +283,30 @@ function DungeonGame(options) {
 			// Check if mob is dead
 			if (this.mob.hp <= 0) {
 				this.output(this.mob.name + ' has died!');
-				this.output('');
+				
 
 				this.player.xp = this.player.xp + this.mob.xp;
+				this.output('Your experience points are now at ' + this.player.xp + '.');
 				
 				if (this.player.xp >= this.player.lvl*10){
+					this.output('You leveled up!');
 					this.playerLevelUp();
 				}
 
+				lootRoll = this.dieRoll(1,30);
+				goldDrop = this.dieRoll(1,this.player.lvl*2);
+
+				this.output(this.mob.name + ' dropped ' + loots[lootRoll].name + ' and ' + goldDrop + ' gold shekels' + '!');
+				
+				if (loots[lootRoll].name !== 'Potion'){
+					this.equip(this.player, loots[lootRoll]);
+				}else {
+					this.potionCount++;
+				}
+
+				this.player.gold = this.player.gold + goldDrop;
+				
+				this.output('');
 				this.getMob();
 				this.updateInterface();
 			} else {
