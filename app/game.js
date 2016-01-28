@@ -3,7 +3,7 @@ function DungeonGame(options) {
 
 	// Initialize player, mob, and round count
 	this.player = options.player || new Hero();
-	this.mob = options.mob || new Hero();
+	this.mob = options.mob || new Mob();
 	//this.round = 0;
 
 	// UI selectors
@@ -79,29 +79,29 @@ function DungeonGame(options) {
 		var biome = this.dieRoll(1,4);
 
 		if (biome === 1 && this.player.lvl <= 5) {
-			this.mob = new Hero(mobs["Cave Mobs"][this.dieRoll((this.player.lvl*3)-3,(this.player.lvl*3)-1)]);
+			this.mob = new Mob(mobs["Cave Mobs"][this.dieRoll((this.player.lvl*3)-3,(this.player.lvl*3)-1)]);
 			this.output(this.mob.name + ' appears!',0)
 		} else if (biome === 2 && this.player.lvl <= 5) {
-			this.mob = new Hero(mobs["Desert Mobs"][this.dieRoll((this.player.lvl*3)-3,(this.player.lvl*3)-1)]);
+			this.mob = new Mob(mobs["Desert Mobs"][this.dieRoll((this.player.lvl*3)-3,(this.player.lvl*3)-1)]);
 			this.output(this.mob.name + ' appears!',0)
 		} else if (biome === 3 && this.player.lvl <= 5) {
-			this.mob = new Hero(mobs["Swamp Mobs"][this.dieRoll((this.player.lvl*3)-3,(this.player.lvl*3)-1)]);
+			this.mob = new Mob(mobs["Swamp Mobs"][this.dieRoll((this.player.lvl*3)-3,(this.player.lvl*3)-1)]);
 			this.output(this.mob.name + ' appears!',0)
 		} else if (biome === 4 && this.player.lvl <= 5) {
-			this.mob = new Hero(mobs["Snow Mobs"][this.dieRoll((this.player.lvl*3)-3,(this.player.lvl*3)-1)]);
+			this.mob = new Mob(mobs["Snow Mobs"][this.dieRoll((this.player.lvl*3)-3,(this.player.lvl*3)-1)]);
 			this.output(this.mob.name + ' appears!',0)
 		} else {
 			if (biome === 1) {
-				this.mob = new Hero(mobs["Cave Mobs"][this.dieRoll(12, 14)]);
+				this.mob = new Mob(mobs["Cave Mobs"][this.dieRoll(12, 14)]);
 				this.output(this.mob.name + ' appears!',0)
 			} else if (biome === 1) {
-				this.mob = new Hero(mobs["Desert Mobs"][this.dieRoll(12, 14)]);
+				this.mob = new Mob(mobs["Desert Mobs"][this.dieRoll(12, 14)]);
 				this.output(this.mob.name + ' appears!',0)
 			} else if (biome === 1) {
-				this.mob = new Hero(mobs["Swamp Mobs"][this.dieRoll(12, 14)]);
+				this.mob = new Mob(mobs["Swamp Mobs"][this.dieRoll(12, 14)]);
 				this.output(this.mob.name + ' appears!',0)
 			} else {
-				this.mob = new Hero(mobs["Snow Mobs"][this.dieRoll(12, 14)]);
+				this.mob = new Mob(mobs["Snow Mobs"][this.dieRoll(12, 14)]);
 				this.output(this.mob.name + ' appears!',0)
 			}
 		}
