@@ -352,14 +352,11 @@ function DungeonGame(options) {
 				document.getElementById('player-' + stat).textContent = stat +': ' + this.player[stat];
 			}
 		}
-<<<<<<< HEAD
 
 		// Update GUI, pass in game state object
 		this.dungeonEngine.updateLoop({
 			player: this.player,
 		});
-=======
->>>>>>> 376de3908d589c822ad9f6a7b6e0803f7e709a24
 	};
 
 	// Output a message to both the fight log container and window.console
