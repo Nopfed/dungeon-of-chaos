@@ -1,11 +1,17 @@
 .game-container {
+	width: 100%;
+	min-width:820px;
+	display: inline-block;
 	margin: 0 auto;
-	width: 810px;
+	text-align: center;
 }
 
 .controls-container {
+	width: 100%;
+	min-width:820px;
+	display: inline-block;
 	margin: 0 auto;
-	width: 810px;
+	text-align: center;
 }
 
 h1 {
@@ -20,11 +26,12 @@ body {
 #fight-log {
 	vertical-align: top;
 	height: 500px;
-	width: 300px;
+	width: auto;
 	border: 2px solid #ccc;
 	font: 14px/24px "Courier New", Courier, monospace;
 	overflow: scroll;
 	display: inline-block;
+	text-align:left;
 }
 
 #canvas-container {
