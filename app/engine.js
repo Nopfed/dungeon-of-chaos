@@ -7,7 +7,7 @@ function DungeonEngine(canvasId) {
 	this.statusBoxFontColor = "#FFFFFF";
 	this.playerNameFont = "20px Verdana";
 	this.playerNameOffsetX = 20;
-	this.playerNameOffsetY = 20;
+	this.playerNameOffsetY = 5;
 	this.playerStatsFont = "15px Verdana";
 	this.playerStatsOffsetX = 25;
 	this.playerStatsOffsetY = 25;
