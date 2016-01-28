@@ -36,6 +36,10 @@ function DungeonGame(options) {
 	// Initialize speech synthesis voice and message container
 	this.voice = window.speechSynthesis.getVoices()[1]; // en-US
 	this.synthMessage = new SpeechSynthesisUtterance();
+	this.speechMuted = true;
+
+	// Initialize Dungeon Engine
+	this.dungeonEngine = new DungeonEngine("dungeon-canvas");
 
 	// Reset the fight
 	this.reset = function () {
@@ -383,6 +387,11 @@ function DungeonGame(options) {
 				document.getElementById('player-' + stat).textContent = stat +': ' + this.player[stat];
 			}
 		}
+
+		// Update GUI, pass in game state object
+		this.dungeonEngine.updateLoop({
+			player: this.player,
+		});
 	};
 
 	// Output a message to both the fight log container and window.console
@@ -414,7 +423,7 @@ function DungeonGame(options) {
 			this.fightLog.insertBefore(messageText, this.fightLog.childNodes[0]);
 		}
 
-		if (!muteSpeech && message != '') {
+		if (!this.speechMuted && !muteSpeech && message != '') {
 			this.speak(message);
 		}
 	};
@@ -432,6 +441,7 @@ function DungeonGame(options) {
 		console.clear();
 	};
 
+	// Speech Synthesis
 	this.speaking = false;
 	this.speechQueue = [];
 	var speechReady = new Event('speech-ready');
@@ -513,8 +523,4 @@ function DungeonGame(options) {
 
 	// Self-initialize
 	this.init();
-};
-
-window.onload = function () {
-	window.dungeon = new DungeonGame();
 };

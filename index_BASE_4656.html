@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dungeon of Chaos</title>
+	<link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+	<h1>Dungeon of Chaos</h1>
+	<div>
+		<div class="entity-container">
+			<h1><span id="player-name"></span>: <span id="player-hp"></span></h1>
+			<h3><ul id="player-stat-list"></ul></h3>
+		</div>
+		<hr />
+		<div>
+			<label for="player-select">Hero: <select name="player-select" id="player-select" onchange="dungeon.reset()" /></select>
+		</div>
+		<div>
+			<button id="btn-fight" onclick="dungeon.fight();">Melee</button>
+			<button id="btn-steal" onclick="dungeon.fight('Steal');">Steal</button>
+			<button id="btn-dual-strike" onclick="dungeon.fight('Dual Strike');">Dual Strike</button>
+			<button id="btn-blade-storm" onclick="dungeon.fight('Blade Storm');">Blade Storm</button>
+			<button id="btn-wind-strike" onclick="dungeon.fight('Wind Strike');">Wind Strike</button>
+			<button id="btn-flame" onclick="dungeon.fight('Flame');">Flame</button>
+			<button id="btn-aqua-blast" onclick="dungeon.fight('Aqua Blast');">Aqua Blast</button>
+			<button id="btn-lightning" onclick="dungeon.fight('Lightning');">Lightning</button>
+			<button id="btn-double-cast" onclick="dungeon.fight('Double Cast');">Double Cast</button>
+			<button id="btn-chaos-storm" onclick="dungeon.fight('Chaos Storm');">Chaos Storm</button>
+			<button id="btn-reset" onclick="dungeon.reset();">Reset Combat</button>
+		</div>
+		<hr />
+
+		<div style="height:500px;width:250px;border:0px solid #ccc;font:16px/24px Georgia, Garamond, Serif;overflow:scroll;" id="fight-log"></div>
+	</div>
+
+	<!-- Game Data Files -->
+	<script src="data/heroes.js"></script>
+	<script src="data/mobs.js"></script>
+	<script src="data/actions.js"></script>
+	<script src="data/loot.js"></script>
+
+	<!-- Game App Files -->
+	<script src="app/hero.js"></script>
+	<script src="app/game.js"></script>
+</body>
+</html>

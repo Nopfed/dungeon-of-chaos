@@ -1,0 +1,7 @@
+{
+	"name": "dungeon-of-chaos",
+	"version": "1.0.0",
+	"dependencies": {
+		"easeljs": "~0.8"
+	}
+}
