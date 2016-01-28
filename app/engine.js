@@ -3,7 +3,7 @@ function DungeonEngine(canvasId) {
 	this.stage = new createjs.Stage(canvasId);
 
 	// UI variables, sizes
-	this.statusBoxHeight = 150;
+	this.statusBoxHeight = 170;
 	this.statusBoxFontColor = "#FFFFFF";
 
 	// Player name
@@ -102,7 +102,7 @@ function DungeonEngine(canvasId) {
 			mobName.y = this.stage.canvas.height - this.statusBoxHeight + this.mobNameOffsetY;
 			this.stage.addChild(mobName);
 
-			// Draw player stats
+			// Draw mob stats
 			i = 0;
 			for (stat in gameState.mob) {
 				// Only direct properties, strings, numbers, & booleans
