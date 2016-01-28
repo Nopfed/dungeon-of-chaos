@@ -3,3 +3,11 @@ div.entity-container {
 	border: 1px solid black;
 	padding: 10px;
 }
+
+#fight-log {
+	height: 500px;
+	width: auto;
+	border: 0px solid #ccc;
+	font: 16px/24px Georgia, Garamond, Serif;
+	overflow: scroll;
+}
