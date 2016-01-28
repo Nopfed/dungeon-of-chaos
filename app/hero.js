@@ -20,6 +20,7 @@ function Hero(options) {
 	this.weap = options.weap || {};
 	this.pants = options.pants || {};
 	this.feet = options.feet || {};
+	this.potions = options.potions || 3;
 
 	//this.attack = function (otherHero) {
 	//	return this.atk - otherHero.armor;
