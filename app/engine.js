@@ -7,23 +7,23 @@ function DungeonEngine(canvasId) {
 	this.statusBoxFontColor = "#FFFFFF";
 
 	// Player name
-	this.playerNameFont = "20px Verdana";
+	this.playerNameFont = "18px Verdana";
 	this.playerNameOffsetX = 20;
 	this.playerNameOffsetY = 5;
 
 	// Player stats
-	this.playerStatsFont = "15px Verdana";
+	this.playerStatsFont = "14px Verdana";
 	this.playerStatsOffsetX = 25;
 	this.playerStatsOffsetY = 25;
 
 	// Mob name
-	this.mobFontSize = 20;
+	this.mobFontSize = 18;
 	this.mobNameFont = this.mobFontSize + 'px Verdana';
 	this.mobNameOffsetX = 300;
 	this.mobNameOffsetY = 5;
 
 	// Mob stats
-	this.mobStatsFont = "15px Verdana";
+	this.mobStatsFont = "14px Verdana";
 	this.mobStatsOffsetX = this.mobNameOffsetX + 5;
 	this.mobStatsOffsetY = this.mobFontSize + this.mobNameOffsetY;
 
@@ -82,8 +82,9 @@ function DungeonEngine(canvasId) {
 					&& (typeof gameState.player[stat] === 'string'
 						|| typeof gameState.player[stat] === 'number'
 						|| typeof gameState.player[stat] === 'boolean')) {
-					// skip name and hp, already displayed
-					if (stat === 'name' || stat === 'hp') {
+					// skip name and hp, already displayed, hide certain stats
+					if (stat === 'name' || stat === 'hp' || stat === 'baseHp' || stat === 'randomColor'
+						|| stat === 'randomAlpha') {
 						continue;
 					}
 
@@ -104,25 +105,26 @@ function DungeonEngine(canvasId) {
 
 			// Draw mob stats
 			i = 0;
-			for (stat in gameState.mob) {
+			//for (stat in gameState.mob) {
 				// Only direct properties, strings, numbers, & booleans
-				if (gameState.mob.hasOwnProperty(stat)
-					&& (typeof gameState.mob[stat] === 'string'
-						|| typeof gameState.mob[stat] === 'number'
-						|| typeof gameState.mob[stat] === 'boolean')) {
+				//if (gameState.mob.hasOwnProperty(stat)
+					//&& (typeof gameState.mob[stat] === 'string'
+					//	|| typeof gameState.mob[stat] === 'number'
+					//	|| typeof gameState.mob[stat] === 'boolean')) {
 					// skip name and hp, already displayed
-					if (stat === 'name' || stat === 'hp') {
-						continue;
-					}
+					//if (stat === 'name' || stat === 'hp' || stat === 'lvl' || stat === 'xp'
+					//	|| stat === '') {
+					//	continue;
+					//}
 
 					// draw stat
-					var statText = new createjs.Text(stat +': ' + gameState.mob[stat], this.mobStatsFont, this.statusBoxFontColor);
-					statText.x = this.mobStatsOffsetX;
-					statText.y = this.stage.canvas.height - this.statusBoxHeight + this.mobStatsOffsetY + this.mobNameOffsetY + (i*15);
-					this.stage.addChild(statText);
-					i++;
-				}
-			}
+					//var statText = new createjs.Text(stat +': ' + gameState.mob[stat], this.mobStatsFont, this.statusBoxFontColor);
+					//statText.x = this.mobStatsOffsetX;
+					//statText.y = this.stage.canvas.height - this.statusBoxHeight + this.mobStatsOffsetY + this.mobNameOffsetY + (i*15);
+					//this.stage.addChild(statText);
+					//i++;
+				//}
+			//}
 		};
 
 		// Draw player

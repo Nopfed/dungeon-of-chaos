@@ -15,7 +15,7 @@
 }
 
 h1 {
-	font-family: "Courier New", Courier, monospace;
+	font-family: "Lucida Console", Monaco, monospace;
 }
 
 body {
@@ -27,9 +27,8 @@ body {
 	vertical-align: top;
 	height: 500px;
 	width: auto;
-	border: 2px solid #ccc;
-	font: 14px/24px "Courier New", Courier, monospace;
-	overflow: scroll;
+	font: 16px/24px "Courier New", Courier, monospace;
+	overflow: auto;
 	display: inline-block;
 	text-align:left;
 }
@@ -39,7 +38,7 @@ body {
 }
 
 #dungeon-canvas {
-	border: 1px solid #FFFFFF;
+	border: 2px solid #FFFFFF;
 }
 
 .rainbow {

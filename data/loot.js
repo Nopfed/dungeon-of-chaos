@@ -95,7 +95,7 @@ var loots = [
 		rarity: 'Common',
 		dmg: 0,
 		armor: 0,
-		hp: 10,
+		hp: 8,
 		price: 20,
 	},
 	{
@@ -104,7 +104,7 @@ var loots = [
 		rarity: 'Common',
 		dmg: 3,
 		armor: 0,
-		hp: -5,
+		hp: -4,
 		price: 25,
 	},
 	{
@@ -113,7 +113,7 @@ var loots = [
 		rarity: 'Common',
 		dmg: 2,
 		armor: 0,
-		hp: 10,
+		hp: 8,
 		price: 40,
 	},
 	{
@@ -131,7 +131,7 @@ var loots = [
 		rarity: 'Rare',
 		dmg: 1,
 		armor: 3,
-		hp: 5,
+		hp: 4,
 		price: 100,
 	},
 	{
@@ -140,7 +140,7 @@ var loots = [
 		rarity: 'Common',
 		dmg: 0,
 		armor: 2,
-		hp: 15,
+		hp: 12,
 		price: 90,
 	},
 	{
@@ -149,7 +149,7 @@ var loots = [
 		rarity: 'Legendary',
 		dmg: 7,
 		armor: 0,
-		hp: 10,
+		hp: 8,
 		price: 80,
 	},
 	{
@@ -158,7 +158,7 @@ var loots = [
 		rarity: 'Common',
 		dmg: 1,
 		armor: 0,
-		hp: 5,
+		hp: 4,
 		price: 15,
 	},
 	{
@@ -167,7 +167,7 @@ var loots = [
 		rarity: 'Common',
 		dmg: 1,
 		armor: 1,
-		hp: 15,
+		hp: 12,
 		price: 70,
 	},
 	{
@@ -176,7 +176,7 @@ var loots = [
 		rarity: 'Common',
 		dmg: 0,
 		armor: 1,
-		hp: 10,
+		hp: 8,
 		price: 50,
 	},
 	{
@@ -185,7 +185,7 @@ var loots = [
 		rarity: 'Common',
 		dmg: 1,
 		armor: 1,
-		hp: 10,
+		hp: 8,
 		price: 60,
 	},
 	{
@@ -194,7 +194,7 @@ var loots = [
 		rarity: 'Legendary',
 		dmg: 5,
 		armor: 5,
-		hp: -30,
+		hp: -20,
 		price: 140,
 	},
 	{
@@ -203,7 +203,7 @@ var loots = [
 		rarity: 'Common',
 		dmg: 2,
 		armor: 2,
-		hp: 20,
+		hp: 16,
 		price: 120,
 	},
 	{
@@ -212,7 +212,7 @@ var loots = [
 		rarity: 'Common',
 		dmg: 1,
 		armor: 1,
-		hp: 15,
+		hp: 12,
 		price: 70,
 	},
 	{
@@ -221,7 +221,7 @@ var loots = [
 		rarity: 'Common',
 		dmg: 2,
 		armor: 2,
-		hp: 15,
+		hp: 12,
 		price: 110,
 	},
 	{
@@ -230,7 +230,7 @@ var loots = [
 		rarity: 'Common',
 		dmg: 0,
 		armor: 0,
-		hp: 25,
+		hp: 20,
 		price: 50,
 	},
 	{
@@ -239,7 +239,7 @@ var loots = [
 		rarity: 'Common',
 		dmg: -2,
 		armor: 0,
-		hp: 30,
+		hp: 20,
 		price: 40,
 	},
 	{
@@ -248,7 +248,7 @@ var loots = [
 		rarity: 'Common',
 		dmg: 0,
 		armor: 0,
-		hp: 10,
+		hp: 8,
 		price: 15,
 	},
 	{
@@ -257,7 +257,7 @@ var loots = [
 		rarity: 'Common',
 		dmg: 0,
 		armor: 0,
-		hp: 10,
+		hp: 8,
 		price: 15,
 	},
 	{
@@ -266,7 +266,7 @@ var loots = [
 		rarity: 'Common',
 		dmg: 0,
 		armor: 0,
-		hp: 5,
+		hp: 4,
 		price: 10,
 	},
 ];

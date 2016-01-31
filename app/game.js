@@ -4,10 +4,12 @@ function DungeonGame(options) {
 	// Initialize player, mob, and round count
 	this.player = options.player || new Hero();
 	this.mob = options.mob || new Mob();
-	var moosic = new Audio("media/best.wav");
-	moosic.play();
+	this.moosic = new Audio("media/best.wav");
+	//this.moosic.play();
+	this.biomeRoll = 0;
+	this.currentBiome = '';
 
-	//this.round = 0;
+	this.room = 1;
 
 	// UI selectors
 	this.fightLogSelector = options.fightLogSelector || 'fight-log';
@@ -24,6 +26,7 @@ function DungeonGame(options) {
 
 	// Cached UI Element wrappers
 	this.fightLog = document.getElementById(this.fightLogSelector);
+	this.roomCount = document.getElementById('room-count');
 
 	this.playerNameElem = document.getElementById(this.playerNameSelector);
 	this.playerHpElem = document.getElementById(this.playerHpSelector);
@@ -49,6 +52,7 @@ function DungeonGame(options) {
 
 		// clear the log
 		this.clearLog();
+		this.biomeRoll = this.dieRoll(1,4);
 
 		// Reset player
 		playerSelection = this.playerSelectElem.options[this.playerSelectElem.selectedIndex];
@@ -56,21 +60,37 @@ function DungeonGame(options) {
 		this.player.maxHp = this.player.hp;
 		this.player.baseHp = this.player.hp;
 
-		if (this.player){
-			this.player.helm = new item();
-			this.player.neck = new item();
-			this.player.chest = new item();
-			this.player.ring = new item();
-			this.player.weap = new item();
-			this.player.pants = new item();
-			this.player.feet = new item();
+		
+		this.player.helm = new item();
+		this.player.neck = new item();
+		this.player.chest = new item();
+		this.player.ring = new item();
+		this.player.weap = new item();
+		this.player.pants = new item();
+		this.player.feet = new item();
+		
+		this.biomeRoll = this.dieRoll(1,4);
+
+		if (this.biomeRoll === 1) {
+			this.currentBiome = "Cave";
+		} else if (this.biomeRoll === 2) {
+			this.currentBiome = "Desert";
+		} else if (this.biomeRoll === 3) {
+			this.currentBiome = "Swamp";
+		} else if (this.biomeRoll === 4) {
+			this.currentBiome = "Tundra";
 		}
 
+		this.output("The " + this.currentBiome + " welcomes you, " + this.player.name + '.', "Gold");
+		this.output('');
+		this.output('Room: ' + this.room, "Lime");
+
 		// Reset mob
-		this.getMob();
+		this.getMob(this.biomeRoll);
 		
-		// Reset round
-		//this.round = 0;
+		// Reset room to first room
+		this.room = 1;
+		this.roomCount.innerHTML = this.room;
 
 		// announce the fight & update UI
 		//this.output(this.player.name + ' vs. ' + this.mob.name);
@@ -78,34 +98,34 @@ function DungeonGame(options) {
 	};
 
 	//select a random monster based on player's current level
-	this.getMob = function (){
-		var biome = this.dieRoll(1,4);
+	this.getMob = function (biomeNum){
+		var biome = biomeNum;
 
 		if (biome === 1 && this.player.lvl <= 5) {
 			this.mob = new Mob(mobs["Cave Mobs"][this.dieRoll((this.player.lvl*3)-3,(this.player.lvl*3)-1)]);
-			this.output(this.mob.name + ' appears!',0)
+			this.output(this.mob.name + ' appears!', "red");
 		} else if (biome === 2 && this.player.lvl <= 5) {
 			this.mob = new Mob(mobs["Desert Mobs"][this.dieRoll((this.player.lvl*3)-3,(this.player.lvl*3)-1)]);
-			this.output(this.mob.name + ' appears!',0)
+			this.output(this.mob.name + ' appears!', "red");
 		} else if (biome === 3 && this.player.lvl <= 5) {
 			this.mob = new Mob(mobs["Swamp Mobs"][this.dieRoll((this.player.lvl*3)-3,(this.player.lvl*3)-1)]);
-			this.output(this.mob.name + ' appears!',0)
+			this.output(this.mob.name + ' appears!', "red");
 		} else if (biome === 4 && this.player.lvl <= 5) {
 			this.mob = new Mob(mobs["Snow Mobs"][this.dieRoll((this.player.lvl*3)-3,(this.player.lvl*3)-1)]);
-			this.output(this.mob.name + ' appears!',0)
-		} else {
+			this.output(this.mob.name + ' appears!', "red");
+		} else if (this.player.lvl > 5) {
 			if (biome === 1) {
 				this.mob = new Mob(mobs["Cave Mobs"][this.dieRoll(12, 14)]);
-				this.output(this.mob.name + ' appears!',0)
-			} else if (biome === 1) {
+				this.output(this.mob.name + ' appears!', "red");
+			} else if (biome === 2) {
 				this.mob = new Mob(mobs["Desert Mobs"][this.dieRoll(12, 14)]);
-				this.output(this.mob.name + ' appears!',0)
-			} else if (biome === 1) {
+				this.output(this.mob.name + ' appears!', "red");
+			} else if (biome === 3) {
 				this.mob = new Mob(mobs["Swamp Mobs"][this.dieRoll(12, 14)]);
-				this.output(this.mob.name + ' appears!',0)
+				this.output(this.mob.name + ' appears!', "red");
 			} else {
 				this.mob = new Mob(mobs["Snow Mobs"][this.dieRoll(12, 14)]);
-				this.output(this.mob.name + ' appears!',0)
+				this.output(this.mob.name + ' appears!', "red");
 			}
 		}
 	};
@@ -128,11 +148,11 @@ function DungeonGame(options) {
 
 	//when a player reaches enough experience, they will level up and gain new stats/abilities
 	this.playerLevelUp = function (){
-		this.player.xp = 0;
+		this.player.xp = this.player.xp - ((this.player.lvl*10)-1);
 		this.player.lvl++;
+		this.player.baseHp = this.player.baseHp + Math.ceil(this.player.baseHp/2);
 		this.player.hp = this.player.hp + (Math.ceil(this.player.baseHp/2));
 		this.player.atk = this.player.atk + 2;
-		this.player.baseHp = this.player.baseHp + Math.ceil(this.player.baseHp/2);
 	};
 
 	//equip a piece of gear to the appropriate gear slot, swaps any gear currently equipped
@@ -197,27 +217,27 @@ function DungeonGame(options) {
 	//unequip a piece of gear from a gear slot
 	this.unequip = function (player, itemType){
 
-		switch(itemType) {
+		switch(itemType !== '') {
     		case "Helmet":
-        		player.helm = {};
+        		player.helm = new item();
         		break;
     		case "Neck":
-        		player.neck = {};
+        		player.neck = new item();
         		break;
         	case "Chest":
-        		player.chest = {};
+        		player.chest = new item();
         		break;
         	case "Ring":
-        		player.ring = {};
+        		player.ring = new item();
         		break;
         	case "Weapon":
-        		player.weap = {};
+        		player.weap = new item();
         		break;
         	case "Pants":
-        		player.pants = {};
+        		player.pants = new item();
         		break;
         	case "Feet":
-        		player.feet = {};
+        		player.feet = new item();
         		break;
     		default:
         		this.output('Nothing equipped in that gear slot.');
@@ -306,7 +326,8 @@ function DungeonGame(options) {
 				this.player.gold = this.player.gold + goldDrop;
 				
 				this.output('');
-				this.getMob();
+				this.room++;
+				this.getMob(this.biomeRoll);
 				this.updateInterface();
 			} else {
 				// Mob chooses action
@@ -367,11 +388,13 @@ function DungeonGame(options) {
 			player: this.player,
 			mob: this.mob
 		});
+
+		this.roomCount.innerHTML = this.room;
 	};
 
 	// Output a message to both the fight log container and window.console
-	this.output = function (message, muteSpeech) {
-		var messageDiv, lineBreak;
+	this.output = function (message, color, muteSpeech) {
+		var messageText, lineBreak, span;
 
 		// log to console
 		console.log(message);
@@ -389,13 +412,17 @@ function DungeonGame(options) {
 		} else {
 			// create a new text node with the message
 			messageText = document.createTextNode(message);
+			span = document.createElement('span');
+			span.style.color = color;
 
 			// create a new <br> element to act as a line break
 			lineBreak = document.createElement('br');
 
 			// append message text and line break
 			this.fightLog.insertBefore(lineBreak, this.fightLog.childNodes[0]);
-			this.fightLog.insertBefore(messageText, this.fightLog.childNodes[0]);
+			span.appendChild(messageText);
+			this.fightLog.insertBefore(span, this.fightLog.childNodes[0]);
+			//this.fightLog.insertBefore(messageText, this.fightLog.childNodes[0]);
 		}
 
 		if (!this.speechMuted && !muteSpeech && message != '') {
