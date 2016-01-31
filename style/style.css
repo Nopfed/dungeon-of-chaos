@@ -23,6 +23,14 @@ body {
 	color: white;
 }
 
+table, th, td {
+	border-collapse: collapse;
+}
+
+th, td {
+	padding: 5px;
+}
+
 #fight-log {
 	vertical-align: top;
 	height: 500px;
@@ -38,7 +46,6 @@ body {
 }
 
 #dungeon-canvas {
-	border: 2px solid #FFFFFF;
 }
 
 .rainbow {

@@ -1,6 +1,6 @@
 var heroes = [
 		{
-			name: "Rogue",
+			name: "THIEF",
 			lvl: 1,
 			xp: 0,
 			hp: 12,
@@ -11,7 +11,7 @@ var heroes = [
 			],
 		},
 		{
-			name: "Sorceress",
+			name: "SORCERESS",
 			lvl: 1,
 			xp: 0,
 			hp: 10,
@@ -22,7 +22,7 @@ var heroes = [
 			],
 		},
 		{
-			name: "Warrior",
+			name: "WARRIOR",
 			lvl: 1,
 			xp: 0,
 			hp: 14,
@@ -33,7 +33,7 @@ var heroes = [
 			],
 		},
 		{
-			name: "Priest",
+			name: "CLERIC",
 			lvl: 1,
 			xp: 0,
 			hp: 10,

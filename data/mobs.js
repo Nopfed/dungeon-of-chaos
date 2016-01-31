@@ -431,7 +431,7 @@ var mobs = {
 		},
 		{
 			name: 'Imp',
-			hp: 3,
+			hp: 4,
 			xp: 1,
 			atk: 4,
 			miss: 2,

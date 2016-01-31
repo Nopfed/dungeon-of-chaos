@@ -27,6 +27,13 @@ function DungeonGame(options) {
 	// Cached UI Element wrappers
 	this.fightLog = document.getElementById(this.fightLogSelector);
 	this.roomCount = document.getElementById('room-count');
+	this.helmDisplay = document.getElementById('hero-helm');
+	this.neckDisplay = document.getElementById('hero-neck');
+	this.chestDisplay = document.getElementById('hero-chest');
+	this.ringDisplay =	document.getElementById('hero-ring');
+	this.weapDisplay = document.getElementById('hero-weap');
+	this.pantsDisplay = document.getElementById('hero-pants');
+	this.feetDisplay = document.getElementById('hero-feet');
 
 	this.playerNameElem = document.getElementById(this.playerNameSelector);
 	this.playerHpElem = document.getElementById(this.playerHpSelector);
@@ -83,17 +90,15 @@ function DungeonGame(options) {
 
 		this.output("The " + this.currentBiome + " welcomes you, " + this.player.name + '.', "Gold");
 		this.output('');
-		this.output('Room: ' + this.room, "Lime");
+		this.output('Room: ' + this.room, "Gray");
 
 		// Reset mob
 		this.getMob(this.biomeRoll);
 		
 		// Reset room to first room
 		this.room = 1;
-		this.roomCount.innerHTML = this.room;
 
-		// announce the fight & update UI
-		//this.output(this.player.name + ' vs. ' + this.mob.name);
+		//update UI
 		this.updateInterface();
 	};
 
@@ -102,16 +107,16 @@ function DungeonGame(options) {
 		var biome = biomeNum;
 
 		if (biome === 1 && this.player.lvl <= 5) {
-			this.mob = new Mob(mobs["Cave Mobs"][this.dieRoll((this.player.lvl*3)-3,(this.player.lvl*3)-1)]);
+			this.mob = new Mob(mobs["Cave Mobs"][this.dieRoll(0,(this.player.lvl*3)-1)]);
 			this.output(this.mob.name + ' appears!', "red");
 		} else if (biome === 2 && this.player.lvl <= 5) {
-			this.mob = new Mob(mobs["Desert Mobs"][this.dieRoll((this.player.lvl*3)-3,(this.player.lvl*3)-1)]);
+			this.mob = new Mob(mobs["Desert Mobs"][this.dieRoll(0,(this.player.lvl*3)-1)]);
 			this.output(this.mob.name + ' appears!', "red");
 		} else if (biome === 3 && this.player.lvl <= 5) {
-			this.mob = new Mob(mobs["Swamp Mobs"][this.dieRoll((this.player.lvl*3)-3,(this.player.lvl*3)-1)]);
+			this.mob = new Mob(mobs["Swamp Mobs"][this.dieRoll(0,(this.player.lvl*3)-1)]);
 			this.output(this.mob.name + ' appears!', "red");
 		} else if (biome === 4 && this.player.lvl <= 5) {
-			this.mob = new Mob(mobs["Snow Mobs"][this.dieRoll((this.player.lvl*3)-3,(this.player.lvl*3)-1)]);
+			this.mob = new Mob(mobs["Snow Mobs"][this.dieRoll(0,(this.player.lvl*3)-1)]);
 			this.output(this.mob.name + ' appears!', "red");
 		} else if (this.player.lvl > 5) {
 			if (biome === 1) {
@@ -130,32 +135,47 @@ function DungeonGame(options) {
 		}
 	};
 
-	//player drinks a potion, which heals for half their base maximum level HP rounded up
+	//player drinks a potion, which heals for half their base maximum level HP 
+	//rounded up
 	this.drinkPotion = function (){
 		
 		if (this.player.potions <= 0){
 			this.output('You are all out of potions!');
-		}else if(this.player.hp !== this.player.maxHp) {
-			this.player.hp = this.player.hp + Math.ceil(this.player.baseHp/2);
-			this.player.potions--;
-			this.output('You gained ' + Math.ceil(this.player.baseHp/2) + ' hp.');
-			this.output('You have ' + this.player.potions + ' potions left.');
-			this.updateInterface();
+		}else if(this.player.hp < this.player.maxHp) {
+			
+			if (this.player.hp > 0) {
+				this.player.hp = this.player.hp + Math.ceil(this.player.baseHp/2);
+				this.player.potions--;
+				this.output('You gained ' + Math.ceil(this.player.baseHp/2) + ' hp.');
+				this.output('You have ' + this.player.potions + ' potions left.');
+				
+				if (this.player.hp > this.player.maxHp) {
+					this.player.hp = this.player.maxHp;
+				}
+				
+				this.updateInterface();
+			}else {
+				this.output('You have died. Please play again.',"Gray");
+			}
+
 		}else {
 			this.output('You are already at max HP!');
 		}
 	};
 
-	//when a player reaches enough experience, they will level up and gain new stats/abilities
+	//when a player reaches enough experience, they will level up and gain new 
+	//stats/abilities
 	this.playerLevelUp = function (){
-		this.player.xp = this.player.xp - ((this.player.lvl*10)-1);
+		this.player.xp = this.player.xp - ((this.player.lvl*10));
 		this.player.lvl++;
 		this.player.baseHp = this.player.baseHp + Math.ceil(this.player.baseHp/2);
-		this.player.hp = this.player.hp + (Math.ceil(this.player.baseHp/2));
+		this.player.maxHp = this.player.maxHp + this.player.baseHp;
+		this.player.hp = this.player.maxHp;
 		this.player.atk = this.player.atk + 2;
 	};
 
-	//equip a piece of gear to the appropriate gear slot, swaps any gear currently equipped
+	//equip a piece of gear to the appropriate gear slot, swaps any gear currently 
+	//equipped
 	this.equip = function (player, item){
 		
 		if (item['type'] === "Helmet" && player.helm !== item) {
@@ -164,49 +184,49 @@ function DungeonGame(options) {
 			player.hp = player.hp + item.hp - player.helm.hp;
 			player.maxHp = player.maxHp + item.hp - player.helm.hp;
 			player.helm = item;
-			this.output('Equipped ' + item.name + '.');
+			this.output('Equipped ' + item.name + '.', "Beige");
 		} else if (item['type'] === "Neck" && player.neck !== item) {
 			player.atk = player.atk + item.dmg - player.neck.dmg;
 			player.armor = player.armor + item.armor - player.neck.armor;
 			player.hp = player.hp + item.hp - player.neck.hp;
 			player.maxHp = player.maxHp + item.hp - player.neck.hp;
 			player.neck = item;
-			this.output('Equipped ' + item.name + '.');
+			this.output('Equipped ' + item.name + '.', "Beige");
 		} else if (item['type'] === "Chest" && player.chest !== item) {
 			player.atk = player.atk + item.dmg - player.chest.dmg;
 			player.armor = player.armor + item.armor - player.chest.armor;
 			player.hp = player.hp + item.hp - player.chest.hp;
 			player.maxHp = player.maxHp + item.hp - player.chest.hp;
 			player.chest = item;
-			this.output('Equipped ' + item.name + '.');
+			this.output('Equipped ' + item.name + '.', "Beige");
 		} else if (item['type'] === "Ring" && player.ring !== item) {	
 			player.atk = player.atk + item.dmg - player.ring.dmg;
 			player.armor = player.armor + item.armor - player.ring.armor;
 			player.hp = player.hp + item.hp - player.ring.hp;
 			player.maxHp = player.maxHp + item.hp - player.ring.hp;
 			player.ring = item;
-			this.output('Equipped ' + item.name + '.');
+			this.output('Equipped ' + item.name + '.', "Beige");
 		} else if (item['type'] === "Weapon" && player.weap !== item) {	
 			player.atk = player.atk + item.dmg - player.weap.dmg;
 			player.armor = player.armor + item.armor - player.weap.armor;
 			player.hp = player.hp + item.hp - player.weap.hp;
 			player.maxHp = player.maxHp + item.hp - player.weap.hp;
 			player.weap = item;
-			this.output('Equipped ' + item.name + '.');
+			this.output('Equipped ' + item.name + '.', "Beige");
 		} else if (item['type'] === "Pants" && player.pants !== item) {	
 			player.atk = player.atk + item.dmg - player.pants.dmg;
 			player.armor = player.armor + item.armor - player.pants.armor;
 			player.hp = player.hp + item.hp - player.pants.hp;
 			player.maxHp = player.maxHp + item.hp - player.pants.hp;
 			player.pants = item;
-			this.output('Equipped ' + item.name + '.');
+			this.output('Equipped ' + item.name + '.', "Beige");
 		} else if (item['type'] === "Feet" && player.feet !== item) {
 			player.atk = player.atk + item.dmg - player.feet.dmg;
 			player.armor = player.armor + item.armor - player.feet.armor;
 			player.hp = player.hp + item.hp - player.feet.hp;
 			player.maxHp = player.maxHp + item.hp - player.feet.hp;
 			player.feet = item;
-			this.output('Equipped ' + item.name + '.');
+			this.output('Equipped ' + item.name + '.', "Beige");
 		}else {
 			this.output('You already have that item equipped!');
 		}
@@ -247,9 +267,10 @@ function DungeonGame(options) {
 	// Simulate a round of fighting
 	// if action is not supplied, assume 'Melee' action
 	this.fight = function (action) {
-		var playerActionStat, playerStat, playerRoll, playerActionDamage, playerRolls, playerTargetStat,
-			mobAction, mobActionStat, mobStat, mobRoll, mobActionDamage, mobRolls, mobTargetStat, lootRoll,
-			goldDrop;
+		var playerActionStat, playerStat, playerRoll, playerActionDamage, 
+			playerRolls, playerTargetStat, mobAction, mobActionStat, mobStat, 
+			mobRoll, mobActionDamage, mobRolls, mobTargetStat, lootRoll,
+			goldDrop, droppedItem, potionFlip;
 
 		// default to 'Melee' action
 		action = action || 'Melee';
@@ -259,9 +280,6 @@ function DungeonGame(options) {
 
 		// Fight cannot continue if a participant is dead
 		if (this.player.hp > 0) {
-			// Iterate & announce the round
-			//this.round++;
-			//this.output('--Round ' + this.round + '--');
 
 			// Player makes action roll
 			playerActionStat = actions[action]['stat'];
@@ -277,9 +295,13 @@ function DungeonGame(options) {
 
 			// Announce player action
 			if (playerRoll <= this.player.miss) {
-				this.output(this.player.name+'\'s ' + action + ' missed!');
+				this.output(this.player.name+'\'s ' + action 
+					+ ' missed!', "LightGray", 1);
 			} else {
-				this.output(this.player.name+'\'s ' + action + ' ' + actions[action].verb + ' ' + playerActionDamage + ' ' + actions[action]['verb-damage'] + '!');
+				this.output(this.player.name+'\'s ' + action + ' ' 
+					+ actions[action].verb + ' ' 
+					+ playerActionDamage + ' ' 
+					+ actions[action]['verb-damage'] + '!', "White", 1);
 
 				if (action === 'Steal'){
 					this.player.gold = this.player.gold + playerRoll;
@@ -293,40 +315,85 @@ function DungeonGame(options) {
 			if(this.mob[playerTargetStat] <= 0){
 				this.mob[playerTargetStat] = 0;
 			}
-			// Announce result of player action
-			this.output(this.mob.name+'\'s ' + playerTargetStat + ' is at ' + this.mob[playerTargetStat] + '.');
+
 			this.updateInterface();			
 
 			// Check if mob is dead
 			if (this.mob.hp <= 0) {
-				this.output(this.mob.name + ' has died!');
-				
+				this.output(this.mob.name + ' has died!', "white", 1);
 
+				//get xp
 				this.player.xp = this.player.xp + this.mob.xp;
-				this.output('You gained ' + this.mob.xp + ' xp.');
+				this.output('You gained ' + this.mob.xp + ' xp.', "LightSkyBlue", 0);
 				
-				if (this.player.xp >= ((this.player.lvl*10)-1)){
-					this.output('You leveled up!');
+				//level up if you have enough xp
+				if (this.player.xp >= ((this.player.lvl*10))){
+					this.output('Congratulations, you leveled up!', "LightSkyBlue", 1);
 					this.playerLevelUp();
 				}
 
-				lootRoll = this.dieRoll(1,30);
-				goldDrop = this.dieRoll(1,this.player.lvl*2);
+				//roll loot to drop
+				lootRoll = this.dieRoll(1, 100);
+				potionFlip = this.dieRoll(0, 1);
+				goldDrop = this.dieRoll(1, this.player.lvl*2);
 
 				if (this.player.lvl !== 1){
-					this.output(this.mob.name + ' dropped ' + loots[lootRoll].name + ' and ' + goldDrop + ' gold shekels' + '!');
-				
-					if (loots[lootRoll].name !== 'Potion'){
-						this.equip(this.player, loots[lootRoll]);
-					} else {
+					if (lootRoll <= 5) {
+
+						droppedItem = loots["Legendary"][this.dieRoll(0, 1)];
+
+						this.output(this.mob.name + ' dropped ' + droppedItem.name 
+						+ ' and ' + goldDrop + ' gold!', "Lime", 0);
+
+						this.player.gold = this.player.gold + goldDrop;
+						this.equip(this.player, droppedItem);
+
+						if (potionFlip) {
+							this.player.potions++;
+							this.output('You found a potion!', "Lime", 1);
+						}
+					} else if (lootRoll > 5 && lootRoll <= 35) {
+
+						droppedItem = loots["Rare"][this.dieRoll(0, 1)];
+
+						this.output(this.mob.name + ' dropped ' + droppedItem.name 
+						+ ' and ' + goldDrop + ' gold!', "Lime", 0);
+						
+						this.player.gold = this.player.gold + goldDrop;
+						this.equip(this.player, droppedItem);
+
+						if (potionFlip) {
+							this.output('You found a potion!', "Lime", 1);
+							this.player.potions++;
+						}
+					} else if (lootRoll > 35) {
+
+						droppedItem = loots["Common"][this.dieRoll(0, 19)];
+
+						this.output(this.mob.name + ' dropped ' + droppedItem.name 
+							+ ' and ' + goldDrop + ' gold!', "Lime", 0);
+
+						this.player.gold = this.player.gold + goldDrop;
+						this.equip(this.player, droppedItem);
+
+						if (potionFlip) {
+							this.player.potions++;
+							this.output('You found a potion!', "Lime", 1);
+						}
+					}
+				}  else {
+					this.output(this.mob.name + ' dropped ' + goldDrop + ' gold!');
+					this.player.gold = this.player.gold + goldDrop;
+
+					if (potionFlip) {
 						this.player.potions++;
+						this.output('You found a potion!', "Lime", 1);
 					}
 				}
-
-				this.player.gold = this.player.gold + goldDrop;
 				
 				this.output('');
 				this.room++;
+				this.output('Room: ' + this.room, "Gray", 0);
 				this.getMob(this.biomeRoll);
 				this.updateInterface();
 			} else {
@@ -351,9 +418,12 @@ function DungeonGame(options) {
 
 				// Announce mob action
 				if (mobRoll === 0) {
-					this.output(this.mob.name+'\'s ' + mobAction + ' missed!');
+					this.output(this.mob.name+'\'s ' + mobAction + ' missed!', 
+						"LightGreen", 1);
 				} else {
-					this.output(this.mob.name+'\'s ' + mobAction + ' ' + actions[mobAction].verb + ' ' + mobActionDamage + ' ' + actions[mobAction]['verb-damage'] + '!');
+					this.output(this.mob.name+'\'s ' + mobAction + ' ' + actions[mobAction].verb 
+						+ ' ' + mobActionDamage + ' ' + actions[mobAction]['verb-damage'] 
+						+ '!',"Red", 1);
 					
 					// Subtract mob roll from player target stat
 					this.player[mobTargetStat] = this.player[mobTargetStat] - mobActionDamage;
@@ -362,13 +432,11 @@ function DungeonGame(options) {
 				if(this.player[mobTargetStat] <= 0){
 					this.player[mobTargetStat] = 0;
 				}
-				// Announce result of mob action
-				this.output(this.player.name+'\'s ' + mobTargetStat + ' is at ' + this.player[mobTargetStat] + '.');
 
 				// Check if player is dead
 				if (this.player.hp <= 0) {
-					this.output(this.player.name + ' has died!');
-					this.output('You were defeated by ' + this.mob.name + '.');
+					this.output(this.player.name + ' has died!',"Red", 1);
+					this.output('You were defeated by ' + this.mob.name + '.',"Red", 1);
 					//this.output(this.playerFinalStats());
 				}
 			}
@@ -377,7 +445,7 @@ function DungeonGame(options) {
 			this.updateInterface();
 
 		} else {
-			this.output('You have died. Please play again.');
+			this.output('You have died. Please play again.',"Gray", 1);
 		}
 	};
 
@@ -390,6 +458,13 @@ function DungeonGame(options) {
 		});
 
 		this.roomCount.innerHTML = this.room;
+		this.helmDisplay.innerHTML = this.player.helm.name;
+		this.neckDisplay.innerHTML = this.player.neck.name;
+		this.chestDisplay.innerHTML = this.player.chest.name;
+		this.ringDisplay.innerHTML = this.player.ring.name;
+		this.weapDisplay.innerHTML = this.player.weap.name;
+		this.pantsDisplay.innerHTML = this.player.pants.name;
+		this.feetDisplay.innerHTML = this.player.feet.name;
 	};
 
 	// Output a message to both the fight log container and window.console
