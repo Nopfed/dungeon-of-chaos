@@ -4,7 +4,7 @@
 	<title>Dungeon of Chaos</title>
 	<link rel="stylesheet" href="style/style.css">
 </head>
-<body onload="initDungeon();">
+<body onload="initDungeon();" onkeypress="dungeon.checkKey();">
 	<h1 class="rainbow">Dungeon of Chaos</h1>
 
 	<div class="game-container">
@@ -12,20 +12,17 @@
 			<canvas id="dungeon-canvas" width="500" height="500"></canvas>
 		</div>
 		<div id="fight-log"></div>
-		<form id="player-input" name="player-input">
-			>> <input type="text" name="input"><br>
-		</form>
 	</div>
 
 	<hr />
 	
 	<div class="controls-container">
 		<label for="player-select">Hero: <select name="player-select" id="player-select" onchange="dungeon.reset();" /></select></label>
-		<div onkeypress="dungeon.checkKey();">
-			<button id="btn-fight" onclick="dungeon.fight();">Attack</button>
-			<button id="btn-steal" onclick="dungeon.fight('Steal');">Steal</button>
-			<button id="btn-potion" onclick="dungeon.drinkPotion();">Potion</button>
-			<button id="btn-reset" onclick="dungeon.reset();">Reset Combat</button>
+		<div>
+			<button id="btn-fight" onclick="dungeon.fight();">(A)ttack</button>
+			<button id="btn-steal" onclick="dungeon.fight('Steal');">(S)teal</button>
+			<button id="btn-potion" onclick="dungeon.drinkPotion();">(P)otion</button>
+			<button id="btn-reset" onclick="dungeon.reset();">(R)eset</button>
 			<button id="btn-music-off" onclick="dungeon.moosic.pause();">Music Pause</button>
 			<button id="btn-music-on" onclick="dungeon.moosic.play();">Music Play</button>
 		</div>

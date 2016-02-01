@@ -62,6 +62,9 @@ function DungeonGame(options) {
 		this.clearLog();
 		this.biomeRoll = this.dieRoll(1,4);
 
+		// Reset room to first room
+		this.room = 1;
+
 		// Reset player
 		playerSelection = this.playerSelectElem.options[this.playerSelectElem.selectedIndex];
 		this.player = new Hero(heroes[playerSelection.value]);
@@ -76,8 +79,6 @@ function DungeonGame(options) {
 		this.player.weap = new item();
 		this.player.pants = new item();
 		this.player.feet = new item();
-		
-		this.biomeRoll = this.dieRoll(1,4);
 
 		if (this.biomeRoll === 1) {
 			this.currentBiome = "Cave";
@@ -95,9 +96,6 @@ function DungeonGame(options) {
 
 		// Reset mob
 		this.getMob(this.biomeRoll);
-		
-		// Reset room to first room
-		this.room = 1;
 
 		//update UI
 		this.updateInterface();
