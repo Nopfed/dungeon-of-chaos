@@ -12,14 +12,17 @@
 			<canvas id="dungeon-canvas" width="500" height="500"></canvas>
 		</div>
 		<div id="fight-log"></div>
+		<form id="player-input" name="player-input">
+			>> <input type="text" name="input"><br>
+		</form>
 	</div>
 
 	<hr />
 	
 	<div class="controls-container">
-		<label for="player-select">Hero: <select name="player-select" id="player-select" onchange="dungeon.reset()" /></select></label>
-		<div>
-			<button id="btn-fight" onclick="dungeon.fight();">Melee</button>
+		<label for="player-select">Hero: <select name="player-select" id="player-select" onchange="dungeon.reset();" /></select></label>
+		<div onkeypress="dungeon.checkKey();">
+			<button id="btn-fight" onclick="dungeon.fight();">Attack</button>
 			<button id="btn-steal" onclick="dungeon.fight('Steal');">Steal</button>
 			<button id="btn-potion" onclick="dungeon.drinkPotion();">Potion</button>
 			<button id="btn-reset" onclick="dungeon.reset();">Reset Combat</button>
