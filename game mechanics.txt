@@ -1,0 +1,26 @@
+Rpg
+maintain control and care of one character
+character is shaped based on what you do
+open world/non-linear/no storyline, just lore
+	world is kind of like DnD, lotr or an old final fantasy
+	small amounts of civilization heavily dependent on races in the world
+fantasy
+no specific ending
+races
+classes
+skill points and attributes are gained from performing actions related to those fields, kinda like skyrim and runescape
+	agility
+		deftness
+		speed
+		dodge
+		stealth
+	strength
+		health
+		endurance
+		melee damage
+		muscle
+	magic
+		magic strength
+		fortitude
+		magic defense
+		intelligence

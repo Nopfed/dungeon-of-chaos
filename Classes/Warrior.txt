@@ -1,0 +1,8 @@
+Warrior
+
+large melee weapons
+heavy armor
+strength
+high hp
+tank hits
+hit hard

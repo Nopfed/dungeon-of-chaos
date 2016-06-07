@@ -1,0 +1,66 @@
+RACES
+
+all-around
+	human
+agility
+	halfling
+	goblin
+magic
+	????
+strength
+	orc
+	dwarf
+	troll
+agi-magic
+	elf
+	gnome
+agi-strength
+	halforc
+magic-strength
+	????
+
+CLASSES
+
+all-around
+	Druid
+Agility
+	Hunter
+Magic
+	Necromancer
+	Sea Mages
+	Sun Mages
+	Sun Priests
+	Summoner
+	Shaman
+Strength
+	Warrior/Fighter/Barbarian
+Agi-Magic
+	Rogue
+	Bard
+Agi-Strength
+	Monk
+Magic-Strength
+	Battle-mage
+	Battle-Priest
+
+
+CIVILIZATIONS
+
+dwarven mountain
+elven woods
+elven cities
+human cities
+	rich
+	poor
+dragons
+	nature-locale based
+ancient civilization ruins
+temples to gods
+	god of death
+	god of sea
+	god of the sun
+		priests
+		templars/crusaders/paladins
+	god(s) of order and chaos
+	god of nature
+orcs trolls goblins halforcs
