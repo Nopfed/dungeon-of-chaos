@@ -51,9 +51,6 @@ function DungeonGame(options) {
 	this.synthMessage = new SpeechSynthesisUtterance();
 	this.speechMuted = true;
 
-	// Initialize Dungeon Engine
-	this.dungeonEngine = new DungeonEngine("dungeon-canvas");
-
 	// Reset the fight
 	this.reset = function () {
 		var i, stat, playerSelection, mobSelection;
@@ -90,9 +87,12 @@ function DungeonGame(options) {
 			this.currentBiome = "Tundra";
 		}
 
-		this.output("The " + this.currentBiome + " welcomes you, " + this.player.name + '.', "Gold");
+		// Initialize Dungeon Engine
+		this.dungeonEngine = new DungeonEngine("dungeon-canvas");
+
+		this.output("The "+this.currentBiome+" welcomes you, "+this.player.name+'.', "Gold");
 		this.output('');
-		this.output('Room: ' + this.room, "Gray");
+		this.output('Room: '+this.room, "Gray");
 
 		// Reset mob
 		this.getMob(this.biomeRoll);
@@ -471,7 +471,7 @@ function DungeonGame(options) {
 		this.dungeonEngine.updateLoop({
 			player: this.player,
 			mob: this.mob
-		});
+		}, this.currentBiome);
 
 		this.roomCount.innerHTML = this.room;
 		this.helmDisplay.innerHTML = this.player.helm.name;
@@ -619,7 +619,7 @@ function DungeonGame(options) {
 		}).bind(this);
 
 		//Reset
-		this.reset();
+		//this.reset();
 	};
 
 	// Self-initialize

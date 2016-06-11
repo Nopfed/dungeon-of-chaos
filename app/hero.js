@@ -11,6 +11,7 @@ function Hero(options) {
 	this.miss = options.miss || 1;
 	this.armor = options.armor || 0;
 	this.gold = options.gold || 10;
+	this.potions = options.potions || 3;
 	this.abilities = options.abilities || [];
 	this.bag = options.bag || [];
 	this.helm = options.helm || {};
@@ -20,7 +21,6 @@ function Hero(options) {
 	this.weap = options.weap || {};
 	this.pants = options.pants || {};
 	this.feet = options.feet || {};
-	this.potions = options.potions || 3;
 
 	this.randomColor = Math.floor(Math.random()*(256))
 		+','+Math.floor(Math.random()*(256))

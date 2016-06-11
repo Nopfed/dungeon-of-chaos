@@ -1,25 +1,27 @@
 function DungeonEngine(canvasId) {
+
 	// EaselJS stage
-	this.stage = new createjs.Stage(canvasId);
+	this.canvas = document.getElementById(canvasId);
+	this.stage = new createjs.Stage(this.canvas);
 
 	// UI variables, sizes
-	this.statusBoxHeight = 170;
+	this.statusBoxHeight = 50;
 	this.statusBoxFontColor = "#FFFFFF";
 
 	// Player name
 	this.playerNameFont = "18px Verdana";
-	this.playerNameOffsetX = 20;
+	this.playerNameOffsetX = 90;
 	this.playerNameOffsetY = 5;
 
 	// Player stats
 	this.playerStatsFont = "14px Verdana";
-	this.playerStatsOffsetX = 25;
+	this.playerStatsOffsetX = 5;
 	this.playerStatsOffsetY = 25;
 
 	// Mob name
 	this.mobFontSize = 18;
 	this.mobNameFont = this.mobFontSize + 'px Verdana';
-	this.mobNameOffsetX = 300;
+	this.mobNameOffsetX = 500;
 	this.mobNameOffsetY = 5;
 
 	// Mob stats
@@ -28,33 +30,58 @@ function DungeonEngine(canvasId) {
 	this.mobStatsOffsetY = this.mobFontSize + this.mobNameOffsetY;
 
 	// Player graphic
-	this.playerGraphicOffsetX = 20;
+	this.playerGraphicOffsetX = 110;
 	this.playerGraphicOffsetY = 0;
-	this.playerGraphicBodyWidth = 100;
-	this.playerGraphicBodyHeight = 200;
-	this.playerGraphicHeadWidth = 100;
-	this.playerGraphicHeadHeight = 100;
+	this.playerGraphicBodyWidth = 50;
+	this.playerGraphicBodyHeight = 100;
+	this.playerGraphicHeadWidth = 50;
+	this.playerGraphicHeadHeight = 50;
 
 	// Mob graphic
-	this.mobGraphicOffsetX = 300;
-	this.mobGraphicOffsetY = 0;
-	this.mobGraphicBodyWidth = 100;
-	this.mobGraphicBodyHeight = 200;
-	this.mobGraphicHeadWidth = 100;
-	this.mobGraphicHeadHeight = 100;
+	this.mobGraphicOffsetX = 510;
+	this.mobGraphicOffsetY = 50;
+	this.mobGraphicBodyWidth = 25;
+	this.mobGraphicBodyHeight = 50;
+	this.mobGraphicHeadWidth = 25;
+	this.mobGraphicHeadHeight = 25;
 
 	// EaselJS Update loop
-	this.updateLoop = function (gameState) {
+	this.updateLoop = function (gameState, currentBiome) {
 		// Clear the stage, remove all children
 		this.stage.removeAllChildren();
 		this.stage.clear();
 
 		// Draw background
 		function drawBackground() {
-			var background = new createjs.Shape();
-			background.graphics.beginFill("#000000")
-				.drawRect(0, 0, this.stage.canvas.width, this.stage.canvas.height);
-			this.stage.addChild(background);
+			var cave = new createjs.Bitmap("media/caveBackground.png");
+			var desert = new createjs.Bitmap("media/desertBackground.png");
+			var tundra = new createjs.Bitmap("media/tundraBackground.png");
+			var swamp = new createjs.Bitmap("media/swampBackground.png");
+			var ctx = this.stage.canvas.getContext("2d");
+
+			if (currentBiome == "Cave") {
+				this.stage.addChild(cave);
+
+				ctx.save();
+				ctx.drawImage(cave.image, 0, 0);
+			}else if (currentBiome == "Desert") {
+				this.stage.addChild(desert);
+
+				ctx.save();
+				ctx.drawImage(desert.image, 0, 0);
+			}else if (currentBiome == "Tundra") {
+				this.stage.addChild(tundra);
+
+				ctx.save();
+				ctx.drawImage(tundra.image, 0, 0);
+			}else {
+				this.stage.addChild(swamp);
+
+				ctx.save();
+				ctx.drawImage(swamp.image, 0, 0);
+			}
+
+			 this.stage.update();		
 		};
 
 		// Draw status box at bottom of screen
@@ -83,15 +110,17 @@ function DungeonEngine(canvasId) {
 						|| typeof gameState.player[stat] === 'number'
 						|| typeof gameState.player[stat] === 'boolean')) {
 					// skip name and hp, already displayed, hide certain stats
-					if (stat === 'name' || stat === 'hp' || stat === 'baseHp' || stat === 'randomColor'
+					if (stat === 'name' || stat === 'hp' || stat === 'miss' || stat === 'armor' || stat === 'maxHp' || stat === 'atk' || stat === 'baseHp' || stat === 'xp' || stat === 'randomColor'
 						|| stat === 'randomAlpha') {
 						continue;
 					}
 
 					// draw stat
-					var statText = new createjs.Text(stat +': ' + gameState.player[stat], this.playerStatsFont, this.statusBoxFontColor);
-					statText.x = this.playerStatsOffsetX;
-					statText.y = this.stage.canvas.height - this.statusBoxHeight + this.playerStatsOffsetY + this.playerNameOffsetY + (i*15);
+					var statText = new createjs.Text(stat +': ' + gameState.player[stat],
+					 this.playerStatsFont, this.statusBoxFontColor);
+					statText.x = this.playerStatsOffsetX + (i*75);
+					statText.y = this.stage.canvas.height - this.statusBoxHeight + this.playerStatsOffsetY +
+					 this.playerNameOffsetY;// + (i*15);
 					this.stage.addChild(statText);
 					i++;
 				}
@@ -145,7 +174,8 @@ function DungeonEngine(canvasId) {
 			playerGraphicHead.graphics
 				.beginFill('rgba('+gameState.player.randomColor+','+gameState.player.randomAlpha+')')
 				.drawRect(this.playerGraphicOffsetX,
-					this.stage.canvas.height-this.statusBoxHeight-this.playerGraphicBodyHeight-this.playerGraphicHeadHeight,
+					this.stage.canvas.height-this.statusBoxHeight-this.playerGraphicBodyHeight-
+					this.playerGraphicHeadHeight,
 					this.playerGraphicHeadWidth,
 					this.playerGraphicHeadHeight);
 			this.stage.addChild(playerGraphicHead);
@@ -159,7 +189,8 @@ function DungeonEngine(canvasId) {
 			mobGraphicBody.graphics
 				.beginFill('rgb('+gameState.mob.randomColor+')')
 				.drawRect(this.mobGraphicOffsetX,
-					this.stage.canvas.height-this.statusBoxHeight-this.mobGraphicBodyHeight,
+					this.stage.canvas.height-this.mobGraphicBodyHeight-this.statusBoxHeight-
+					 this.playerGraphicBodyHeight+this.mobGraphicOffsetY,
 					this.mobGraphicBodyWidth,
 					this.mobGraphicBodyHeight);
 			this.stage.addChild(mobGraphicBody);
@@ -169,7 +200,8 @@ function DungeonEngine(canvasId) {
 			mobGraphicHead.graphics
 				.beginFill('rgba('+gameState.mob.randomColor+','+gameState.mob.randomAlpha+')')
 				.drawRect(this.mobGraphicOffsetX,
-					this.stage.canvas.height-this.statusBoxHeight-this.mobGraphicBodyHeight-this.mobGraphicHeadHeight,
+					this.stage.canvas.height-this.mobGraphicBodyHeight-this.statusBoxHeight-
+					 this.playerGraphicBodyHeight-this.mobGraphicHeadHeight+this.mobGraphicOffsetY,
 					this.mobGraphicHeadWidth,
 					this.mobGraphicHeadHeight);
 			this.stage.addChild(mobGraphicHead);

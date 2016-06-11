@@ -33,7 +33,7 @@ th, td {
 
 #fight-log {
 	vertical-align: top;
-	height: 500px;
+	height: 460px;
 	width: auto;
 	font: 16px/24px "Courier New", Courier, monospace;
 	overflow: auto;
@@ -46,6 +46,7 @@ th, td {
 }
 
 #dungeon-canvas {
+	color: white;
 }
 
 .rainbow {
